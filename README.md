@@ -1,15 +1,76 @@
 # IBD Prerequisite Studio & Exam Mastery 🏛️
 > Laboratório Interativo, Visual e Prático para **Modelagem Conceitual (ER/EER), Mapeamento Relacional e Normalização de Banco de Dados** (DCC222 / DCC011 - UFMG - Prof. Marcos André Gonçalves).
 
-Este repositório cobre todo o conteúdo curricular exigido até o exame de **Projeto Lógico e Normalização**, integrando:
-1. **Simbologia Visual Completa do Esquema ER/EER** e suas regras formais de transformação para esquemas relacionais.
-2. **Resoluções e Testes Interativos das Listas Oficiais** (`exercicios_modelo_relacional.pdf`, `ExercERRequisitos600.pdf`, `consultas_ProfMarcosG.pdf`, `ExercicioProjetoLogico.pdf` e `ExerciciosNormalizacaoSemResposta.pdf`).
-3. **Motor de Injeção de Falhas em DDL** e **Transpilador ANSI SQL-92 `CREATE ASSERTION`**.
-4. **Algoritmo de Fechamento de Atributos ($X^+$) e Decomposição em 1FN, 2FN e 3FN**.
+---
+
+## ⚡ Guia Rápido de Execução (Computador Pessoal ou Laboratório Universitário)
+
+Este laboratório foi construído especificamente para rodar em computadores de **laboratórios de faculdade (Linux, Windows ou macOS) sem privilégios de administrador (sem `root` / sem `sudo`)** e sem necessidade de conexão com a internet após o download:
+
+- ❌ **Sem `pip install`:** Não precisa instalar nenhuma biblioteca externa (utiliza 100% a biblioteca padrão do Python 3).
+- ❌ **Sem permissão de `root` / `sudo`:** Roda inteiramente no espaço de usuário (`/home/aluno` ou Desktop).
+- ❌ **Sem banco externo instalado:** O SQLite roda em memória e no próprio processo padrão do Python.
+- ⚡ **Detecção Automática de Porta Livre:** Se a porta padrão `8080` estiver ocupada por outro aluno ou bloqueada por firewall local, o servidor detecta automaticamente e sobe na próxima porta livre (`8081`, `8082`, etc.).
 
 ---
 
-## 🗺️ Guia de Simbologia ER e Mapeamento para Relações
+### Opção A: Executar via Terminal (Linux / macOS / Windows PowerShell)
+
+```bash
+# 1. Clonar o repositório (ou descompactar o arquivo .zip)
+git clone https://github.com/hermes-pantheon-pb/ibd-prereq-lab.git
+cd ibd-prereq-lab
+
+# 2. Iniciar o servidor (qualquer Python 3.8+ serve)
+python3 web_server.py
+```
+
+No Windows (PowerShell / Prompt):
+```powershell
+python web_server.py
+```
+
+O terminal exibirá a URL pronta:
+```text
+=================================================================
+ 🏛️  IBD Prerequisite & Exam Studio (DCC222 / DCC011 - UFMG)
+=================================================================
+ ✔ Modo de execução: Usuário Comum / Laboratório Universitário
+ ✔ Interface Web ativa em: http://localhost:8080
+ ✔ Pressione Ctrl + C para encerrar o servidor.
+=================================================================
+```
+
+Abra o navegador e acesse:
+👉 **`http://localhost:8080`**
+
+---
+
+### Opção B: Caso você não tenha `git` no laboratório (Download Direto)
+
+Se a máquina do laboratório não tiver `git` instalado ou bloquear conexões SSH/Git:
+1. Baixe o código como ZIP:
+   👉 Clique em **Code $\rightarrow$ Download ZIP** em [https://github.com/hermes-pantheon-pb/ibd-prereq-lab](https://github.com/hermes-pantheon-pb/ibd-prereq-lab)
+2. Extraia a pasta em qualquer diretório local.
+3. Dê dois cliques em `web_server.py` ou execute `python3 web_server.py` no terminal.
+
+---
+
+### Opção C: Uso Direto pelo Terminal / Modo CLI (Sem abrir navegador)
+
+Se você preferir praticar ou debugar direto no shell do Linux da universidade:
+
+```bash
+# Listar todos os 34 exercícios do currículo e seus modos
+python3 db_engine.py list
+
+# Inspecionar esquemas de tabelas e tuplas de teste
+python3 db_engine.py schema T5.1
+```
+
+---
+
+## 🗺️ Guia de Simbologia ER e Transformação em Relações
 
 ### 1. Entidades e Atributos
 
@@ -63,34 +124,3 @@ Este repositório cobre todo o conteúdo curricular exigido até o exame de **Pr
 | **6. SQL para Projeto Lógico** | DDL Completo (`ON DELETE`), `CHECK` de Tupla, Visões (Modificação de Consulta), Asserções Gerais | Injeção de Falhas + Asserções | `ibd-parte4_without_obs.pdf` + `consultas_ProfMarcosG.pdf` |
 | **7. Mapeamento ER/EER $\rightarrow$ Relacional** | 7 Regras de Mapeamento, Migração de FKs, Agregações e Mapeamento de Hierarquias | Mapeamento Formal | `ibd-parte5.pdf` + `ExercicioProjetoLogico.pdf` (Sistema Aéreo) |
 | **8. Normalização de Dados** | Anomalias de Atualização, Fechamento de Atributos ($X^+$), Chaves Candidatas, 1FN, 2FN e 3FN | Decomposição Algébrica | `ibd-parte6.pdf` + `ExerciciosNormalizacaoSemResposta.pdf` (Q1, Q2, Q3) |
-
----
-
-## 🚀 Como Executar Localmente
-
-O estúdio não possui dependências de terceiros (utiliza apenas Python 3 nativo):
-
-```bash
-# 1. Entrar na pasta do projeto
-cd ibd-prereq-lab
-
-# 2. Iniciar o servidor local na porta 8080 (ou PORT=8081 python3 web_server.py)
-python3 web_server.py
-```
-
-Acesse em seu navegador:
-👉 **`http://localhost:8080`**
-
----
-
-## 🛠️ CLI de Teste Rápido
-
-Você também pode inspecionar e testar consultas e esquemas via linha de comando:
-
-```bash
-# Listar todos os 34 exercícios do currículo
-python3 db_engine.py list
-
-# Inspecionar esquemas e dados de teste
-python3 db_engine.py schema T5.1
-```

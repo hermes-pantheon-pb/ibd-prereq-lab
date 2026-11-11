@@ -2,17 +2,15 @@
 """
 Web Server & REST API for IBD Prerequisite Studio (DCC222 / DCC011 - UFMG).
 Zero external dependencies — runs with standard Python 3.
-Supports:
-- Mode 'structured': Conceptual, ER/EER, (min,max), RIR (b,p,n) and RA Structural Constraint validation
-- Mode 'sql_query': Live SQL / RA query execution & expected output comparison
-- Mode 'sql_ddl': Live DDL execution + Fault-Injection Test Suite (PK, UNIQUE, CHECK, ON DELETE CASCADE/RESTRICT)
-- Mode 'sql_assertion': SQL-92 CREATE ASSERTION transpilation & Fault-Injection Validation
+Supports running in restricted environments (university lab PCs, non-root, shared hosts).
+Automatically picks an available unprivileged port if default 8080 is blocked or busy.
 """
 
 import os
 import sys
 import json
 import time
+import socket
 import sqlite3
 import http.server
 import socketserver
@@ -26,7 +24,7 @@ from db_engine import (
     extract_assertion_subqueries,
 )
 
-PORT = int(os.environ.get("PORT", 8080))
+DEFAULT_PORT = int(os.environ.get("PORT", 8080))
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -35,7 +33,7 @@ class PrerequisiteStudioHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
     def log_message(self, format: str, *args: Any) -> None:
-        # Clean console logs
+        # Clean console output for student lab sessions
         pass
 
     def do_GET(self):
@@ -243,7 +241,6 @@ class PrerequisiteStudioHandler(http.server.SimpleHTTPRequestHandler):
                 matched = False
                 diff_reason = f"Quantidade de tuplas diferente. Esperado: {len(expected_rows)}, Obtido: {len(actual_rows)}."
             else:
-                # Order-insensitive comparison unless ORDER BY is explicitly required
                 def norm_row(r):
                     out = []
                     for val in r:
@@ -267,14 +264,46 @@ class PrerequisiteStudioHandler(http.server.SimpleHTTPRequestHandler):
             }
 
 
+def find_available_port(start_port: int, max_attempts: int = 50) -> int:
+    for port in range(start_port, start_port + max_attempts):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind(("127.0.0.1", port))
+                return port
+            except OSError:
+                continue
+    # If range is occupied, let OS choose a free ephemeral port
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(("127.0.0.1", 0))
+        return s.getsockname()[1]
+
+
 def run_server():
     socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(("0.0.0.0", PORT), PrerequisiteStudioHandler) as httpd:
-        print(f"🚀 IBD Prerequisite Studio rodando em http://localhost:{PORT}")
-        sys.stdout.flush()
+    requested_port = DEFAULT_PORT
+
+    # Attempt to bind to requested port or automatically find an available unprivileged port
+    try:
+        httpd = socketserver.TCPServer(("127.0.0.1", requested_port), PrerequisiteStudioHandler)
+        active_port = requested_port
+    except OSError:
+        active_port = find_available_port(requested_port + 1)
+        httpd = socketserver.TCPServer(("127.0.0.1", active_port), PrerequisiteStudioHandler)
+
+    print("\n" + "=" * 65)
+    print(" 🏛️  IBD Prerequisite & Exam Studio (DCC222 / DCC011 - UFMG)")
+    print("=" * 65)
+    print(" ✔ Modo de execução: Usuário Comum / Laboratório Universitário")
+    print(f" ✔ Interface Web ativa em: http://localhost:{active_port}")
+    print(" ✔ Pressione Ctrl + C para encerrar o servidor.")
+    print("=" * 65 + "\n")
+    sys.stdout.flush()
+
+    try:
         httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\nServidor encerrado com sucesso.")
 
 
 if __name__ == "__main__":
     run_server()
-
