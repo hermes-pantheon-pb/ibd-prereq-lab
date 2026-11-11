@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IBD Prerequisite Studio — Laboratório Interativo Pré-Projeto Lógico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Header / Navigation Bar -->
+  <header class="app-header" id="app-header">
+    <div class="header-left">
+      <div class="logo-box">
+        <span class="logo-icon">🏛️</span>
+        <div class="logo-text">
+          <h1>IBD Prerequisite Studio</h1>
+          <span class="logo-sub">DCC011 / DCC222 — Dominando os Pré-Requisitos para Projeto Lógico</span>
+        </div>
+      </div>
+      <div class="header-meta-badge" id="current-ex-badge">
+        <span class="pulse-dot"></span>
+        <span id="header-ex-label">Carregando exercício...</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="nav-btn" id="btn-cheatsheet-modal" title="Ver Resumo de Fórmulas e Regras">
+        <span class="icon">📖</span> Guia Rápido (Cheat Sheet)
+      </button>
+      <div class="progress-pill" id="progress-indicator">
+        <span class="progress-text" id="progress-text">0 / 34 Concluídos</span>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container" id="app-container">
+    <!-- Left Sidebar: Curriculum Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="exercise-search" placeholder="Buscar conceito ou tópico..." />
+        </div>
+        <div class="sidebar-toolbar">
+          <button class="sidebar-mini-btn" id="btn-collapse-all" title="Recolher todos os módulos">Recolher</button>
+          <button class="sidebar-mini-btn" id="btn-expand-all" title="Expandir todos os módulos">Expandir</button>
+        </div>
+      </div>
+
+      <nav class="modules-nav" id="modules-nav">
+        <!-- Rendered dynamically by app.js -->
+      </nav>
+    </aside>
+
+    <!-- Center/Main Content -->
+    <main class="main-content" id="main-content">
+      <!-- Top Navigation Tabs -->
+      <div class="content-tabs" id="content-tabs">
+        <button class="tab-btn active" id="tab-btn-concepts" data-target="panel-concepts">
+          <span class="tab-icon">📖</span> 1. Teoria & Intuição dos Slides
+        </button>
+        <button class="tab-btn" id="tab-btn-practice" data-target="panel-practice">
+          <span class="tab-icon">⚡</span> 2. Prática Ativa & Validação
+        </button>
+      </div>
+
+      <!-- PANEL 1: CONCEPTS & THEORY -->
+      <section class="tab-panel active" id="panel-concepts">
+        <div class="concept-hero" id="concept-hero">
+          <div class="hero-top">
+            <span class="badge" id="module-badge">Módulo 1</span>
+            <h2 id="module-title">Título do Módulo</h2>
+          </div>
+          <p class="hero-summary" id="module-summary">Resumo do módulo...</p>
+        </div>
+
+        <div class="concepts-grid" id="concepts-grid">
+          <!-- Concept cards rendered dynamically -->
+        </div>
+
+        <div class="quick-action-strip">
+          <div class="strip-text">
+            <strong>Pronto para validar o aprendizado?</strong> Vá para o painel de prática e teste seus conhecimentos com feedback imediato.
+          </div>
+          <button class="btn-primary" id="btn-jump-to-practice">
+            Ir para a Prática ➜
+          </button>
+        </div>
+      </section>
+
+      <!-- PANEL 2: PRACTICE & ACTIVE LAB -->
+      <section class="tab-panel" id="panel-practice">
+        <!-- Exercise Meta Bar -->
+        <div class="exercise-header-card" id="exercise-header-card">
+          <div class="ex-title-row">
+            <div class="ex-badge-group">
+              <span class="ex-number-badge" id="ex-number-badge">T1.1</span>
+              <span class="mode-tag" id="ex-mode-tag">CONCEITUAL</span>
+              <span class="diff-badge" id="ex-diff-badge">Oficial Slides</span>
+            </div>
+            <h3 class="ex-title" id="ex-title">Título do Exercício</h3>
+          </div>
+          <p class="ex-statement" id="ex-statement">Carregando detalhes...</p>
+
+          <div class="intuition-callout" id="intuition-callout">
+            <div class="callout-icon">💡</div>
+            <div class="callout-body">
+              <strong>Como pensar nesta questão:</strong>
+              <p id="ex-intuition-text">Carregando instruções...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Workspace: Structured Mode (MCQ/Diagnostic) OR Code/SQL Mode -->
+        <div id="workspace-wrapper">
+          <!-- VIEW A: STRUCTURED INTERACTIVE BUILDER (Radio questions / diagnostics) -->
+          <div class="structured-pane" id="structured-pane" style="display: none;">
+            <div class="questions-container" id="questions-container">
+              <!-- Rendered dynamically -->
+            </div>
+            <div class="structured-actions">
+              <button class="btn-primary" id="btn-validate-structured">
+                ✔ Validar Respostas
+              </button>
+              <button class="btn-secondary" id="btn-reset-structured">
+                🧹 Limpar Seleção
+              </button>
+            </div>
+          </div>
+
+          <!-- VIEW B: CODE / SQL / DDL / ASSERTION EDITOR + OUTPUT -->
+          <div class="workspace-grid" id="code-workspace-grid" style="display: none;">
+            <!-- Left: Editor -->
+            <div class="editor-pane" id="editor-pane">
+              <div class="pane-header">
+                <div class="pane-title">
+                  <span class="code-dot dot-red"></span>
+                  <span class="code-dot dot-yellow"></span>
+                  <span class="code-dot dot-green"></span>
+                  <span class="pane-name" id="editor-mode-label">SQL / DDL / Asserção</span>
+                </div>
+                <div class="editor-actions">
+                  <button class="btn-text" id="btn-clear-editor" title="Limpar editor">🧹 Limpar</button>
+                  <button class="btn-text" id="btn-show-hint" title="Ver dica">💡 Dica</button>
+                </div>
+              </div>
+
+              <div class="editor-container">
+                <textarea id="sql-editor" spellcheck="false" placeholder="-- Escreva seu comando ou consulta aqui..."></textarea>
+              </div>
+
+              <div class="editor-footer">
+                <div class="editor-hint-shortcut">
+                  <kbd>Ctrl</kbd> + <kbd>Enter</kbd> para executar/testar
+                </div>
+                <div class="editor-buttons">
+                  <button class="btn-secondary" id="btn-run-code">▶ Executar</button>
+                  <button class="btn-primary" id="btn-validate-code">✔ Validar / Bateria de Testes</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Results & Schema Inspector -->
+            <div class="output-pane" id="output-pane">
+              <div class="output-nav">
+                <button class="out-tab active" id="out-tab-result" data-target="out-view-result">
+                  📊 Relatório de Execução / Testes
+                </button>
+                <button class="out-tab" id="out-tab-expected" data-target="out-view-expected">
+                  🎯 Saída Esperada / Critérios
+                </button>
+                <button class="out-tab" id="out-tab-schema" data-target="out-view-schema">
+                  🗄 Dados do Banco de Dados
+                </button>
+              </div>
+
+              <div class="output-content">
+                <!-- Tab 1: Execution & Test Results -->
+                <div class="out-view active" id="out-view-result">
+                  <div class="validation-banner" id="validation-banner" style="display: none;">
+                    <span class="banner-icon" id="banner-icon">✔</span>
+                    <div class="banner-text">
+                      <strong id="banner-title">Resultado</strong>
+                      <span id="banner-desc">Detalhes</span>
+                    </div>
+                  </div>
+
+                  <div class="table-stats-bar" id="table-stats-bar">
+                    <span id="stats-summary">Aguardando execução...</span>
+                    <span id="stats-time">0 ms</span>
+                  </div>
+
+                  <div class="table-scroll-container" id="result-table-container">
+                    <div class="empty-state">
+                      <span class="empty-icon">⚡</span>
+                      <p>Clique em <strong>Executar</strong> ou <strong>Validar</strong> para testar seu código.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tab 2: Expected Output / Test Suites -->
+                <div class="out-view" id="out-view-expected">
+                  <div class="expected-info-box">
+                    <span id="expected-info-title">Critérios Oficiais de Validação:</span>
+                  </div>
+                  <div class="table-scroll-container" id="expected-table-container">
+                    <!-- Expected table or tests rendered dynamically -->
+                  </div>
+                </div>
+
+                <!-- Tab 3: Schema Inspector -->
+                <div class="out-view" id="out-view-schema">
+                  <div class="schema-tables-list" id="schema-tables-container">
+                    <!-- Schema tables rendered dynamically -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL: CHEAT SHEET (Resumo Rápido de Fórmulas e Regras) -->
+  <div class="modal-overlay" id="modal-cheatsheet">
+    <div class="modal-box modal-xlarge">
+      <div class="modal-header">
+        <h3>📖 Guia Rápido de Pré-Requisitos para Projeto Lógico (Cheat Sheet)</h3>
+        <button class="modal-close" id="btn-close-cheatsheet">&times;</button>
+      </div>
+      <div class="modal-body cheatsheet-content">
+        <div class="cs-grid">
+          <div class="cs-card">
+            <h4>1. Notação Tradicional 1:N vs. (min, max)</h4>
+            <ul>
+              <li><strong>Tradicional:</strong> 1 fica no lado do "um" e N no lado do "muitos".</li>
+              <li><strong>(min, max):</strong> Fica na <em>própria</em> entidade. Ex: <code>Empregado (1, 1)</code> e <code>Departamento (4, N)</code>. <strong>Lados se invertem!</strong></li>
+              <li><strong>Participação Parcial:</strong> <code>min = 0</code> (linha simples).</li>
+              <li><strong>Participação Total:</strong> <code>min >= 1</code> (linha dupla).</li>
+            </ul>
+          </div>
+          <div class="cs-card">
+            <h4>2. Hierarquias EER (d/o, Total/Parcial)</h4>
+            <ul>
+              <li><strong>'d' (Disjunta):</strong> Subclasses mutuamente exclusivas (interseção vazia: <code>π(A) ∩ π(B) = ∅</code>).</li>
+              <li><strong>'o' (Sobreposta):</strong> Pode pertencer a mais de uma subclasse simultaneamente.</li>
+              <li><strong>Total (Linha Dupla):</strong> União cobre toda a superclasse (<code>π(A) ∪ π(B) = π(Super)</code>).</li>
+              <li><strong>Parcial (Linha Simples):</strong> Pode não ser de nenhuma subclasse.</li>
+            </ul>
+          </div>
+          <div class="cs-card">
+            <h4>3. RIR e Políticas de Remoção (b, p, n)</h4>
+            <ul>
+              <li><strong>b (Bloqueio / RESTRICT):</strong> Rejeita o DELETE se houver tuplas filhas (ex: empregados no departamento).</li>
+              <li><strong>p (Propagação / CASCADE):</strong> Apaga em cascata (obrigatório para <em>entidades fracas</em>, multivalorados e tabelas M:N).</li>
+              <li><strong>n (Nulos / SET NULL):</strong> Seta a FK para NULL (ex: chefe demitido em <code>SUPERSSN</code>).</li>
+            </ul>
+          </div>
+          <div class="cs-card">
+            <h4>4. SQL-92 CREATE ASSERTION</h4>
+            <pre><code>CREATE ASSERTION &lt;nome&gt;
+CHECK (NOT EXISTS (
+    SELECT * FROM ... WHERE &lt;condicao_violadora&gt;
+));</code></pre>
+            <p>Usada para regras globais entre múltiplas tabelas (ex: nenhum funcionário ganha mais que o gerente do depto).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast-notification">
+    <span id="toast-message">Notificação</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

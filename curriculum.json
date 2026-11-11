@@ -1,0 +1,230 @@
+{
+  "modules": [
+    {
+      "id": 1,
+      "badge": "Módulo 1",
+      "title": "Módulo 1: Arquitetura de SGBD, Esquemas, Instâncias e Independência de Dados",
+      "summary": "Compreenda a separação fundamental entre a definição estrutural (Intensão/Esquema) e os dados em um momento no tempo (Extensão/Instância), a arquitetura ANSI/SPARC de 3 níveis e a imunidade a mudanças garantida pela Independência Lógica e Física de Dados.",
+      "concepts": [
+        {
+          "title": "Arquitetura de Três Esquemas (ANSI/SPARC)",
+          "content": "Para separar as aplicações de usuário da base de dados física, a arquitetura divide-se em 3 níveis:\n\n1. **Nível Interno (Esquema Físico):** Descreve **COMO** os dados estão fisicamente guardados (arquivos, blocos de disco, alocação de bytes, ordenação e estruturas de índices como B-Trees ou Hash).\n2. **Nível Conceitual (Esquema Conceitual/Lógico):** Descreve **O QUE** está armazenado no banco como um todo para toda a organização (entidades, tipos de dados de atributos, relacionamentos, operações e restrições de integridade). Oculta totalmente os detalhes de hardware e estruturas de armazenamento.\n3. **Nível Externo (Esquemas Externos / Visões):** Descreve porções específicas do banco de dados adaptadas às necessidades de diferentes grupos ou usuários (visões de segurança e simplificação)."
+        },
+        {
+          "title": "Esquema (Intensão) vs. Instância/Estado (Extensão)",
+          "content": "**Esquema (Intensão):** É a descrição da estrutura do banco de dados armazenada no Catálogo (Dicionário de Dados) do SGBD. É especificado durante o projeto do banco e muda muito raramente (ex: Aluno(Matricula: int, Nome: string)).\n\n**Instância ou Estado (Extensão):** É o conjunto real de dados (tuplas) armazenados no banco de dados em um instante de tempo particular t. A instância muda constantemente a cada comando de inserção, exclusão ou atualização (INSERT, DELETE, UPDATE)."
+        },
+        {
+          "title": "Independência de Dados (O Benefício Supremo do SGBD)",
+          "content": "É a capacidade de alterar o esquema em um determinado nível sem precisar alterar o esquema (ou programas) do nível imediatamente superior:\n\n- **Independência Física de Dados:** Capacidade de alterar o Esquema Interno (ex: reorganizar arquivos em disco, criar novos índices, migrar para SSD) sem alterar o Esquema Conceitual nem as aplicações.\n- **Independência Lógica de Dados:** Capacidade de alterar o Esquema Conceitual (ex: adicionar uma nova tabela, adicionar atributos ou mudar relacionamentos) sem alterar os Esquemas Externos existentes nem os programas de aplicação que não usam essas novidades."
+        },
+        {
+          "title": "Sublinguagens do SGBD: DDL, DML e DQL",
+          "content": "- **DDL / LDD (Linguagem de Definição de Dados):** Usada para especificar os esquemas conceituais e internos (CREATE TABLE, ALTER TABLE, DROP TABLE). Suas compilações são gravadas no catálogo.\n- **DML / LMD (Linguagem de Manipulação de Dados):** Usada para manipular dados (INSERT, UPDATE, DELETE). Pode ser procedural (navegacional) ou não-procedural (declarativa).\n- **DQL (Linguagem de Consulta):** Usada para recuperação de dados (SELECT)."
+        }
+      ],
+      "exercises": [
+        "T1.1",
+        "T1.2",
+        "E1.1"
+      ]
+    },
+    {
+      "id": 2,
+      "badge": "Módulo 2",
+      "title": "Módulo 2: Modelo Entidade-Relacionamento (ER), Cardinalidades e Entidades Fracas",
+      "summary": "Domine a modelagem conceitual de mini-mundos: tipos de atributos (compostos, multivalorados, derivados), o duelo entre a notação 1:N tradicional e a notação (min,max) do Elmasri, papéis recursivos e a identificação de entidades fracas.",
+      "concepts": [
+        {
+          "title": "Entidades e Tipos de Atributos",
+          "content": "- **Entidade:** Objeto do mundo real com existência independente (física como Empregado ou conceitual como Projeto).\n- **Atributos Simples vs. Compostos:** Simples são atômicos; compostos podem ser decompostos em partes menores com significados próprios (ex: Endereço -> Rua, Número, Bairro, Cidade).\n- **Monovalorados vs. Multivalorados:** Monovalorado tem um único valor por entidade; multivalorado pode ter conjunto de valores simultâneos (ex: Localizações de um departamento, múltiplos telefones ou ramais) — desenhado com **elipse de linha dupla**.\n- **Armazenados vs. Derivados:** Armazenados residem na base; derivados são calculados a partir de outros (ex: Idade derivada de DataNasc, NumEmpregados derivado da contagem do relacionamento) — desenhado com **elipse tracejada**."
+        },
+        {
+          "title": "A Grande Pegadinha: Notação Tradicional 1:N vs. Notação (min, max)",
+          "content": "No curso da UFMG / Elmasri, você DEVE saber transitar perfeitamente entre as duas notações:\n\n1. **Notação Tradicional (Chen / Peter Chen):**\n   - Diz a cardinalidade estrutural máxima associada à outra ponta.\n   - Exemplo: 1 Departamento emprega N Empregados -> coloca-se 1 perto de DEPARTAMENTO e N perto de EMPREGADO.\n\n2. **Notação (min, max):**\n   - O par (min, max) colocado **ao lado da própria entidade E** determina em quantos relacionamentos cada instância de E participa!\n   - Exemplo: Cada empregado participa de exatamente 1 vínculo -> coloca-se (1, 1) **ao lado de EMPREGADO**.\n   - Cada departamento possui de 4 a N empregados -> coloca-se (4, N) **ao lado de DEPARTAMENTO**.\n   - **ATENÇÃO:** Onde ficava o '1' tradicional agora fica o '(min, N)', e onde ficava o 'N' fica o '(1, 1)'. Os lados se invertem!"
+        },
+        {
+          "title": "Tipos de Entidade Fraca e Relacionamento Identificador",
+          "content": "- **Entidade Fraca:** Entidade que **não possui atributos chave próprios** suficientes para formar sua chave primária. Depende da existência e identificação de uma entidade dona (proprietária).\n- **Chave Parcial (Discriminador):** Sublinhado tracejado. É o conjunto de atributos que permite distinguir entidades fracas subordinadas à mesma entidade proprietária (ex: Nome_Dependente para o mesmo empregado, ou Trecho_num para o mesmo número de voo).\n- **Notação ER:** Retângulo duplo para a entidade fraca, losango duplo para o relacionamento identificador, e **linha dupla (participação total obrigatória / min=1)** ligando a entidade fraca ao losango."
+        }
+      ],
+      "exercises": [
+        "T2.1",
+        "T2.2",
+        "T2.3",
+        "E2.1"
+      ]
+    },
+    {
+      "id": 3,
+      "badge": "Módulo 3",
+      "title": "Módulo 3: Modelo EER (Hierarquias d/o, Total/Parcial), Ternários e Notação UML",
+      "summary": "Aprofunde-se no Modelo Entidade-Relacionamento Estendido: restrições de disjunção e completude em hierarquias, herança de tipo em árvores e reticulados (lattice), armadilhas de relacionamentos ternários e o mapeamento conceitual em UML.",
+      "concepts": [
+        {
+          "title": "Hierarquias de Especialização/Generalização: Disjunção e Completude",
+          "content": "Uma hierarquia de especialização define subclasses a partir de uma superclasse genérica com herança de atributos e relacionamentos:\n\n1. **Restrição de Disjunção:**\n   - **Disjunta ('d'):** Uma instância da superclasse pode pertencer a no máximo UMA das subclasses. A interseção entre as subclasses é vazia: π(S1) ∩ π(S2) = ∅.\n   - **Sobreposta / Overlapping ('o'):** Uma mesma entidade pode pertencer simultaneamente a mais de uma subclasse (ex: uma peça que é manufaturada E comprada).\n\n2. **Restrição de Completude:**\n   - **Total (Linha Dupla):** Toda entidade da superclasse é OBRIGATORIAMENTE membro de pelo menos uma subclasse. A união das subclasses cobre toda a superclasse: ⋃ π(Si) = π(Super).\n   - **Parcial (Linha Simples):** Uma entidade da superclasse pode não pertencer a nenhuma das subclasses."
+        },
+        {
+          "title": "Herança de Tipo e Reticulados (Lattices)",
+          "content": "- **Hierarquia (Árvore):** Cada subclasse participa em apenas um relacionamento classe/subclasse (possui uma única superclasse).\n- **Reticulado (Lattice):** Uma subclasse pode ter mais de uma superclasse (**Herança Múltipla**). Ex: Engenheiro_Gerente herda todos os atributos e relacionamentos de Engenheiro, de Gerente e da superclasse raiz Empregado."
+        },
+        {
+          "title": "Relacionamentos Ternários vs. Três Binários",
+          "content": "Um relacionamento ternário associa 3 tipos de entidade simultaneamente (ex: SUPPLIES(Supplier, Part, Project) = quem fornece qual peça para qual projeto).\n\n**O Erro Fatal:** Substituir o ternário por 3 binários M:N (Fornece(s, p), Usa(j, p), Fornece_Projeto(s, j)) causa perda semântica e gera junções espúrias. Para representar ternários usando binários SEM perda de informação, deve-se criar um **Tipo de Entidade Fraca / Associativa** ligada com participação total e cardinalidade N:1 a cada uma das três entidades fortes."
+        },
+        {
+          "title": "Equivalência de Conceitos em Notação UML",
+          "content": "- **Classe UML:** Entidade no ER.\n- **Multiplicidades:** Colocadas no destino da navegação (ex: 1..1 e 4..*).\n- **Qualificador UML:** Pequeno retângulo acoplado à classe proprietária que atua exatamente como a **chave parcial** da entidade fraca.\n- **Agregação (Losango branco na ponta do todo):** Relacionamento de composição/agregação (todo-parte)."
+        }
+      ],
+      "exercises": [
+        "T3.1",
+        "T3.2",
+        "T3.3",
+        "E3.1"
+      ]
+    },
+    {
+      "id": 4,
+      "badge": "Módulo 4",
+      "title": "Módulo 4: Modelo Relacional Formal, Chaves, RIR (b, p, n) e Atualizações",
+      "summary": "Compreenda a teoria matemática de Codd: relações como subconjuntos do produto cartesiano de domínios, tuplas, superchaves vs. chaves candidatas/primárias, Restrição de Integridade Referencial formal e as 3 políticas de remoção (b, p, n).",
+      "concepts": [
+        {
+          "title": "Conceitos Formais do Modelo Relacional",
+          "content": "- **Esquema de Relação:** R(A1, A2, ..., An) onde n é o grau da relação e cada atributo Ai é definido sobre um domínio dom(Ai).\n- **Relação r(R):** Um conjunto finito de tuplas r = {t1, t2, ..., tm}, onde r(R) ⊆ dom(A1) x dom(A2) x ... x dom(An).\n- **Características Fundamentais:** As tuplas de uma relação **não são ordenadas**; os valores dos atributos em uma tupla devem ser **atômicos** (1FN — proibido atributos multivalorados ou listas aninhadas); e todas as tuplas de uma relação são obrigatoriamente distintas."
+        },
+        {
+          "title": "Superchave, Chave Candidata, Primária e Alternativa",
+          "content": "- **Superchave (SK):** Conjunto de atributos de R tal que nenhuma tupla tem valores idênticos: t1[SK] ≠ t2[SK] para quaisquer tuplas distintas. O conjunto de todos os atributos é a superchave trivial padrão.\n- **Chave (Chave Candidata):** É uma **superchave mínima**. Se você retirar qualquer atributo dela, ela perde a propriedade de unicidade.\n- **Chave Primária (PK):** A chave candidata escolhida pelo projetista como identificador oficial da relação (seus valores nunca podem ser nulos — Integridade de Entidade).\n- **Chaves Alternativas:** Todas as demais chaves candidatas que não foram escolhidas como primária (são implementadas via cláusula UNIQUE no SQL)."
+        },
+        {
+          "title": "Restrição de Integridade Referencial (RIR) e as 3 Políticas (b, p, n)",
+          "content": "Dada a RIR formal R1[FK] → R2[PK], para toda tupla t1 em R1, ou t1[FK] = t2[PK] para algum t2 em R2, ou t1[FK] é NULL.\n\nQuando uma tupla de R2 é removida (DELETE), a integridade referencial exige uma ação em relação a R1, representada nos slides pela notação R1[FK] -op-> R2[PK] onde op pertence a {b, p, n}:\n\n1. **b (Bloqueio / RESTRICT):** Rejeita a remoção da tupla em R2 enquanto existirem tuplas referenciando-a em R1. Usado em relacionamentos funcionais obrigatórios (ex: empregados lotados no departamento).\n2. **p (Propagação / CASCADE):** Propaga a remoção, apagando em cascata as tuplas de R1. Obrigatório para entidades fracas (DEPENDENT), atributos multivalorados e tabelas associativas M:N.\n3. **n (Substituição por Nulos / SET NULL):** Modifica o valor de FK para NULL nas tuplas de R1. Usado em relacionamentos opcionais onde FK aceita nulo (ex: supervisão direta em EMPLOYEE[SUPERSSN])."
+        }
+      ],
+      "exercises": [
+        "T4.1",
+        "T4.2",
+        "E4.1",
+        "E4.2"
+      ]
+    },
+    {
+      "id": 5,
+      "badge": "Módulo 5",
+      "title": "Módulo 5: Álgebra Relacional Avançada — Conjuntos, Divisão (÷) e Restrições Estruturais",
+      "summary": "Vá além de seleções e projeções simples: domine união-compatibilidade, a operação teórica de Divisão (÷) para consultas universais ('trabalha em todos os projetos') e as fórmulas algébricas que expressam restrições de hierarquia e totalidade.",
+      "concepts": [
+        {
+          "title": "Operações de Conjunto e União-Compatibilidade",
+          "content": "Para realizar União (R ∪ S), Interseção (R ∩ S) ou Diferença (R - S), as duas relações devem ser **União-Compatíveis**:\n1. Devem ter exatamente o mesmo grau (número de colunas).\n2. Os domínios dos atributos correspondentes devem ser compatíveis: dom(Ai) = dom(Bi) para todo i.\n\n**Conjunto Completo:** {σ, π, ∪, -, x} é um conjunto completo de operadores. Qualquer outra operação relacional pode ser derivada deles (ex: R ∩ S = (R ∪ S) - ((R-S) ∪ (S-R)) e R ⨝ S = σ(R x S))."
+        },
+        {
+          "title": "A Operação de Divisão Relacional (R ÷ S)",
+          "content": "A divisão T(Y) = R(Z) ÷ S(X) (onde X ⊂ Z e Y = Z - X) responde a perguntas com quantificador universal ('todos').\n\nUma tupla t sobre os atributos Y aparece no resultado se e somente se, para **toda** tupla s em S, a tupla composta <t, s> estiver presente em R.\n\nExemplo clássico dos slides:\n- R(SSN, PNO) = π_{ESSN, PNO}(WORKS_ON)\n- S(PNO) = π_{PNUMBER}(σ_{DNUM=5}(PROJECT))\n- R ÷ S produz os SSNs dos empregados que trabalham em **todos** os projetos do departamento 5."
+        },
+        {
+          "title": "Restrições Estruturais em Notação da Álgebra Relacional",
+          "content": "No projeto lógico, regras semânticas de participação total e hierarquias são formalizadas por equações de álgebra relacional:\n\n1. **Totalidade em Relacionamento 1:N (Trabalha-para):**\n   π_{NEmp}(Empregado) = π_{NEmp}(Trabalha-para)\n2. **Disjunção em Hierarquia (Gerente vs. Técnico):**\n   π_{NEmp}(Gerente) ∩ π_{NEmp}(Tecnico) = ∅\n3. **Totalidade em Hierarquia:**\n   π_{NEmp}(Gerente) ∪ π_{NEmp}(Tecnico) = π_{NEmp}(Empregado)\n4. **Hierarquia em Tabela Única Otimizada:**\n   π_{NEmp}(σ_{SalAd ≠ nulo}(Empregado)) ∩ π_{NEmp}(σ_{Formacao ≠ nulo}(Empregado)) = ∅"
+        }
+      ],
+      "exercises": [
+        "T5.1",
+        "T5.2",
+        "T5.3",
+        "E5.1",
+        "E5.2"
+      ]
+    },
+    {
+      "id": 6,
+      "badge": "Módulo 6",
+      "title": "Módulo 6: SQL Avançado para Projeto Lógico — DDL, Visões, CHECK e CREATE ASSERTION",
+      "summary": "Implemente a infraestrutura completa em SQL de produção e padrão ANSI/SQL-92: definição de integridade referencial com ON DELETE, otimização de subclasses com CHECK de tupla, mecânica de modificação de consulta em VISÕES e asserções globais de integridade.",
+      "concepts": [
+        {
+          "title": "DDL Completo: PRIMARY KEY, UNIQUE e FOREIGN KEY",
+          "content": "A sintaxe padrão de criação de tabelas integra restrições de integridade estruturais:\n\n```sql\nCREATE TABLE EMPLOYEE (\n    SSN CHAR(9) NOT NULL,\n    DNO INT NOT NULL,\n    SUPERSSN CHAR(9),\n    PRIMARY KEY (SSN),\n    FOREIGN KEY (SUPERSSN) REFERENCES EMPLOYEE(SSN) ON DELETE SET NULL,\n    FOREIGN KEY (DNO) REFERENCES DEPARTMENT(DNUMBER)\n);\n```\n- `PRIMARY KEY`: Define a chave primária e força NOT NULL + UNIQUE.\n- `UNIQUE`: Define chaves alternativas adicionais.\n- `ON DELETE CASCADE | SET NULL | RESTRICT`: Implementa as políticas p, n, b da RIR."
+        },
+        {
+          "title": "Otimização de Hierarquias com Cláusula CHECK",
+          "content": "Quando mapeamos uma hierarquia disjunta e total para uma tabela única Empregado(NEmp, Nome, Salario, SalAd, Formacao) (slide 37 de ibd-parte5.pdf), garantimos a integridade usando uma restrição CHECK de tabela:\n\n```sql\nCHECK (\n    (SalAd IS NOT NULL AND Formacao IS NULL) OR\n    (SalAd IS NULL AND Formacao IS NOT NULL)\n)\n```\nIsso impede que uma pessoa seja técnico e gerente ao mesmo tempo (disjunção) e impede que não seja nenhum dos dois (totalidade)!"
+        },
+        {
+          "title": "Visões em SQL e Modificação de Consulta (Query Modification)",
+          "content": "Uma visão (`CREATE VIEW`) é uma relação virtual derivada de tabelas base.\n\n**A Estratégia de Modificação de Consulta:** O SGBD não precisa materializar (guardar em disco) a visão; quando o usuário consulta a visão (`SELECT * FROM ViewX WHERE cond`), o otimizador substitui a definição da visão dentro da consulta do usuário antes da execução.\n\n**Regra de Atualização de Visões:** Visões definidas sobre múltiplas tabelas com JOIN ou visões com `GROUP BY` e funções de agregação **NÃO são atualizáveis**!"
+        },
+        {
+          "title": "Restrições Gerais de Integridade: CREATE ASSERTION",
+          "content": "No padrão ANSI/ISO SQL-92 (slides de ibd-parte4 e ibd-parte5), restrições que envolvem múltiplas tabelas são declaradas como Asserções Gerais:\n\n`CREATE ASSERTION <nome> CHECK (NOT EXISTS (...));`\n\nExemplo clássico: 'Nenhum empregado pode ganhar mais que seu gerente direto':\n```sql\nCREATE ASSERTION SALARY_CONSTRAINT\nCHECK (NOT EXISTS (\n    SELECT *\n    FROM EMPLOYEE E, EMPLOYEE M, DEPARTMENT D\n    WHERE E.SALARY > M.SALARY\n      AND E.DNO = D.DNUMBER\n      AND D.MGRSSN = M.SSN\n));\n```"
+        }
+      ],
+      "exercises": [
+        "T6.1",
+        "T6.2",
+        "T6.3",
+        "E6.1",
+        "E6.2",
+        "E6.3"
+      ]
+    },
+    {
+      "id": 7,
+      "badge": "Módulo 7",
+      "title": "Módulo 7: Mapeamento ER/EER para Esquema Relacional (Transformação)",
+      "summary": "Domine as 7 regras fundamentais de transformação de diagramas ER e EER em tabelas relacionais com PKs, FKs, políticas de remoção (b, p, n) e restrições estruturais formais em álgebra relacional e SQL.",
+      "concepts": [
+        {
+          "title": "Regra 1 e 2: Entidades Fortes e Atributos Multivalorados",
+          "content": "- **Entidade Forte:** Cria-se uma relação $R$ contendo todos os atributos simples e as folhas de atributos compostos. A chave primária $PK$ é a chave da entidade.\n- **Atributos Multivalorados (Elipse Dupla):** Cria-se uma **nova relação** $R_{multi}(PK, Atributo)$, onde a chave primária composta é $(PK, Atributo)$ e $R_{multi}[PK] \\xrightarrow{p} R[PK]$ (política $p$ / CASCADE obrigatória)."
+        },
+        {
+          "title": "Regra 3: Entidades Fracas (Retângulo Duplo)",
+          "content": "Para cada tipo de entidade fraca $W$ com entidade dona $E$:\n- Cria-se uma relação $W$.\n- A chave primária de $W$ é a combinação da chave primária do dono com a chave parcial (discriminador) da fraca: $PK(W) = (PK(E), ChaveParcial)$.\n- A chave estrangeira $W[PK(E)] \\xrightarrow{p} E[PK(E)]$ possui **obrigatoriamente política $p$ (propagação / ON DELETE CASCADE)**."
+        },
+        {
+          "title": "Regra 4 e 5: Relacionamentos 1:1, N:1 e M:N",
+          "content": "- **Relacionamento N:1:** Mapeamento otimizado: inclui-se a chave primária do lado '1' como chave estrangeira $FK$ na relação do lado 'N' ($R_N[FK] \\rightarrow R_1[PK]$).\n- **Relacionamento 1:1:** Escolhe-se o lado com participação total para receber a $FK$ do outro lado (com restrição `UNIQUE`).\n- **Relacionamento M:N (Losango com M e N):** Cria-se uma **nova relação de relacionamento** $R_{rel}(PK_1, PK_2, AtributosRel)$ onde a chave primária é composta pelas duas chaves estrangeiras: $PK = (PK_1, PK_2)$, ambas com política $p$ (CASCADE)."
+        },
+        {
+          "title": "Regra 6 e 7: Hierarquias EER (Mapeamento 1-1 vs. Otimizado)",
+          "content": "- **Mapeamento 1-1 (Tabelas Separadas):** Cria-se a superclasse e uma relação para cada subclasse com $PK$ igual à da superclasse ($Sub[PK] \\xrightarrow{p} Super[PK]$).\n- **Mapeamento Otimizado (Tabela Única):** Colapsa-se a superclasse e todas as subclasses em uma única tabela com atributos específicos anuláveis, controlados por restrições `CHECK` de tupla.\n- **Restrições Estruturais em Álgebra Relacional:**\n  - Disjunção ('d'): $\\pi_{PK}(S_1) \\cap \\pi_{PK}(S_2) = \\emptyset$\n  - Totalidade (Linha Dupla): $\\bigcup \\pi_{PK}(S_i) = \\pi_{PK}(Super)$"
+        }
+      ],
+      "exercises": [
+        "T7.1",
+        "T7.2",
+        "E7.1"
+      ]
+    },
+    {
+      "id": 8,
+      "badge": "Módulo 8",
+      "title": "Módulo 8: Normalização de Dados — DF, Fechamento (Closure), 1FN, 2FN e 3FN",
+      "summary": "Meça formalmente a qualidade do projeto relacional: anomalias de atualização, algoritmo de Fechamento de Atributos (X+), identificação de chaves candidatas e decomposição passo a passo em 1FN, 2FN e 3FN.",
+      "concepts": [
+        {
+          "title": "As 3 Anomalias de Atualização e Valores Nulos",
+          "content": "Quando um esquema mistura múltiplos conceitos em uma relação (ex: `Emp_Dept` agrupando dados de empregado e departamento):\n\n1. **Anomalia de Inserção:** Não é possível inserir um departamento novo antes que ele possua pelo menos um empregado cadastrado (pois a PK da tabela é o SSN do empregado).\n2. **Anomalia de Remoção:** Se removermos o último empregado de um departamento, os dados do departamento (nome, gerente) são perdidos para sempre.\n3. **Anomalia de Modificação:** Se o gerente do departamento mudar, centenas de linhas de empregados precisam ser atualizadas; se uma linha falhar, o banco fica inconsistente."
+        },
+        {
+          "title": "Algoritmo de Fechamento de Atributos (X+) e Determinação de Chaves",
+          "content": "Para encontrar o fechamento $X^+$ de um conjunto de atributos $X$ sob dependências funcionais $F$:\n1. Inicialize $X^+ = X$.\n2. Repita: para cada dependência $Y \\rightarrow Z$ em $F$, se $Y \\subseteq X^+$, então $X^+ = X^+ \\cup Z$.\n3. Pare quando $X^+$ não crescer mais.\n\n**Teste de Chave Candidata:**\n- $X$ é uma **Superchave** se $X^+$ contiver todos os atributos da relação.\n- $X$ é uma **Chave Candidata** se for superchave e nenhum subconjunto próprio de $X$ for superchave (minimalidade)."
+        },
+        {
+          "title": "1FN, 2FN e 3FN: Critérios de Decomposição",
+          "content": "- **Primeira Forma Normal (1FN):** Todos os valores de atributos devem ser atômicos (proibido valores multivalorados ou relações aninhadas).\n- **Segunda Forma Normal (2FN):** Está na 1FN e **nenhum atributo não-chave depende parcialmente de qualquer chave candidata composta**. Se $AB$ é chave e $A \\rightarrow C$, a relação viola 2FN e deve ser decomposta em $R_1(A, C)$ e $R_2(A, B, \\dots)$.\n- **Terceira Forma Normal (3FN):** Está na 2FN e **nenhum atributo não-chave depende transitivamente da chave primária** (ou seja, não pode haver $X \\rightarrow Y$ onde $X$ não seja superchave e $Y$ não seja atributo primo). Se $SSN \\rightarrow DNum$ e $DNum \\rightarrow DName$, decompõe-se em $R_1(SSN, \\dots, DNum)$ e $R_2(DNum, DName)$."
+        }
+      ],
+      "exercises": [
+        "T8.1",
+        "T8.2",
+        "E8.1",
+        "E8.2",
+        "E8.3"
+      ]
+    }
+  ]
+}
