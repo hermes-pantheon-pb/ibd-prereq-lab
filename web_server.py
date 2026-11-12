@@ -124,7 +124,10 @@ class PrerequisiteStudioHandler(http.server.SimpleHTTPRequestHandler):
             "title": info["title"],
             "type": info.get("type", "oficial"),
             "mode": mode,
-            "fields": info.get("fields", []),
+            "fields": [
+                {"id": f["id"], "label": f["label"], "options": f["options"]}
+                for f in info.get("fields", [])
+            ],
             "expectedColumns": info.get("expected_columns", []),
             "expectedRows": info.get("expected_rows", []),
             "ddlTests": [t["name"] for t in info.get("ddl_tests", [])],
