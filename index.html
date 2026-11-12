@@ -32,7 +32,7 @@
         <span class="icon">📖</span> Guia Rápido (Cheat Sheet)
       </button>
       <div class="progress-pill" id="progress-indicator">
-        <span class="progress-text" id="progress-text">0 / 38 Concluídos</span>
+        <span class="progress-text" id="progress-text">0 / 48 Concluídos</span>
         <div class="progress-bar-bg">
           <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%"></div>
         </div>
@@ -109,6 +109,42 @@
             <h3 class="ex-title" id="ex-title">Título do Exercício</h3>
           </div>
           <p class="ex-statement" id="ex-statement">Carregando detalhes...</p>
+
+          <!-- Rich Problem Context / Embedded ER/EER SVG Diagram -->
+          <div id="ex-context-container" style="display: none; margin-top: 14px;"></div>
+
+          <!-- Dedicated Study Guide / Cheat Sheet with Parallel-Domain Example -->
+          <div id="ex-study-guide-container" class="study-guide-panel" style="display: none; margin-top: 14px;">
+            <div class="sg-header" id="sg-toggle-bar">
+              <div class="sg-header-left">
+                <span class="sg-badge">FICHA DE ESTUDO &amp; EXEMPLO ANÁLOGO</span>
+                <strong id="sg-title">Guia de Estudo Vinculado</strong>
+              </div>
+              <button class="btn-secondary btn-sm" id="btn-toggle-sg">📖 Abrir / Recolher Ficha de Estudo</button>
+            </div>
+            <div class="sg-meta-bar" id="sg-meta-bar">
+              <span>📚 <strong>Referência nos Slides/Listas:</strong> <code id="sg-coursework-ref"></code></span>
+              <span>📄 <strong>Arquivo Markdown:</strong> <code id="sg-file-path"></code></span>
+            </div>
+            <div class="sg-body" id="sg-body" style="display: block;"></div>
+          </div>
+
+          <!-- Interactive Open-Ended Scratchpad + Official Step-by-Step Answer Sheet -->
+          <div id="ex-open-resolution-container" class="open-resolution-panel" style="display: none; margin-top: 14px;">
+            <div class="or-header">
+              <div>
+                <strong>📝 Caderno de Resolução Discursiva &amp; Folha de Gabarito Oficial (Answer Sheet)</strong>
+                <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 2px;">
+                  Use o rascunho abaixo para estruturar seu esquema relacional completo (PKs, <code>(nn)</code>, RIRs <code>-b-&gt; / -p-&gt; / -n-&gt;</code>, fechos <code>X+</code> ou decomposições 1FN/2FN/3FN) e compare com a Folha de Gabarito Oficial.
+                </p>
+              </div>
+              <div class="or-actions">
+                <button class="btn-secondary btn-sm" id="btn-toggle-answersheet">🔑 Ver Folha de Gabarito Completa (Answer Sheet)</button>
+              </div>
+            </div>
+            <textarea id="open-scratchpad" class="scratchpad-textarea" placeholder="Escreva aqui seu rascunho completo do mapeamento relacional, chaves candidatas, RIRs ou decomposição passo a passo... (salvo automaticamente no navegador)"></textarea>
+            <div id="answer-sheet-box" class="answer-sheet-box" style="display: none;"></div>
+          </div>
 
           <div class="intuition-callout" id="intuition-callout">
             <div class="callout-icon">💡</div>

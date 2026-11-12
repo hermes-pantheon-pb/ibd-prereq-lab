@@ -124,6 +124,9 @@ class PrerequisiteStudioHandler(http.server.SimpleHTTPRequestHandler):
             "title": info["title"],
             "type": info.get("type", "oficial"),
             "mode": mode,
+            "contextHtml": info.get("context_html", ""),
+            "studyGuide": info.get("study_guide", None),
+            "answerSheetHtml": info.get("answer_sheet_html", ""),
             "fields": [
                 {"id": f["id"], "label": f["label"], "options": f["options"]}
                 for f in info.get("fields", [])

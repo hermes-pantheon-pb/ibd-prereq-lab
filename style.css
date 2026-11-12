@@ -1689,3 +1689,177 @@ body.dark-theme {
   color: #38bdf8;
   margin-bottom: 8px;
 }
+
+/* ==========================================================================
+   Exam Rounds: ER/EER SVG Diagrams, Study Guides & Open Answer Sheets
+   ========================================================================== */
+.er-diagram-box {
+  background: var(--bg-darkest);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.er-diagram-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+.problem-narrative {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text-main);
+}
+
+.study-guide-panel {
+  background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+}
+
+.sg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sg-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sg-badge {
+  background: rgba(139, 92, 246, 0.25);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.sg-meta-bar {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.sg-body {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.sg-body h4 {
+  color: #c4b5fd;
+  margin-bottom: 6px;
+  font-size: 13.5px;
+}
+
+.sg-body ul, .sg-body ol {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.sg-example-box {
+  background: var(--bg-darkest);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-top: 10px;
+}
+
+.sg-example-box pre, .answer-sheet-box pre {
+  background: #090d16;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-code);
+  font-size: 12px;
+  color: #38bdf8;
+  overflow-x: auto;
+  margin-top: 6px;
+}
+
+.open-resolution-panel {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+
+.or-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.scratchpad-textarea {
+  width: 100%;
+  min-height: 110px;
+  background: var(--bg-darkest);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: #e2e8f0;
+  font-family: var(--font-code);
+  font-size: 12.5px;
+  line-height: 1.5;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.scratchpad-textarea:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.answer-sheet-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: var(--bg-darkest);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.answer-sheet-box h4 {
+  color: #fde68a;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.answer-sheet-box ol, .answer-sheet-box ul {
+  padding-left: 20px;
+}
+
+.btn-sm {
+  padding: 5px 11px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+

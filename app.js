@@ -139,6 +139,44 @@ function setupUIEventListeners() {
   document.getElementById("btn-expand-all").addEventListener("click", () => {
     document.querySelectorAll(".module-group").forEach((grp) => grp.classList.add("open"));
   });
+
+  // Toggle Study Guide body
+  const btnToggleSg = document.getElementById("btn-toggle-sg");
+  if (btnToggleSg) {
+    btnToggleSg.addEventListener("click", () => {
+      const sgBody = document.getElementById("sg-body");
+      if (sgBody) {
+        sgBody.style.display = sgBody.style.display === "none" ? "block" : "none";
+      }
+    });
+  }
+
+  // Toggle Official Answer Sheet
+  const btnToggleAns = document.getElementById("btn-toggle-answersheet");
+  if (btnToggleAns) {
+    btnToggleAns.addEventListener("click", () => {
+      const ansBox = document.getElementById("answer-sheet-box");
+      if (ansBox) {
+        const isHidden = ansBox.style.display === "none";
+        ansBox.style.display = isHidden ? "block" : "none";
+        btnToggleAns.innerText = isHidden
+          ? "🙈 Ocultar Folha de Gabarito (Answer Sheet)"
+          : "🔑 Ver Folha de Gabarito Completa (Answer Sheet)";
+      }
+    });
+  }
+
+  // Persist Open Scratchpad per exercise
+  const scratchpad = document.getElementById("open-scratchpad");
+  if (scratchpad) {
+    scratchpad.addEventListener("input", (e) => {
+      try {
+        localStorage.setItem(`ibd_scratch_${currentExerciseId}`, e.target.value);
+      } catch (err) {
+        // ignore storage quota errors
+      }
+    });
+  }
 }
 
 function setupKeyboardShortcuts() {
@@ -249,7 +287,17 @@ function getExerciseShortTitle(exId) {
     "T8.3": "Axiomas de Armstrong e Conjunto Minimal",
     "E8.1": "[Oficial Normalização] Q1: Chave de R(A..E)",
     "E8.2": "[Oficial Normalização] Q2: Decomposição 2FN/3FN",
-    "E8.3": "[Oficial Normalização] Q3: Sistema Cursos/Turmas"
+    "E8.3": "[Oficial Normalização] Q3: Sistema Cursos/Turmas",
+    "R1.1": "[Rodada 1] Hospital ER: Entidades e Fraca",
+    "R1.2": "[Rodada 1] Hospital ER: 1:1, 1:N, M:N e RIRs",
+    "R1.3": "[Rodada 1] Hospital DDL: Fraca & ON DELETE",
+    "R1.4": "[Rodada 1] Universidade EER: d/o & Ternário",
+    "R1.5": "[Rodada 1] Universidade DDL: Opção 1 + CHECK",
+    "R1.6": "[Rodada 1] Detetive SQL: Violação DF Navios",
+    "R1.7": "[Rodada 1] Fecho X+ e 5 Chaves em R(A..G)",
+    "R1.8": "[Rodada 1] Cobertura Mínima (3 Passos)",
+    "R1.9": "[Rodada 1] Elmasri CAR_SALE & Ordem (1FN-3FN)",
+    "R1.10": "[Rodada 1] Congresso: 2FN/3FN Geral (2 CKs)"
   };
   return titles[exId] || exId;
 }
@@ -286,9 +334,64 @@ async function selectExercise(exId) {
 
     // Exercise details
     document.getElementById("ex-number-badge").innerText = exId;
-    document.getElementById("ex-number-badge").style.background = exId.startsWith("T") ? "var(--accent-purple)" : "var(--accent-blue)";
+    document.getElementById("ex-number-badge").style.background = exId.startsWith("T")
+      ? "var(--accent-purple)"
+      : exId.startsWith("R")
+      ? "#10b981"
+      : "var(--accent-blue)";
     document.getElementById("ex-mode-tag").innerText = currentExerciseMeta.mode.toUpperCase();
     document.getElementById("ex-title").innerText = currentExerciseMeta.title;
+
+    // 1. Render Rich Context / SVG Diagram if available
+    const ctxContainer = document.getElementById("ex-context-container");
+    if (ctxContainer) {
+      if (currentExerciseMeta.contextHtml) {
+        ctxContainer.style.display = "block";
+        ctxContainer.innerHTML = currentExerciseMeta.contextHtml;
+      } else {
+        ctxContainer.style.display = "none";
+        ctxContainer.innerHTML = "";
+      }
+    }
+
+    // 2. Render Study Guide / Cheat Sheet with Parallel-Domain Example if available
+    const sgContainer = document.getElementById("ex-study-guide-container");
+    if (sgContainer) {
+      if (currentExerciseMeta.studyGuide) {
+        const sg = currentExerciseMeta.studyGuide;
+        sgContainer.style.display = "block";
+        document.getElementById("sg-title").innerText = sg.title || "Ficha de Estudo";
+        document.getElementById("sg-coursework-ref").innerText = sg.coursework_ref || "";
+        document.getElementById("sg-file-path").innerText = sg.file_path || "";
+        document.getElementById("sg-body").innerHTML = sg.summary_html || "";
+        document.getElementById("sg-body").style.display = "block";
+      } else {
+        sgContainer.style.display = "none";
+      }
+    }
+
+    // 3. Render Open-Ended Scratchpad + Official Step-by-Step Answer Sheet if available
+    const orContainer = document.getElementById("ex-open-resolution-container");
+    if (orContainer) {
+      if (currentExerciseMeta.answerSheetHtml) {
+        orContainer.style.display = "block";
+        const scratchpad = document.getElementById("open-scratchpad");
+        if (scratchpad) {
+          scratchpad.value = localStorage.getItem(`ibd_scratch_${exId}`) || "";
+        }
+        const ansBox = document.getElementById("answer-sheet-box");
+        const btnToggleAns = document.getElementById("btn-toggle-answersheet");
+        if (ansBox) {
+          ansBox.innerHTML = currentExerciseMeta.answerSheetHtml;
+          ansBox.style.display = "none";
+        }
+        if (btnToggleAns) {
+          btnToggleAns.innerText = "🔑 Ver Folha de Gabarito Completa (Answer Sheet)";
+        }
+      } else {
+        orContainer.style.display = "none";
+      }
+    }
 
     // Workspace mode switcher
     const structPane = document.getElementById("structured-pane");
@@ -685,8 +788,11 @@ function markAsSolved(exId) {
 
 function updateProgressUI() {
   const count = solvedExercises.size;
-  const pct = Math.min(100, Math.round((count / 38) * 100));
-  document.getElementById("progress-text").innerText = `${count} / 38 Concluídos`;
+  const total = curriculumData
+    ? curriculumData.modules.reduce((acc, m) => acc + m.exercises.length, 0)
+    : 48;
+  const pct = Math.min(100, Math.round((count / total) * 100));
+  document.getElementById("progress-text").innerText = `${count} / ${total} Concluídos`;
   document.getElementById("progress-bar-fill").style.width = `${pct}%`;
 }
 
