@@ -27,11 +27,12 @@
     </div>
 
     <div class="header-right">
+      <button class="nav-btn btn-secondary" id="btn-exam-modal" title="Ver Diagrama Oficial do Exame de Projeto Lógico"><span class="icon">✈️</span> Diagrama do Exame (Sistema Aéreo)</button>
       <button class="nav-btn" id="btn-cheatsheet-modal" title="Ver Resumo de Fórmulas e Regras">
         <span class="icon">📖</span> Guia Rápido (Cheat Sheet)
       </button>
       <div class="progress-pill" id="progress-indicator">
-        <span class="progress-text" id="progress-text">0 / 34 Concluídos</span>
+        <span class="progress-text" id="progress-text">0 / 38 Concluídos</span>
         <div class="progress-bar-bg">
           <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%"></div>
         </div>
@@ -272,6 +273,25 @@ CHECK (NOT EXISTS (
 ));</code></pre>
             <p>Usada para regras globais entre múltiplas tabelas (ex: nenhum funcionário ganha mais que o gerente do depto).</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- MODAL: EXAM DIAGRAM (Sistema Aéreo - ExercicioProjetoLogico.pdf) -->
+  <div class="modal-overlay" id="modal-exam">
+    <div class="modal-box modal-xlarge">
+      <div class="modal-header">
+        <h3>✈️ Diagrama ER do Exame Oficial de Projeto Lógico (Sistema Aéreo da UFMG)</h3>
+        <button class="modal-close" id="btn-close-exam">&times;</button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <p style="margin-bottom: 12px; color: var(--text-muted); text-align: left;">
+          Este é o diagrama original escaneado da avaliação oficial da UFMG (<code>ExercicioProjetoLogico.pdf</code>). Use esta imagem para inspecionar cada entidade forte, entidade fraca de múltiplos níveis, cardinalidade e relacionamento nos exercícios <code>E7.1</code>, <code>E7.2</code> e <code>E7.3</code>:
+        </p>
+        <div style="background: #fff; padding: 12px; border-radius: 8px; display: inline-block; max-width: 100%; overflow: auto;">
+          <img src="page_exam-1.png" alt="Diagrama ER do Exame - Sistema Aéreo" style="max-width: 100%; height: auto; display: block;" />
         </div>
       </div>
     </div>

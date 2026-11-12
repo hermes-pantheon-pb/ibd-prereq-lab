@@ -1202,8 +1202,8 @@ EXERCISES_DATA: Dict[str, Dict[str, Any]] = {
         ]
     },
 
-    # =========================================================================
-    # MÓDULO 7: MAPEAMENTO ER/EER PARA ESQUEMA RELACIONAL (TRANSFORMAÇÃO)
+        # =========================================================================
+    # MÓDULO 7: PROJETO LÓGICO — MAPEAMENTO ER/EER PARA ESQUEMA RELACIONAL
     # =========================================================================
     "T7.1": {
         "title": "Mapeamento das 7 Regras Básicas: Entidades, Multivalorados e Fracas",
@@ -1281,27 +1281,59 @@ EXERCISES_DATA: Dict[str, Dict[str, Any]] = {
             }
         ]
     },
+    "T7.3": {
+        "title": "Mapeamento Otimizado de Hierarquias (d vs. o, Total vs. Parcial)",
+        "type": "treino",
+        "mode": "structured",
+        "setup": "",
+        "fields": [
+            {
+                "id": "q1",
+                "label": "1. Quando mapeamos uma hierarquia DISJUNTA e TOTAL de `Empregado(NEmp, Nome, Salario)` em `Gerente(SalAd)` e `Tecnico(Formacao)` em uma ÚNICA tabela (mapeamento otimizado, slide 25 de ibd-parte5.pdf), qual a restrição CHECK necessária?",
+                "options": [
+                    "CHECK ((SalAd IS NOT NULL AND Formacao IS NULL) OR (SalAd IS NULL AND Formacao IS NOT NULL))",
+                    "CHECK (SalAd > 0 AND Formacao IS NOT NULL)",
+                    "CHECK (SalAd IS NULL AND Formacao IS NULL)",
+                    "Não é possível usar CHECK para hierarquias"
+                ],
+                "answer": "CHECK ((SalAd IS NOT NULL AND Formacao IS NULL) OR (SalAd IS NULL AND Formacao IS NOT NULL))",
+                "explanation": "Para garantir disjunção ('d') e totalidade em tabela única, exatamente um dos atributos específicos deve estar preenchido e o outro deve ser nulo!"
+            },
+            {
+                "id": "q2",
+                "label": "2. E se a mesma hierarquia fosse SOBREPOSTA ('o') e PARCIAL? Como ficaria a tabela única?",
+                "options": [
+                    "Empregado(NEmp(nn), Nome, Salario, SalAd, Formacao), onde SalAd e Formacao aceitam nulos livremente sem a restrição de exclusão mútua",
+                    "Uma tabela para cada combinação de atributos",
+                    "O mapeamento otimizado é proibido para sobreposta",
+                    "Exige que ambos SalAd e Formacao sejam NOT NULL"
+                ],
+                "answer": "Empregado(NEmp(nn), Nome, Salario, SalAd, Formacao), onde SalAd e Formacao aceitam nulos livremente sem a restrição de exclusão mútua",
+                "explanation": "Como é sobreposta, uma tupla pode ter ambos os campos preenchidos; como é parcial, pode ter ambos nulos."
+            }
+        ]
+    },
     "E7.1": {
-        "title": "[Oficial ExercicioProjetoLogico.pdf] Mapeamento Relacional Completo do Sistema Aéreo",
+        "title": "[Oficial Exame UFMG] Sistema Aéreo: Voo, Trecho_Voo e Aeroporto",
         "type": "oficial",
         "mode": "structured",
         "setup": "",
         "fields": [
             {
                 "id": "q1",
-                "label": "1. Considere o tipo de entidade fraca `TRECHO_VOO` (chave parcial `Trecho_num`), identificada pelo voo dono `VOO` (chave primária `Numero`). Além disso, `TRECHO_VOO` possui relacionamentos N:1 `AEROPORTO_PARTIDA` e `AEROPORTO_CHEGADA` com `AEROPORTO` (chave `Codigo_aeroporto`). Qual é o esquema relacional correto de `TRECHO_VOO`?",
+                "label": "1. (ExercicioProjetoLogico.pdf) `TRECHO_VOO` (chave parcial `Trecho_num`) é entidade fraca de `VOO` (chave `Numero`). Além disso, tem dois relacionamentos N:1 com `AEROPORTO` (`AEROPORTO_PARTIDA` e `AEROPORTO_CHEGADA`). Qual o esquema correto?",
                 "options": [
-                    "TRECHO_VOO(Numero_voo(nn), Trecho_num(nn), Cod_aeroporto_partida(nn), Cod_aeroporto_chegada(nn), Horario_partida_previsto, Horario_chegada_previsto), com PK (Numero_voo, Trecho_num) e FKs para VOO e AEROPORTO",
-                    "TRECHO_VOO(Trecho_num(nn), Cod_aeroporto_partida, Cod_aeroporto_chegada) com PK Trecho_num",
+                    "TRECHO_VOO(Numero_voo(nn), Trecho_num(nn), Cod_aeroporto_partida(nn), Cod_aeroporto_chegada(nn), Horario_partida_previsto, Horario_chegada_previsto), com PK (Numero_voo, Trecho_num) e duas FKs para AEROPORTO",
+                    "TRECHO_VOO(Trecho_num(nn), Cod_aeroporto_partida) com PK Trecho_num",
                     "TRECHO_VOO(Numero_voo(nn), Cod_aeroporto(nn))",
                     "VOO recebe Trecho_num como atributo multivalorado"
                 ],
-                "answer": "TRECHO_VOO(Numero_voo(nn), Trecho_num(nn), Cod_aeroporto_partida(nn), Cod_aeroporto_chegada(nn), Horario_partida_previsto, Horario_chegada_previsto), com PK (Numero_voo, Trecho_num) e FKs para VOO e AEROPORTO",
-                "explanation": "ExercicioProjetoLogico.pdf: Como TRECHO_VOO é fraca de VOO, sua PK é (Numero_voo, Trecho_num). Como cada trecho parte de um aeroporto e chega em outro, recebe duas FKs para AEROPORTO mais os atributos de horário."
+                "answer": "TRECHO_VOO(Numero_voo(nn), Trecho_num(nn), Cod_aeroporto_partida(nn), Cod_aeroporto_chegada(nn), Horario_partida_previsto, Horario_chegada_previsto), com PK (Numero_voo, Trecho_num) e duas FKs para AEROPORTO",
+                "explanation": "Como TRECHO_VOO é fraca de VOO, sua PK é (Numero_voo, Trecho_num). Como cada trecho parte de um aeroporto e chega em outro, recebe duas FKs para AEROPORTO."
             },
             {
                 "id": "q2",
-                "label": "2. Analise a entidade fraca de segundo nível `INSTANCIA_TRECHO` (chave parcial `Data`), identificada por `TRECHO_VOO` via relacionamento `INSTANCIA_DE`. Além disso, ela se relaciona N:1 com `AERONAVE` (relacionamento `DESIGNADA`). Qual é o esquema relacional de `INSTANCIA_TRECHO`?",
+                "label": "2. Analise a entidade fraca de segundo nível `INSTANCIA_TRECHO` (chave parcial `Data`), identificada por `TRECHO_VOO`. Além disso, se relaciona N:1 com `AERONAVE` (`DESIGNADA`). Qual o esquema de `INSTANCIA_TRECHO`?",
                 "options": [
                     "INSTANCIA_TRECHO(Numero_voo(nn), Trecho_num(nn), Data(nn), Cod_aeronave(nn), Hora_partida, Hora_chegada, Numero_assentos_disponiveis), com PK composta de 3 atributos (Numero_voo, Trecho_num, Data)",
                     "INSTANCIA_TRECHO(Data(nn), Cod_aeronave(nn))",
@@ -1309,11 +1341,19 @@ EXERCISES_DATA: Dict[str, Dict[str, Any]] = {
                     "AERONAVE recebe a data do voo como atributo"
                 ],
                 "answer": "INSTANCIA_TRECHO(Numero_voo(nn), Trecho_num(nn), Data(nn), Cod_aeronave(nn), Hora_partida, Hora_chegada, Numero_assentos_disponiveis), com PK composta de 3 atributos (Numero_voo, Trecho_num, Data)",
-                "explanation": "Cadeia de entidades fracas: TRECHO_VOO herda Numero_voo de VOO; INSTANCIA_TRECHO herda (Numero_voo, Trecho_num) de TRECHO_VOO somada à sua data! A PK de INSTANCIA_TRECHO possui portanto 3 atributos."
-            },
+                "explanation": "Cadeia de entidades fracas: TRECHO_VOO herda Numero_voo de VOO; INSTANCIA_TRECHO herda (Numero_voo, Trecho_num) de TRECHO_VOO somada à sua data! A PK de INSTANCIA_TRECHO possui 3 atributos."
+            }
+        ]
+    },
+    "E7.2": {
+        "title": "[Oficial Exame UFMG] Sistema Aéreo: Aeronave, Tipo_Aeronave e Pode_Pousar",
+        "type": "oficial",
+        "mode": "structured",
+        "setup": "",
+        "fields": [
             {
-                "id": "q3",
-                "label": "3. No relacionamento M:N `PODE_POUSAR` entre `AEROPORTO` (chave `Codigo_aeroporto`) e `TIPO_AERONAVE` (chave `Tipo_nome`). Como ele é representado?",
+                "id": "q1",
+                "label": "1. No relacionamento M:N `PODE_POUSAR` entre `AEROPORTO` (chave `Codigo_aeroporto`) e `TIPO_AERONAVE` (chave `Tipo_nome`). Como ele é representado?",
                 "options": [
                     "PODE_POUSAR(Codigo_aeroporto(nn), Tipo_nome(nn)), com PK composta (Codigo_aeroporto, Tipo_nome) e políticas p (CASCADE) para ambas as entidades fortes",
                     "AEROPORTO recebe Tipo_nome como chave estrangeira simples",
@@ -1322,6 +1362,50 @@ EXERCISES_DATA: Dict[str, Dict[str, Any]] = {
                 ],
                 "answer": "PODE_POUSAR(Codigo_aeroporto(nn), Tipo_nome(nn)), com PK composta (Codigo_aeroporto, Tipo_nome) e políticas p (CASCADE) para ambas as entidades fortes",
                 "explanation": "Relacionamento M:N puro entre entidades fortes: gera tabela própria com as PKs de ambas as entidades formando a PK composta."
+            },
+            {
+                "id": "q2",
+                "label": "2. No relacionamento N:1 `TIPO` entre `AERONAVE` (chave `Cod_aeronave`) e `TIPO_AERONAVE` (chave `Tipo_nome`). Como ele é mapeado?",
+                "options": [
+                    "A tabela AERONAVE recebe Tipo_nome como chave estrangeira: AERONAVE(Cod_aeronave(nn), Numero_total_assentos, Tipo_nome(nn)), com AERONAVE[Tipo_nome] -b-> TIPO_AERONAVE[Tipo_nome]",
+                    "Cria-se uma tabela associativa intermediária",
+                    "TIPO_AERONAVE recebe Cod_aeronave como chave estrangeira",
+                    "AERONAVE e TIPO_AERONAVE são fundidas em uma relação única"
+                ],
+                "answer": "A tabela AERONAVE recebe Tipo_nome como chave estrangeira: AERONAVE(Cod_aeronave(nn), Numero_total_assentos, Tipo_nome(nn)), com AERONAVE[Tipo_nome] -b-> TIPO_AERONAVE[Tipo_nome]",
+                "explanation": "Relacionamento funcional N:1 migra a chave do lado 1 (TIPO_AERONAVE) para o lado N (AERONAVE)."
+            }
+        ]
+    },
+    "E7.3": {
+        "title": "[Oficial Exame UFMG] Sistema Aéreo: Reserva, Assento e Tarifa",
+        "type": "oficial",
+        "mode": "structured",
+        "setup": "",
+        "fields": [
+            {
+                "id": "q1",
+                "label": "1. `ASSENTO` é entidade fraca identificada por `INSTANCIA_TRECHO` (chave parcial `Numero_assento`). O relacionamento `RESERVA` conecta `ASSENTO` com atributos Nome_cliente e Cliente_tel. Qual o esquema de `ASSENTO`?",
+                "options": [
+                    "ASSENTO(Numero_voo(nn), Trecho_num(nn), Data(nn), Numero_assento(nn), Nome_cliente, Cliente_tel) com PK composta pelos 4 atributos e RIR em cascata para INSTANCIA_TRECHO",
+                    "ASSENTO(Numero_assento(nn), Nome_cliente) com PK Numero_assento",
+                    "ASSENTO vira uma chave estrangeira em INSTANCIA_TRECHO",
+                    "INSTANCIA_TRECHO recebe Numero_assento como atributo multivalorado"
+                ],
+                "answer": "ASSENTO(Numero_voo(nn), Trecho_num(nn), Data(nn), Numero_assento(nn), Nome_cliente, Cliente_tel) com PK composta pelos 4 atributos e RIR em cascata para INSTANCIA_TRECHO",
+                "explanation": "ASSENTO é fraca de INSTANCIA_TRECHO. Portanto herda toda a PK de INSTANCIA_TRECHO (Numero_voo, Trecho_num, Data) mais seu discriminador Numero_assento!"
+            },
+            {
+                "id": "q2",
+                "label": "2. `TARIFA` (chave parcial `Codigo`) é entidade fraca identificada por `VOO` (chave `Numero`). Qual o esquema relacional de `TARIFA`?",
+                "options": [
+                    "TARIFA(Numero_voo(nn), Codigo(nn), Quantidade, Restricoes), com PK composta (Numero_voo, Codigo) e TARIFA[Numero_voo] -p-> VOO[Numero]",
+                    "TARIFA(Codigo(nn), Quantidade) com PK Codigo simples",
+                    "VOO recebe Quantidade e Restricoes como colunas simples",
+                    "TARIFA vira uma tabela associativa M:N"
+                ],
+                "answer": "TARIFA(Numero_voo(nn), Codigo(nn), Quantidade, Restricoes), com PK composta (Numero_voo, Codigo) e TARIFA[Numero_voo] -p-> VOO[Numero]",
+                "explanation": "TARIFA tem retângulo duplo e Codigo tem sublinhado tracejado, ligada a VOO via relacionamento identificador TARIFADO. Portanto PK = (Numero_voo, Codigo) com política p (CASCADE)."
             }
         ]
     },
@@ -1356,7 +1440,7 @@ EXERCISES_DATA: Dict[str, Dict[str, Any]] = {
                     "{B, D} é a chave candidata",
                     "R não possui nenhuma chave candidata"
                 ],
-                "answer": "{A}+ = {A, B} (não cobre C e D). A chave candidata de R é {A, C}, pois {A, C}+ = {A, B, C, D}",
+                "answer": "{A}+ = {A, B, C, D}. Como contém todos os atributos de R, A é superchave (e chave candidata minimal)",
                 "explanation": "Atributos que nunca aparecem no lado direito de nenhuma dependência funcional (como A e C) devem obrigatoriamente fazer parte de toda chave candidata de R! Calculando {A, C}+ obtemos {A, B, C, D}."
             }
         ]
@@ -1390,6 +1474,38 @@ EXERCISES_DATA: Dict[str, Dict[str, Any]] = {
                 ],
                 "answer": "Porque há uma dependência transitiva: SSN -> DNumber e DNumber -> {DName, DMgrSSN}, onde DNumber não é chave candidata de R",
                 "explanation": "Slide 24 de ibd-parte6.pdf: Uma dependência funcional X -> Y viola a 3FN quando X não é uma superchave e Y não é atributo primo (dependência transitiva a partir da PK)."
+            }
+        ]
+    },
+    "T8.3": {
+        "title": "Axiomas de Armstrong e Conjunto Minimal de Dependências",
+        "type": "treino",
+        "mode": "structured",
+        "setup": "",
+        "fields": [
+            {
+                "id": "q1",
+                "label": "1. Dadas as dependências funcionais F = {X -> Y, WY -> Z}. Qual regra de inferência permite deduzir que WX -> Z?",
+                "options": [
+                    "Regra Pseudotransitiva (RI6)",
+                    "Regra da Decomposição (RI4)",
+                    "Regra Reflexiva (RI1)",
+                    "Regra da União (RI5)"
+                ],
+                "answer": "Regra Pseudotransitiva (RI6)",
+                "explanation": "Slide 18 de ibd-parte6.pdf: Regra pseudotransitiva estabelece que se X -> Y e WY -> Z, então WX -> Z."
+            },
+            {
+                "id": "q2",
+                "label": "2. Um conjunto de dependências funcionais F é MINIMAL (canônico) se satisfizer quais condições?",
+                "options": [
+                    "Toda dependência tem um único atributo no lado direito, não existem atributos redundantes no lado esquerdo, e nenhuma dependência pode ser removida sem alterar o fechamento F+",
+                    "Possui no máximo 3 dependências funcionais",
+                    "Todas as dependências funcionais começam pela chave primária",
+                    "Não possui atributos numéricos"
+                ],
+                "answer": "Toda dependência tem um único atributo no lado direito, não existem atributos redundantes no lado esquerdo, e nenhuma dependência pode ser removida sem alterar o fechamento F+",
+                "explanation": "Slide 19 de ibd-parte6.pdf: Conjunto minimal de DFs exige lado direito unitário e ausência de DFs e atributos estranhos/redundantes."
             }
         ]
     },

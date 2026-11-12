@@ -1,5 +1,5 @@
 # IBD Prerequisite Studio & Exam Mastery 🏛️
-> Laboratório Interativo, Visual e Prático para **Modelagem Conceitual (ER/EER), Mapeamento Relacional e Normalização de Banco de Dados** (DCC222 / DCC011 - UFMG - Prof. Marcos André Gonçalves).
+> Laboratório Interativo, Visual e Prático para **Modelagem Conceitual (ER/EER), Projeto Lógico (Mapeamento Relacional) e Normalização de Banco de Dados** (DCC222 / DCC011 - UFMG - Prof. Marcos André Gonçalves).
 
 ---
 
@@ -61,7 +61,7 @@ Se a máquina do laboratório não tiver `git` instalado ou bloquear conexões S
 Se você preferir praticar ou debugar direto no shell do Linux da universidade:
 
 ```bash
-# Listar todos os 34 exercícios do currículo e seus modos
+# Listar todos os 38 exercícios do currículo e seus modos
 python3 db_engine.py list
 
 # Inspecionar esquemas de tabelas e tuplas de teste
@@ -112,7 +112,58 @@ python3 db_engine.py schema T5.1
 
 ---
 
-## 📚 Estrutura Completa dos 8 Módulos do Curso
+## ✈️ O Exame Oficial de Projeto Lógico: Sistema Aéreo da UFMG
+
+O diagrama escaneado oficial da prova (`ExercicioProjetoLogico.pdf`) está embutido na interface (botão **"✈️ Diagrama do Exame (Sistema Aéreo)"** no topo do laboratório). Ele é resolvido em 3 etapas guiadas:
+
+1. **`E7.1` (Voo, Trecho_Voo e Aeroporto):**
+   - Mapeamento da cadeia de entidades fracas (`Trecho_num` com identificador `VOO`).
+   - Mapeamento das duas FKs de `AEROPORTO` (`AEROPORTO_PARTIDA` e `AEROPORTO_CHEGADA`) mais horários previstos.
+   - Mapeamento da entidade fraca de segundo nível `INSTANCIA_TRECHO` com chave primária tripla `(Numero_voo, Trecho_num, Data)`.
+2. **`E7.2` (Aeronave, Tipo_Aeronave e Pode_Pousar):**
+   - Mapeamento do relacionamento $M:N$ `PODE_POUSAR(Codigo_aeroporto, Tipo_nome)`.
+   - Mapeamento da chave estrangeira de tipo funcional em `AERONAVE`.
+3. **`E7.3` (Reserva, Assento e Tarifa):**
+   - Mapeamento da entidade fraca de 4º nível `ASSENTO` com chave `(Numero_voo, Trecho_num, Data, Numero_assento)` e dados do cliente.
+   - Mapeamento da entidade fraca `TARIFA` subordinada a `VOO`.
+
+---
+
+## 📐 Passo a Passo de Normalização: 1FN, 2FN e 3FN
+
+### O Algoritmo de Fechamento $X^+$ (Algoritmo 14.1 dos Slides)
+Para calcular o fechamento de um conjunto de atributos $X$ sob dependências $F$:
+1. $X^+ := X$.
+2. Para cada $Y \rightarrow Z \in F$, se $Y \subseteq X^+$, então $X^+ := X^+ \cup Z$.
+3. Repita até que $X^+$ permaneça estável.
+4. **Regra de Chave:** Se $X^+ = R$ e nenhum subconjunto próprio de $X$ fecha em $R$, então $X$ é uma **Chave Candidata**.
+
+### As Três Questões Oficiais da Lista de Normalização (`ExerciciosNormalizacaoSemResposta.pdf`)
+
+* **`E8.1` (Questão 1):**
+  - Relação $R(A, B, C, D, E)$ com $AB \rightarrow C$ e $CD \rightarrow E$.
+  - $\{AB\}^+ = \{A, B, C\} \neq R \implies AB$ **não é chave candidata**.
+  - $\{ABD\}^+ = \{A, B, C, D, E\} = R \implies ABD$ **é chave candidata minimal**.
+* **`E8.2` (Questão 2):**
+  - Relação $R(A, B, C, D, E, F, G, H, I, J)$ com dependências parciais e transitivas.
+  - Chave candidata única: $\{A, B\}$.
+  - **Decomposição 2FN:** Isola dependências parciais $A \rightarrow DEIJ$ e $B \rightarrow FGH$:
+    - $R_1(A, B, C)$ com PK $\{A, B\}$
+    - $R_2(A, D, E, I, J)$ com PK $A$
+    - $R_3(B, F, G, H)$ com PK $B$
+  - **Decomposição 3FN:** Isola dependências transitivas $D \rightarrow IJ$ em $R_2$ e $F \rightarrow GH$ em $R_3$:
+    - $R_1(A, B, C)$
+    - $R_{21}(A, D, E)$ com PK $A$, e $R_{22}(D, I, J)$ com PK $D$
+    - $R_{31}(B, F)$ com PK $B$, e $R_{32}(F, G, H)$ com PK $F$
+* **`E8.3` (Questão 3):**
+  - Sistema Acadêmico com 11 atributos e 2 chaves candidatas alternativas:
+    - $K_1 = \{CourseNo, SecNo, Sem, Year\}$
+    - $K_2 = \{RoomNo, Days\_Hours, Sem, Year\}$
+  - Decomposição em 2FN e 3FN isolando informações do curso ($CourseNo \rightarrow OfferDept, CredHours, CourseLevel$).
+
+---
+
+## 📚 Estrutura Completa dos 8 Módulos (38 Exercícios)
 
 | Módulo | Tema Curricular | Tipo de Exercícios | Arquivos Oficiais Cobertos |
 |:---|:---|:---|:---|
@@ -122,5 +173,5 @@ python3 db_engine.py schema T5.1
 | **4. Modelo Relacional e RIR** | Superchaves, Chaves Candidatas, Integridade de Entidade, RIR formal e Políticas ($b, p, n$) | Formalismo Relacional | `ibd-parte3.pdf` + `exercicios_modelo_relacional.pdf` |
 | **5. Álgebra Relacional Avançada** | União-Compatibilidade, Divisão Relacional ($\div$), Fórmulas Algébricas de Restrições Estruturais | Consultas SQL + AR | `ibd-parte3.pdf` + `consultas_ProfMarcosG.pdf` |
 | **6. SQL para Projeto Lógico** | DDL Completo (`ON DELETE`), `CHECK` de Tupla, Visões (Modificação de Consulta), Asserções Gerais | Injeção de Falhas + Asserções | `ibd-parte4_without_obs.pdf` + `consultas_ProfMarcosG.pdf` |
-| **7. Mapeamento ER/EER $\rightarrow$ Relacional** | 7 Regras de Mapeamento, Migração de FKs, Agregações e Mapeamento de Hierarquias | Mapeamento Formal | `ibd-parte5.pdf` + `ExercicioProjetoLogico.pdf` (Sistema Aéreo) |
-| **8. Normalização de Dados** | Anomalias de Atualização, Fechamento de Atributos ($X^+$), Chaves Candidatas, 1FN, 2FN e 3FN | Decomposição Algébrica | `ibd-parte6.pdf` + `ExerciciosNormalizacaoSemResposta.pdf` (Q1, Q2, Q3) |
+| **7. Projeto Lógico (Mapeamento ER)** | 7 Regras de Mapeamento, Migração de FKs, Agregações, Mapeamento de Hierarquias | Mapeamento Formal + Exame | `ibd-parte5.pdf` + `ExercicioProjetoLogico.pdf` (Sistema Aéreo) |
+| **8. Normalização Passo a Passo** | Anomalias, Fechamento de Atributos ($X^+$), Chaves Candidatas, Decomposição 1FN, 2FN e 3FN | Análise Formal + Lista Oficial | `ibd-parte6.pdf` + `ExerciciosNormalizacaoSemResposta.pdf` |

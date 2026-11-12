@@ -173,54 +173,58 @@
     {
       "id": 7,
       "badge": "Módulo 7",
-      "title": "Módulo 7: Mapeamento ER/EER para Esquema Relacional (Transformação)",
-      "summary": "Domine as 7 regras fundamentais de transformação de diagramas ER e EER em tabelas relacionais com PKs, FKs, políticas de remoção (b, p, n) e restrições estruturais formais em álgebra relacional e SQL.",
+      "title": "Módulo 7: Projeto Lógico — Mapeamento ER/EER para Esquema Relacional e Restrições Estruturais",
+      "summary": "O guia definitivo para o exame da UFMG: as 7 regras formais de mapeamento (entidades fortes, atributos multivalorados, cadeias de entidades fracas, relacionamentos 1:1, N:1 e M:N, hierarquias d/o com total/parcial e agregações), com políticas de integridade referencial (b, p, n) e equações estruturais em Álgebra Relacional e SQL DDL/CHECK.",
       "concepts": [
         {
-          "title": "Regra 1 e 2: Entidades Fortes e Atributos Multivalorados",
-          "content": "- **Entidade Forte:** Cria-se uma relação $R$ contendo todos os atributos simples e as folhas de atributos compostos. A chave primária $PK$ é a chave da entidade.\n- **Atributos Multivalorados (Elipse Dupla):** Cria-se uma **nova relação** $R_{multi}(PK, Atributo)$, onde a chave primária composta é $(PK, Atributo)$ e $R_{multi}[PK] \\xrightarrow{p} R[PK]$ (política $p$ / CASCADE obrigatória)."
+          "title": "Fases do Projeto de BD e o Papel do Projeto Lógico",
+          "content": "O projeto de banco de dados percorre fases rigorosas (slide 3 de ibd-parte5.pdf):\n1. **Mini-Mundo / Análise de Requisitos:** Gera os requisitos do BD e requisitos funcionais.\n2. **Projeto Conceitual:** Constrói o **Esquema Conceitual** de alto nível (Diagrama ER/EER), que é **independente de SGBD**.\n3. **Projeto Lógico (ou Mapeamento):** Transforma o esquema conceitual em um **Esquema Lógico** baseado no modelo de dados do SGBD escolhido (no nosso caso, o **Modelo Relacional**).\n4. **Projeto Físico e Implementação:** Especifica estruturas de armazenamento físico, arquivos, índices e código SQL (DDL)."
         },
         {
-          "title": "Regra 3: Entidades Fracas (Retângulo Duplo)",
-          "content": "Para cada tipo de entidade fraca $W$ com entidade dona $E$:\n- Cria-se uma relação $W$.\n- A chave primária de $W$ é a combinação da chave primária do dono com a chave parcial (discriminador) da fraca: $PK(W) = (PK(E), ChaveParcial)$.\n- A chave estrangeira $W[PK(E)] \\xrightarrow{p} E[PK(E)]$ possui **obrigatoriamente política $p$ (propagação / ON DELETE CASCADE)**."
+          "title": "Regras 1, 2 e 3: Entidades Fortes, Multivalorados e Cadeias de Entidades Fracas",
+          "content": "- **Regra 1 (Entidades Fortes):** Cada tipo de entidade forte $E$ vira uma tabela $R(A_1, \\dots, A_n)$ com $PK$ igual aos atributos chave de $E$. Atributos compostos viram apenas suas folhas simples.\n- **Regra 2 (Atributos Multivalorados):** Cada atributo multivalorado gera uma **nova tabela própria** $R_{multi}(PK_{dono}, Atributo)$ com chave primária composta $(PK_{dono}, Atributo)$ e $RIR: R_{multi}[PK_{dono}] \\xrightarrow{p} R[PK_{dono}]$ (**política $p$ / CASCADE obrigatória**).\n- **Regra 3 (Entidades Fracas):** Para cada entidade fraca $W$ subordinada a um dono $E$, a chave primária de $W$ é a combinação da chave do dono com o discriminador (chave parcial): $PK(W) = (PK_{dono}, ChaveParcial)$. A RIR possui sempre **política $p$ (propagação / CASCADE)**. Em **cadeias de entidades fracas** (ex: `Voo` $\\rightarrow$ `Trecho_Voo` $\\rightarrow$ `Instancia_Trecho`), a terceira tabela herda as chaves de todos os seus donos ancestrais!"
         },
         {
-          "title": "Regra 4 e 5: Relacionamentos 1:1, N:1 e M:N",
-          "content": "- **Relacionamento N:1:** Mapeamento otimizado: inclui-se a chave primária do lado '1' como chave estrangeira $FK$ na relação do lado 'N' ($R_N[FK] \\rightarrow R_1[PK]$).\n- **Relacionamento 1:1:** Escolhe-se o lado com participação total para receber a $FK$ do outro lado (com restrição `UNIQUE`).\n- **Relacionamento M:N (Losango com M e N):** Cria-se uma **nova relação de relacionamento** $R_{rel}(PK_1, PK_2, AtributosRel)$ onde a chave primária é composta pelas duas chaves estrangeiras: $PK = (PK_1, PK_2)$, ambas com política $p$ (CASCADE)."
+          "title": "Regras 4 e 5: Relacionamentos 1:1, N:1, M:N e Agregações",
+          "content": "- **Regra 4 (Relacionamentos N:1 e 1:1):**\n  - No relacionamento $N:1$, a $PK$ da entidade do lado '1' migra como $FK$ para a relação do lado 'N' ($R_N[FK] \\xrightarrow{b} R_1[PK]$). Se a participação de $R_N$ for total, $FK$ recebe restrição `NOT NULL`.\n  - No relacionamento $1:1$, escolhe-se o lado com participação total para receber a $FK$ do outro lado com restrição `UNIQUE` (chave alternativa).\n- **Regra 5 (Relacionamentos M:N):** Cria-se uma **nova tabela associativa** $R_{rel}(PK_1, PK_2, AtributosRel)$ onde a chave primária é composta por $(PK_1, PK_2)$, e ambas as FKs possuem política $p$ (CASCADE).\n- **Agregações EER:** Quando um relacionamento se conecta a outra entidade (slide 40 de ibd-parte5.pdf), a tabela agregada recebe como $FK$ a chave primária composta da tabela de relacionamento intermediária."
         },
         {
-          "title": "Regra 6 e 7: Hierarquias EER (Mapeamento 1-1 vs. Otimizado)",
-          "content": "- **Mapeamento 1-1 (Tabelas Separadas):** Cria-se a superclasse e uma relação para cada subclasse com $PK$ igual à da superclasse ($Sub[PK] \\xrightarrow{p} Super[PK]$).\n- **Mapeamento Otimizado (Tabela Única):** Colapsa-se a superclasse e todas as subclasses em uma única tabela com atributos específicos anuláveis, controlados por restrições `CHECK` de tupla.\n- **Restrições Estruturais em Álgebra Relacional:**\n  - Disjunção ('d'): $\\pi_{PK}(S_1) \\cap \\pi_{PK}(S_2) = \\emptyset$\n  - Totalidade (Linha Dupla): $\\bigcup \\pi_{PK}(S_i) = \\pi_{PK}(Super)$"
+          "title": "Regras 6 e 7: Mapeamento de Hierarquias (1-1 vs. Tabela Única) e Fórmulas de Álgebra Relacional",
+          "content": "Para mapear subclasses $S_1, \\dots, S_m$ de uma superclasse $C$:\n\n1. **Opção 1 (Mapeamento 1-1 / Tabelas Separadas):** Cria-se uma tabela para $C$ e uma tabela para cada $S_i$ com $PK$ herdada de $C$ ($S_i[PK] \\xrightarrow{p} C[PK]$).\n   - **Garantia de Disjunção ('d'):** $\\pi_{PK}(S_1) \\cap \\pi_{PK}(S_2) = \\emptyset$\n   - **Garantia de Totalidade (Linha Dupla):** $\\bigcup \\pi_{PK}(S_i) = \\pi_{PK}(C)$\n\n2. **Opção 2 (Mapeamento Otimizado / Tabela Única):** Colapsa-se a superclasse e todas as subclasses em uma tabela única $C(PK, AtributosGerais, AtributosSubclasses)$.\n   - **Fórmula de Disjunção em AR:** $\\pi_{PK}(\\sigma_{AtribS_1 \\neq null}(C)) \\cap \\pi_{PK}(\\sigma_{AtribS_2 \\neq null}(C)) = \\emptyset$\n   - **Fórmula de Totalidade em AR:** $\\pi_{PK}(\\sigma_{AtribS_1 \\neq null}(C)) \\cup \\pi_{PK}(\\sigma_{AtribS_2 \\neq null}(C)) = \\pi_{PK}(C)$\n   - **Implementação em SQL:** `CHECK ((AtribS_1 IS NOT NULL AND AtribS_2 IS NULL) OR (AtribS_1 IS NULL AND AtribS_2 IS NOT NULL))`"
         }
       ],
       "exercises": [
         "T7.1",
         "T7.2",
-        "E7.1"
+        "T7.3",
+        "E7.1",
+        "E7.2",
+        "E7.3"
       ]
     },
     {
       "id": 8,
       "badge": "Módulo 8",
-      "title": "Módulo 8: Normalização de Dados — DF, Fechamento (Closure), 1FN, 2FN e 3FN",
-      "summary": "Meça formalmente a qualidade do projeto relacional: anomalias de atualização, algoritmo de Fechamento de Atributos (X+), identificação de chaves candidatas e decomposição passo a passo em 1FN, 2FN e 3FN.",
+      "title": "Módulo 8: Normalização de Dados — Anomalias, Fechamento (X+), 1FN, 2FN e 3FN",
+      "summary": "Domine o rigor analítico da normalização para o exame: os 4 guidelines de projeto, cálculo manual e algorítmico do fechamento de atributos (X+), identificação formal de todas as chaves candidatas e decomposição sistemática e sem perda para a 2FN e 3FN com resolução completa dos 3 exercícios oficiais da lista do professor.",
       "concepts": [
         {
-          "title": "As 3 Anomalias de Atualização e Valores Nulos",
-          "content": "Quando um esquema mistura múltiplos conceitos em uma relação (ex: `Emp_Dept` agrupando dados de empregado e departamento):\n\n1. **Anomalia de Inserção:** Não é possível inserir um departamento novo antes que ele possua pelo menos um empregado cadastrado (pois a PK da tabela é o SSN do empregado).\n2. **Anomalia de Remoção:** Se removermos o último empregado de um departamento, os dados do departamento (nome, gerente) são perdidos para sempre.\n3. **Anomalia de Modificação:** Se o gerente do departamento mudar, centenas de linhas de empregados precisam ser atualizadas; se uma linha falhar, o banco fica inconsistente."
+          "title": "Medidas de Qualidade de Projeto e as 3 Anomalias de Atualização",
+          "content": "A normalização mede formalmente a qualidade do agrupamento de atributos no esquema lógico para evitar armazenamento ineficiente e corrupção de dados:\n\n1. **Anomalia de Inserção:** Impossibilidade de inserir um fato independente (ex: cadastrar um novo departamento antes de contratar seu primeiro empregado, quando a chave da relação inclui o SSN do empregado).\n2. **Anomalia de Remoção:** Ao deletar uma tupla, perdem-se fatos cruciais colaterais (ex: deletar o último empregado de um departamento apaga do banco a existência daquele departamento).\n3. **Anomalia de Modificação:** Alterar um dado redundante exige atualizar múltiplas linhas; se o processo for interrompido, o banco entra em estado inconsistente.\n4. **Guidelines:** Guideline 1 (semântica clara), Guideline 2 (sem anomalias de atualização), Guideline 3 (minimizar valores nulos), Guideline 4 (evitar tuplas espúrias em junções)."
         },
         {
-          "title": "Algoritmo de Fechamento de Atributos (X+) e Determinação de Chaves",
-          "content": "Para encontrar o fechamento $X^+$ de um conjunto de atributos $X$ sob dependências funcionais $F$:\n1. Inicialize $X^+ = X$.\n2. Repita: para cada dependência $Y \\rightarrow Z$ em $F$, se $Y \\subseteq X^+$, então $X^+ = X^+ \\cup Z$.\n3. Pare quando $X^+$ não crescer mais.\n\n**Teste de Chave Candidata:**\n- $X$ é uma **Superchave** se $X^+$ contiver todos os atributos da relação.\n- $X$ é uma **Chave Candidata** se for superchave e nenhum subconjunto próprio de $X$ for superchave (minimalidade)."
+          "title": "Dependências Funcionais (DF), Regras de Inferência (Armstrong) e Fechamento (X+)",
+          "content": "- **Definição Formal de DF:** $X \\rightarrow Y$ estabelece que, para quaisquer tuplas $t_1, t_2$, se $t_1[X] = t_2[X]$, então obrigatoriamente $t_1[Y] = t_2[Y]$.\n- **Axiomas de Armstrong:**\n  - Reflexiva: Se $Y \\subseteq X$, então $X \\rightarrow Y$\n  - Aumento: Se $X \\rightarrow Y$, então $XZ \\rightarrow YZ$\n  - Transitiva: Se $X \\rightarrow Y$ e $Y \\rightarrow Z$, então $X \\rightarrow Z$\n  - Decomposição: Se $X \\rightarrow YZ$, então $X \\rightarrow Y$ e $X \\rightarrow Z$\n  - União: Se $X \\rightarrow Y$ e $X \\rightarrow Z$, então $X \\rightarrow YZ$\n- **Algoritmo do Fechamento $X^+$:**\n  1. $X^+ := X$\n  2. Repita: para cada $Y \\rightarrow Z \\in F$, se $Y \\subseteq X^+$, então $X^+ := X^+ \\cup Z$\n  3. Até que $X^+$ não mude mais.\n- **Determinação de Chaves:** $K$ é superchave se $K^+ = R$. $K$ é chave candidata se for superchave e nenhum subconjunto próprio de $K$ tiver fechamento igual a $R$."
         },
         {
-          "title": "1FN, 2FN e 3FN: Critérios de Decomposição",
-          "content": "- **Primeira Forma Normal (1FN):** Todos os valores de atributos devem ser atômicos (proibido valores multivalorados ou relações aninhadas).\n- **Segunda Forma Normal (2FN):** Está na 1FN e **nenhum atributo não-chave depende parcialmente de qualquer chave candidata composta**. Se $AB$ é chave e $A \\rightarrow C$, a relação viola 2FN e deve ser decomposta em $R_1(A, C)$ e $R_2(A, B, \\dots)$.\n- **Terceira Forma Normal (3FN):** Está na 2FN e **nenhum atributo não-chave depende transitivamente da chave primária** (ou seja, não pode haver $X \\rightarrow Y$ onde $X$ não seja superchave e $Y$ não seja atributo primo). Se $SSN \\rightarrow DNum$ e $DNum \\rightarrow DName$, decompõe-se em $R_1(SSN, \\dots, DNum)$ e $R_2(DNum, DName)$."
+          "title": "Primeira (1FN), Segunda (2FN) e Terceira Forma Normal (3FN)",
+          "content": "- **1FN (Primeira Forma Normal):** Todos os domínios de atributos são atômicos (sem atributos multivalorados ou relações aninhadas).\n- **2FN (Segunda Forma Normal):** Está na 1FN e **nenhum atributo não-primo é parcialmente dependente de qualquer chave candidata composta**. Se $AB$ é chave e $A \\rightarrow C$ (com $C$ não-chave), viola 2FN!\n  - *Decomposição:* Separa-se a dependência parcial em uma relação própria $R_1(A, C)$ com chave $A$, mantendo em $R_2$ a chave original $AB$ com os atributos totalmente dependentes.\n- **3FN (Terceira Forma Normal):** Está na 2FN e **nenhum atributo não-primo é transitivamente dependente de qualquer chave candidata**. Ou seja, para toda DF não-trivial $X \\rightarrow Y$, ou $X$ é superchave, ou $Y$ é atributo primo (pertence a alguma chave candidata).\n  - *Decomposição:* Se $K \\rightarrow X$ e $X \\rightarrow Y$ (onde $X$ não é chave), cria-se $R_{trans}(X, Y)$ com chave $X$ e remove-se $Y$ da tabela base."
         }
       ],
       "exercises": [
         "T8.1",
         "T8.2",
+        "T8.3",
         "E8.1",
         "E8.2",
         "E8.3"

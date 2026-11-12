@@ -79,6 +79,23 @@ function setupUIEventListeners() {
   });
   document.getElementById("btn-show-hint").addEventListener("click", showHint);
 
+
+  // Exam Modal
+  const modalExam = document.getElementById("modal-exam");
+  const btnExam = document.getElementById("btn-exam-modal");
+  const btnCloseExam = document.getElementById("btn-close-exam");
+  if (btnExam && modalExam) {
+    btnExam.addEventListener("click", () => modalExam.classList.add("active"));
+  }
+  if (btnCloseExam && modalExam) {
+    btnCloseExam.addEventListener("click", () => modalExam.classList.remove("active"));
+  }
+  if (modalExam) {
+    modalExam.addEventListener("click", (e) => {
+      if (e.target === modalExam) modalExam.classList.remove("active");
+    });
+  }
+
   // Cheat Sheet Modal
   const modalCheat = document.getElementById("modal-cheatsheet");
   document.getElementById("btn-cheatsheet-modal").addEventListener("click", () => {
@@ -223,12 +240,16 @@ function getExerciseShortTitle(exId) {
     "E6.3": "[Oficial] ASSERTION: Hierarquia Total/d",
     "T7.1": "Mapeamento ER: Entidades, Multivalorados e Fracas",
     "T7.2": "Mapeamento M:N e Agregações EER",
-    "E7.1": "[Oficial] Mapeamento Sistema Aéreo (Exame)",
+    "T7.3": "Mapeamento Otimizado de Hierarquias (d vs. o)",
+    "E7.1": "[Oficial Exame] Voo, Trecho_Voo e Aeroporto",
+    "E7.2": "[Oficial Exame] Aeronave e Pode_Pousar",
+    "E7.3": "[Oficial Exame] Reserva, Assento e Tarifa",
     "T8.1": "Fechamento (X+) e Determinação de Chaves",
     "T8.2": "Diagnóstico de Violações 2FN e 3FN",
-    "E8.1": "[Oficial] Normalização Q1: Chave de R(A..E)",
-    "E8.2": "[Oficial] Normalização Q2: Decomposição 2FN/3FN",
-    "E8.3": "[Oficial] Normalização Q3: Sistema Cursos/Turmas"
+    "T8.3": "Axiomas de Armstrong e Conjunto Minimal",
+    "E8.1": "[Oficial Normalização] Q1: Chave de R(A..E)",
+    "E8.2": "[Oficial Normalização] Q2: Decomposição 2FN/3FN",
+    "E8.3": "[Oficial Normalização] Q3: Sistema Cursos/Turmas"
   };
   return titles[exId] || exId;
 }
@@ -664,8 +685,8 @@ function markAsSolved(exId) {
 
 function updateProgressUI() {
   const count = solvedExercises.size;
-  const pct = Math.min(100, Math.round((count / 34) * 100));
-  document.getElementById("progress-text").innerText = `${count} / 34 Concluídos`;
+  const pct = Math.min(100, Math.round((count / 38) * 100));
+  document.getElementById("progress-text").innerText = `${count} / 38 Concluídos`;
   document.getElementById("progress-bar-fill").style.width = `${pct}%`;
 }
 
