@@ -6,8 +6,9 @@ Round 1 Exam Mastery Exercises (R1.1 to R1.10) for Modules 7 & 8:
 
 Includes:
 - Authentic ER and EER SVG diagrams rendered in the exercise statement
-- Study Guides (Cheat Sheets) with exact UFMG coursework references and parallel-domain worked examples
-- Complete Step-by-Step Answer Sheets (Folha de Gabarito Oficial) for open-ended/layout resolution
+- Visual FD / Schema Grids (zero raw LaTeX, zero walls of text)
+- 2-Column Study Guides (Cheat Sheets) with exact UFMG coursework references and parallel-domain worked examples
+- Step-Card Answer Sheets (Folha de Gabarito Oficial) for open-ended/layout resolution
 - Balanced multiple-choice checkpoints and live SQL DDL / SQL Query validation suites
 """
 
@@ -21,7 +22,6 @@ HOSPITAL_ER_SVG = """
 <div class="er-diagram-box">
   <div class="er-diagram-title">📐 Esquema ER Oficial — Estudo de Caso: Sistema Hospitalar &amp; Prontuário Clínico (Elmasri &amp; Navathe)</div>
   <svg viewBox="0 0 920 430" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#0f172a; border-radius:8px; border:1px solid #334155; font-family:'Inter',sans-serif;">
-    <!-- Connectors / Lines -->
     <!-- ALA_HOSPITALAR (1,1) == CHEFIADA_POR == (0,1) MEDICO -->
     <line x1="210" y1="95" x2="390" y2="95" stroke="#38bdf8" stroke-width="3"/>
     <line x1="210" y1="101" x2="390" y2="101" stroke="#38bdf8" stroke-width="3"/>
@@ -51,7 +51,6 @@ HOSPITAL_ER_SVG = """
     <!-- Strong Entity: ALA_HOSPITALAR -->
     <rect x="50" y="70" width="160" height="55" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
     <text x="130" y="102" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">ALA_HOSPITALAR</text>
-    <!-- Attributes of ALA_HOSPITALAR -->
     <line x1="80" y1="70" x2="60" y2="35" stroke="#64748b" stroke-width="1.5"/>
     <ellipse cx="55" cy="25" rx="42" ry="15" fill="#0f172a" stroke="#94a3b8" stroke-width="1.5"/>
     <text x="55" y="29" fill="#f8fafc" font-size="11" text-decoration="underline" text-anchor="middle">CodAla</text>
@@ -72,7 +71,6 @@ HOSPITAL_ER_SVG = """
     <!-- Strong Entity: MEDICO -->
     <rect x="680" y="70" width="150" height="55" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
     <text x="755" y="102" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">MEDICO</text>
-    <!-- Attributes of MEDICO -->
     <line x1="705" y1="70" x2="660" y2="35" stroke="#64748b" stroke-width="1.5"/>
     <ellipse cx="650" cy="25" rx="36" ry="15" fill="#0f172a" stroke="#94a3b8" stroke-width="1.5"/>
     <text x="650" y="29" fill="#f8fafc" font-size="11" text-decoration="underline" text-anchor="middle">CRM</text>
@@ -128,7 +126,6 @@ HOSPITAL_ER_SVG = """
     <rect x="660" y="320" width="210" height="58" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="2.5"/>
     <rect x="665" y="325" width="200" height="48" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
     <text x="765" y="354" fill="#fde68a" font-size="12.5" font-weight="bold" text-anchor="middle">EXAME_LABORATORIAL</text>
-    <!-- Partial Key & Attributes of EXAME_LABORATORIAL -->
     <line x1="710" y1="378" x2="685" y2="398" stroke="#64748b" stroke-width="1.5"/>
     <ellipse cx="675" cy="410" rx="58" ry="14" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
     <text x="675" y="413" fill="#fde68a" font-size="11" text-anchor="middle">NumSeqExame</text>
@@ -147,12 +144,10 @@ UNIVERSITY_EER_SVG = """
     <!-- Left Hierarchy: PESSOA -> (o, partial) -> DOCENTE, ALUNO_POS -->
     <rect x="110" y="40" width="160" height="50" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
     <text x="190" y="70" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">PESSOA (CPF, Nome)</text>
-    <!-- Single line (Partial) to (o) circle -->
     <line x1="190" y1="90" x2="190" y2="145" stroke="#94a3b8" stroke-width="2.5"/>
     <circle cx="190" cy="162" r="17" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
     <text x="190" y="167" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">o</text>
     <text x="255" y="125" fill="#94a3b8" font-size="11">Parcial / Sobreposta</text>
-    <!-- Branches to DOCENTE and ALUNO_POS -->
     <line x1="175" y1="172" x2="95" y2="225" stroke="#94a3b8" stroke-width="2"/>
     <line x1="205" y1="172" x2="285" y2="225" stroke="#94a3b8" stroke-width="2"/>
     <rect x="25" y="225" width="145" height="50" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
@@ -179,13 +174,11 @@ UNIVERSITY_EER_SVG = """
     <rect x="575" y="40" width="250" height="50" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="2.5"/>
     <text x="700" y="63" fill="#fde68a" font-size="12.5" font-weight="bold" text-anchor="middle">BOLSA_PESQUISA</text>
     <text x="700" y="80" fill="#cbd5e1" font-size="10.5" text-anchor="middle">(CodBolsa, AgenciaFomento, ValorMensal)</text>
-    <!-- Double line (Total) to (d) circle -->
     <line x1="697" y1="90" x2="697" y2="145" stroke="#f59e0b" stroke-width="3"/>
     <line x1="703" y1="90" x2="703" y2="145" stroke="#f59e0b" stroke-width="3"/>
     <circle cx="700" cy="162" r="17" fill="#1e293b" stroke="#f59e0b" stroke-width="2.5"/>
     <text x="700" y="167" fill="#fde68a" font-size="14" font-weight="bold" text-anchor="middle">d</text>
     <text x="775" y="125" fill="#fde68a" font-size="11" font-weight="bold">Total (Linha Dupla) / Disjunta</text>
-    <!-- Branches to BOLSA_MESTRADO and BOLSA_DOUTORADO -->
     <line x1="685" y1="172" x2="600" y2="225" stroke="#f59e0b" stroke-width="2"/>
     <line x1="715" y1="172" x2="800" y2="225" stroke="#f59e0b" stroke-width="2"/>
     <rect x="515" y="225" width="175" height="55" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
@@ -199,153 +192,166 @@ UNIVERSITY_EER_SVG = """
 """
 
 # ==============================================================================
-# STUDY GUIDES (CHEAT SHEETS WITH PARALLEL DOMAIN EXAMPLES)
+# 2-COLUMN VISUAL STUDY GUIDES (CHEAT SHEETS WITH PARALLEL DOMAIN EXAMPLES)
 # ==============================================================================
 
 STUDY_GUIDE_G1 = {
     "id": "G1",
-    "title": "📘 Ficha de Estudo G1 — Mapeamento ER Básico, Entidades Fracas e Políticas RIR (b, p, n)",
+    "title": "Ficha G1 — Mapeamento ER Básico, Entidades Fracas e Políticas RIR (b, p, n)",
     "file_path": "study_guides/G1_Mapeamento_ER_Basico_e_RIRs.md",
-    "coursework_ref": "ibd-parte5.pdf (Etapa 1: Regras 1 a 6 e Políticas de Remoção b, p, n) + ExercicioProjetoLogico.pdf",
+    "coursework_ref": "ibd-parte5.pdf (Etapa 1: Regras 1 a 6 e Políticas b, p, n) + ExercicioProjetoLogico.pdf",
     "summary_html": """
-      <div class="sg-section">
-        <h4>📌 Base Teórica nos Slides (<code>ibd-parte5.pdf</code> — Etapa 1)</h4>
-        <ul>
-          <li><strong>Regra 2a (Atributo Composto):</strong> Achata-se (<em>flattening</em>) incluindo apenas os sub-atributos componentes simples na relação da entidade dona.</li>
-          <li><strong>Regra 2b (Atributo Multivalorado <code>{M}</code>):</strong> Cria-se nova relação <code>R_M(PK_Dona(nn), M(nn))</code> com chave primária composta por ambos os atributos e RIR com política <strong><code>p</code> (propagação / CASCADE)</strong>.</li>
-          <li><strong>Regra 3 (Entidade Fraca <code>W</code>):</strong> A relação <code>W</code> importa a PK da entidade forte dona como FK <code>(nn)</code>. A PK de <code>W</code> é composta por <code>(PK_Dona, ChaveParcial_W)</code> e a RIR tem obrigatoriamente política <strong><code>p</code> (propagação)</strong>.</li>
-          <li><strong>Regra 4 (Relacionamento 1:1):</strong> Se um lado tem participação <strong>total <code>(1,1)</code></strong> e o outro <strong>parcial <code>(0,1)</code></strong>, a relação do lado <strong>total <code>(1,1)</code></strong> absorve a PK do outro lado como FK <code>(nn)</code> + atributos do relacionamento (evitando valores <code>NULL</code>!).</li>
-          <li><strong>Regra 5 (Relacionamento 1:N):</strong> A relação do lado <strong>N</strong> (que possui cardinalidade máxima <code>1</code> na notação <code>(min, max)</code>) absorve a PK do lado <strong>1</strong> como FK + atributos do relacionamento.</li>
-          <li><strong>Regra 6 (Relacionamento M:N):</strong> Cria-se nova relação associativa com PK composta pelas FKs das duas entidades participantes e política <strong><code>p</code></strong>.</li>
-        </ul>
-      </div>
-      <div class="sg-example-box">
-        <h4>🔄 Exemplo Análogo Resolvido (Domínio Diferente: <em>Rede Bancária — BANCO e AGENCIA</em>)</h4>
-        <p>Imagine um banco onde <code>BANCO(CodBanco, Sede(Cidade, UF), {TelefonesSAC})</code> identifica a entidade fraca <code>AGENCIA(NumAgencia, Bairro)</code>, cada <code>AGENCIA (1,1)</code> é gerenciada por um <code>FUNCIONARIO(CPF, Nome) (0,1)</code> desde <code>DataPosse</code>, e cada <code>FUNCIONARIO (0,1)</code> trabalha em uma <code>AGENCIA (0,N)</code>:</p>
-        <pre><code>1. BANCO(CodBanco(nn), Cidade, UF)                  -- Sede foi achatado!
-2. BANCO_TELEFONES(CodBanco(nn), TelefoneSAC(nn))   -- PK: (CodBanco, TelefoneSAC) | RIR: -p-> BANCO
+      <div class="sg-grid-2col">
+        <div class="sg-col-card">
+          <h4>📌 Resumo das 6 Regras (<code>ibd-parte5.pdf</code> — Etapa 1)</h4>
+          <table class="compact-rule-table">
+            <thead>
+              <tr><th>Construção ER</th><th>Mapeamento Relacional</th><th>RIR</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>2a. Composto</strong></td><td>Achatamento (<em>flattening</em>): entram apenas os sub-atributos simples.</td><td>—</td></tr>
+              <tr><td><strong>2b. Multivalorado</strong></td><td>Nova tabela <code>R_M(<u>PK_Dona(nn), M(nn)</u>)</code> com PK composta.</td><td><code>-p-&gt;</code></td></tr>
+              <tr><td><strong>3. Entidade Fraca</strong></td><td>Importa <code>PK_Dona(nn)</code>; PK composta <code>(<u>PK_Dona, ChaveParcial</u>)</code>.</td><td><code>-p-&gt;</code></td></tr>
+              <tr><td><strong>4. Rel. 1:1</strong></td><td>Lado de participação <strong>total <code>(1,1)</code></strong> absorve a FK <code>(nn)</code> + <code>UNIQUE</code>.</td><td><code>-b-&gt;</code></td></tr>
+              <tr><td><strong>5. Rel. 1:N</strong></td><td>Lado <strong>N</strong> (máximo <code>1</code> em <code>(min,max)</code>) absorve a FK do lado <strong>1</strong>.</td><td><code>-b-&gt; / -n-&gt;</code></td></tr>
+              <tr><td><strong>6. Rel. M:N</strong></td><td>Nova tabela associativa <code>R(<u>PK_A(nn), PK_B(nn)</u>, Atrib)</code>.</td><td><code>-p-&gt;</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sg-col-card">
+          <h4>🔄 Exemplo Análogo (Domínio Diferente: <em>Rede Bancária</em>)</h4>
+          <p class="sg-hint-text"><code>BANCO(CodBanco, Sede(Cidade, UF), {TelefonesSAC})</code> identifica a entidade fraca <code>AGENCIA(NumAgencia, Bairro)</code>; <code>AGENCIA (1,1)</code> é gerenciada por <code>FUNCIONARIO (0,1)</code>:</p>
+          <pre><code>1. BANCO(CodBanco(nn), Cidade, UF)
+   -- Atributo composto Sede foi achatado!
+
+2. BANCO_TELEFONES(CodBanco(nn), TelefoneSAC(nn))
+   PK: (CodBanco, TelefoneSAC) | RIR: -p-> BANCO
+
 3. AGENCIA(CodBanco(nn), NumAgencia(nn), Bairro, CPFGerente(nn), DataPosse)
-     PK: (CodBanco, NumAgencia) | UNIQUE: CPFGerente
-     RIR 1: AGENCIA[CodBanco] -p-> BANCO[CodBanco]       (Entidade fraca = propagação p)
-     RIR 2: AGENCIA[CPFGerente] -b-> FUNCIONARIO[CPF]    (1:1 total em AGENCIA absorve FK nn)
-4. FUNCIONARIO(CPF(nn), Nome(nn), CodBancoLot, NumAgenciaLot)
-     RIR: FUNCIONARIO[CodBancoLot, NumAgenciaLot] -n-> AGENCIA[CodBanco, NumAgencia]</code></pre>
+   PK: (CodBanco, NumAgencia)  | UNIQUE: CPFGerente
+   RIR 1: AGENCIA[CodBanco] -p-> BANCO[CodBanco]
+   RIR 2: AGENCIA[CPFGerente] -b-> FUNCIONARIO[CPF]</code></pre>
+        </div>
       </div>
     """
 }
 
 STUDY_GUIDE_G2 = {
     "id": "G2",
-    "title": "📘 Ficha de Estudo G2 — Mapeamento EER: Hierarquias (d/o, Total/Parcial), CHECK e Ternários",
+    "title": "Ficha G2 — Hierarquias EER (d/o, Total/Parcial), CHECK e Ternários",
     "file_path": "study_guides/G2_Mapeamento_EER_Hierarquias_e_Ternarios.md",
-    "coursework_ref": "ibd-parte5.pdf (Etapa 2: Opções 1, 2 e 3 para Hierarquias EER, Cláusula CHECK e Relacionamentos Ternários)",
+    "coursework_ref": "ibd-parte5.pdf (Etapa 2: Opções 1, 2 e 3 para Hierarquias EER, Cláusula CHECK e Ternários)",
     "summary_html": """
-      <div class="sg-section">
-        <h4>📌 Base Teórica nos Slides (<code>ibd-parte5.pdf</code> — Etapa 2)</h4>
-        <ul>
-          <li><strong>Opção 1 (Tabela Única na Superclasse):</strong> Funde superclasse e subclasses em uma só relação com atributos específicos anuláveis. Exige cláusula <code>CHECK</code> de tupla para garantir disjunção (<code>d</code>) e/ou cobertura total.</li>
-          <li><strong>Opção 2 (Apenas Tabelas das Subclasses):</strong> Elimina a tabela da superclasse, replicando a PK e os atributos gerais nas subclasses. <strong>Só é válida quando a hierarquia é TOTAL (linha dupla)!</strong> Se for sobreposta (<code>o</code>), causa redundância dos atributos gerais.</li>
-          <li><strong>Opção 3 (Superclasse + Tabelas das Subclasses):</strong> Universal. Cada subclasse importa a PK da superclasse como sua própria PK e FK com política <strong><code>p</code> (propagação / CASCADE)</strong>.</li>
-          <li><strong>Relacionamento Ternário (M:N:P):</strong> Cria-se nova relação cuja PK é composta pelas 3 FKs das entidades participantes (todas com política <code>p</code>).</li>
-        </ul>
-      </div>
-      <div class="sg-example-box">
-        <h4>🔄 Exemplo Análogo Resolvido (Domínio Diferente: <em>Frota Marítima — EMBARCACAO</em>)</h4>
-        <p>Considere <code>EMBARCACAO(CodIMO, NomeNavio)</code> especializada de forma <strong>Disjunta e Total (<code>d</code>, linha dupla)</strong> em <code>PETROLEIRO(CapacidadeBarris)</code> e <code>PORTA_CONTENTOR(MaximoTEUs)</code>:</p>
-        <pre><code>-- Opção 1 (Tabela Única com CHECK para Disjunção + Totalidade / OU-Exclusivo):
-CREATE TABLE EMBARCACAO (
+      <div class="sg-grid-2col">
+        <div class="sg-col-card">
+          <h4>📌 As 3 Opções de Hierarquia EER (<code>ibd-parte5.pdf</code>)</h4>
+          <table class="compact-rule-table">
+            <thead>
+              <tr><th>Opção</th><th>Tabelas Criadas</th><th>Quando Usar / Restrição</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Opção 1</strong></td><td>Tabela única na Superclasse</td><td>Usa <code>CHECK</code> de tupla para impor <code>d</code> e/ou Totalidade.</td></tr>
+              <tr><td><strong>Opção 2</strong></td><td>Apenas Tabelas das Subclasses</td><td><strong>Proibida se Parcial!</strong> E se for <code>o</code> (sobreposta), duplica atributos.</td></tr>
+              <tr><td><strong>Opção 3</strong></td><td>Superclasse + Subclasses</td><td>Universal. Subclasses herdam PK da superclasse com RIR <code>-p-&gt;</code>.</td></tr>
+              <tr><td><strong>Ternário</strong></td><td>Tabela <code>R(<u>PK1, PK2, PK3</u>)</code></td><td>PK composta pelas 3 chaves estrangeiras com política <code>-p-&gt;</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sg-col-card">
+          <h4>🔄 Exemplo Análogo (Domínio Diferente: <em>Frota Marítima</em>)</h4>
+          <p class="sg-hint-text"><code>EMBARCACAO(CodIMO, NomeNavio)</code> especializada de forma <strong>Disjunta e Total (<code>d</code>, linha dupla)</strong> em <code>PETROLEIRO(CapBarris)</code> e <code>PORTA_CONTENTOR(MaxTEUs)</code>:</p>
+          <pre><code>CREATE TABLE EMBARCACAO (
     CodIMO VARCHAR(15) NOT NULL PRIMARY KEY,
     NomeNavio VARCHAR(80) NOT NULL,
-    CapacidadeBarris INTEGER,
-    MaximoTEUs INTEGER,
+    CapBarris INTEGER,
+    MaxTEUs INTEGER,
     CHECK (
-        (CapacidadeBarris IS NOT NULL AND MaximoTEUs IS NULL)
+        (CapBarris IS NOT NULL AND MaxTEUs IS NULL)
         OR
-        (CapacidadeBarris IS NULL AND MaximoTEUs IS NOT NULL)
+        (CapBarris IS NULL AND MaxTEUs IS NOT NULL)
     )
 );</code></pre>
+        </div>
       </div>
     """
 }
 
 STUDY_GUIDE_G3 = {
     "id": "G3",
-    "title": "📘 Ficha de Estudo G3 — DFs em Instâncias, Axiomas de Armstrong e Fecho X+ (Múltiplas Chaves)",
+    "title": "Ficha G3 — DFs em Instâncias, Axiomas de Armstrong e Fecho X+ (Múltiplas Chaves)",
     "file_path": "study_guides/G3_Dependencias_Funcionais_Instancias_e_Fecho.md",
-    "coursework_ref": "ibd-parte6.pdf (Seções 1, 2 e 3: Semântica de DFs, Satisfação em Instâncias r(R), Fecho X+ e Chaves Candidatas)",
+    "coursework_ref": "ibd-parte6.pdf (Seções 1, 2 e 3: Semântica de DFs, Satisfação em r(R), Fecho X+ e Chaves)",
     "summary_html": """
-      <div class="sg-section">
-        <h4>📌 Base Teórica nos Slides (<code>ibd-parte6.pdf</code> — Seções 2 e 3)</h4>
-        <ul>
-          <li><strong>Refutação de DF por Instância:</strong> Uma DF <code>X -> Y</code> é violada em uma extensão <code>r(R)</code> se existirem duas tuplas <code>t1, t2</code> tais que <code>t1[X] = t2[X]</code> mas <code>t1[Y] &lt;&gt; t2[Y]</code>. Jamais se prova que uma DF vale em todos os estados apenas olhando uma instância, mas um único contraexemplo refuta a DF!</li>
-          <li><strong>Método do Particionamento para Achar TODAS as Chaves Candidatas:</strong>
-            <ol>
-              <li><strong>Conjunto Essencial <code>L</code> (Nunca aparece no lado direito de nenhuma DF):</strong> Faz parte obrigatoriamente de <em>todas</em> as chaves candidatas!</li>
-              <li><strong>Conjunto Somente-Direita <code>D</code> (Nunca aparece no lado esquerdo):</strong> Jamais entra em nenhuma chave candidata mínima.</li>
-              <li><strong>Conjunto Intermediário <code>M</code> (Aparece em ambos os lados):</strong> Se <code>L+ != R</code>, teste adicionar elementos de <code>M</code> ao conjunto <code>L</code> um a um.</li>
-            </ol>
-          </li>
-          <li><strong>Atributo Primo vs. Não-Primo:</strong> Atributo primo é todo atributo que participa de <strong>pelo menos uma</strong> chave candidata de <code>R</code>.</li>
-        </ul>
-      </div>
-      <div class="sg-example-box">
-        <h4>🔄 Exemplo Análogo Resolvido (Domínio Diferente: <em>Esquema S(P, Q, R, T, U)</em>)</h4>
-        <p>Dado <code>S(P, Q, R, T, U)</code> com <code>F = { PQ -> R,  R -> P,  QR -> T,  T -> U }</code>:</p>
-        <pre><code>1. Atributos que NUNCA aparecem no lado direito (RHS = {R, P, T, U}):
-   -> L = {Q}. Logo Q pertence a TODAS as chaves candidatas!
-2. Atributos que aparecem APENAS no lado direito:
-   -> D = {U}. Logo U nunca pertence a chave candidata.
-3. Fecho de {Q}+ = {Q} != S. Combinamos Q com os intermediários M = {P, R, T}:
-   • {P, Q}+ = {P, Q, R, T, U} = S  ==> {P, Q} é Chave Candidata (CK1)!
-   • {Q, R}+ = {Q, R, P, T, U} = S  ==> {Q, R} é Chave Candidata (CK2)!
-   • {Q, T}+ = {Q, T, U} != S       ==> Não é superchave.
-4. Atributos Primos = {P, Q, R} | Atributos Não-Primos = {T, U}.</code></pre>
+      <div class="sg-grid-2col">
+        <div class="sg-col-card">
+          <h4>📌 Método Rápido de Particionamento para Chaves (<code>ibd-parte6.pdf</code>)</h4>
+          <table class="compact-rule-table">
+            <thead>
+              <tr><th>Classe de Atributos</th><th>Onde Aparece nas DFs</th><th>Papel nas Chaves Candidatas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Essenciais (<code>L</code>)</strong></td><td><strong>Nunca</strong> no lado direito (RHS)</td><td>Faz parte obrigatoriamente de <strong>TODAS</strong> as chaves candidatas!</td></tr>
+              <tr><td><strong>Somente-Direita (<code>D</code>)</strong></td><td><strong>Apenas</strong> no lado direito (RHS)</td><td><strong>Jamais</strong> participa de nenhuma chave candidata mínima.</td></tr>
+              <tr><td><strong>Intermediários (<code>M</code>)</strong></td><td>Ambos os lados (LHS e RHS)</td><td>Se <code>L+ ≠ R</code>, combine <code>L</code> com elementos de <code>M</code>.</td></tr>
+              <tr><td><strong>Atributo Primo</strong></td><td>Pertence a <strong>alguma</strong> CK</td><td>Qualquer atributo presente em <code>CK1 ∪ CK2 ∪ ...</code> é primo!</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sg-col-card">
+          <h4>🔄 Exemplo Análogo (Domínio Diferente: <em>Esquema S(P, Q, R, T, U)</em>)</h4>
+          <p class="sg-hint-text">Dado <code>S(P, Q, R, T, U)</code> com <code>F = { PQ → R, R → P, QR → T, T → U }</code>:</p>
+          <pre><code>1. Nunca no RHS: L = {Q}  ==> Q está em toda chave!
+2. Apenas no RHS: D = {U} ==> U nunca entra em chave.
+3. Fecho {Q}+ = {Q} ≠ S. Testando pares com M = {P, R, T}:
+   • {P, Q}+ = {P, Q, R, T, U} = S  ==> CK1 = {P, Q}
+   • {Q, R}+ = {Q, R, P, T, U} = S  ==> CK2 = {Q, R}
+   • {Q, T}+ = {Q, T, U} ≠ S        ==> Não é superchave.
+4. Primos: {P, Q, R}  |  Não-Primos: {T, U}.</code></pre>
+        </div>
       </div>
     """
 }
 
 STUDY_GUIDE_G4 = {
     "id": "G4",
-    "title": "📘 Ficha de Estudo G4 — Cobertura Mínima (3 Passos) e Decomposição 1FN -> 2FN -> 3FN",
+    "title": "Ficha G4 — Cobertura Mínima (3 Passos) e Decomposição 1FN → 2FN → 3FN",
     "file_path": "study_guides/G4_Cobertura_Minima_e_Normalizacao_1FN_2FN_3FN.md",
-    "coursework_ref": "ibd-parte6.pdf (Seção 3.4: Cobertura Mínima; Seção 4: 1FN, 2FN, 3FN Geral) + ExerciciosNormalizacaoSemResposta.pdf",
+    "coursework_ref": "ibd-parte6.pdf (Seção 3.4: Cobertura Mínima; Seção 4: 1FN, 2FN, 3FN Geral) + Lista de Normalização",
     "summary_html": """
-      <div class="sg-section">
-        <h4>📌 Base Teórica nos Slides (<code>ibd-parte6.pdf</code> — Seções 3.4 e 4)</h4>
-        <ul>
-          <li><strong>Os 3 Passos da Cobertura Mínima (Irredutível) <code>Fc</code>:</strong>
-            <ol>
-              <li><strong>Passo 1 (RHS Unitário):</strong> Decompor <code>X -> {A, B}</code> em <code>X -> A</code> e <code>X -> B</code>.</li>
-              <li><strong>Passo 2 (LHS Sem Atributos Estranhos):</strong> Em <code>XY -> Z</code>, se <code>Y</code> pertence a <code>{X}+</code> (ou <code>Z</code> pertence a <code>{X}+</code>), então <code>Y</code> é redundante no lado esquerdo e fica apenas <code>X -> Z</code>.</li>
-              <li><strong>Passo 3 (Sem DFs Redundantes):</strong> Para cada <code>f: X -> A</code>, calcule <code>{X}+</code> em <code>F - {f}</code>. Se <code>A</code> continuar no fecho, elimine <code>f</code>!</li>
-            </ol>
-          </li>
-          <li><strong>Definição Geral de 2FN e 3FN (Múltiplas Chaves Candidatas):</strong>
-            <ul>
-              <li><strong>Viola 2FN:</strong> Atributo <strong>não-primo</strong> depende parcialmente de um subconjunto próprio de <em>qualquer</em> chave candidata.</li>
-              <li><strong>Viola 3FN:</strong> Existe <code>X -> A</code> não-trivial onde <code>X</code> <strong>não é superchave</strong> E <code>A</code> <strong>não é atributo primo</strong>.</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="sg-example-box">
-        <h4>🔄 Exemplo Análogo Resolvido (Domínio Diferente: <em>Festival de Música — SHOW_FESTIVAL</em>)</h4>
-        <p>Seja <code>SHOW_FESTIVAL(CodFestival, OrdemShow, CodPalco, Horario, IdBanda, NomeBanda, CidadeFestival, CapacidadePalco)</code> com chaves candidatas <code>CK1 = {CodFestival, OrdemShow}</code> e <code>CK2 = {CodPalco, Horario}</code>:</p>
-        <pre><code>• Atributos Primos: {CodFestival, OrdemShow, CodPalco, Horario}
-• Violações de 2FN (Dependências Parciais de CK1 e CK2):
-  - CodFestival -> CidadeFestival (parcial de CK1)  ==> Cria FESTIVAL(CodFestival(nn), CidadeFestival)
-  - CodPalco -> CapacidadePalco   (parcial de CK2)  ==> Cria PALCO(CodPalco(nn), CapacidadePalco)
-• Violação de 3FN (Dependência Transitiva entre não-primos):
-  - IdBanda -> NomeBanda                            ==> Cria BANDA(IdBanda(nn), NomeBanda)
+      <div class="sg-grid-2col">
+        <div class="sg-col-card">
+          <h4>📌 Cobertura Mínima e Formas Normais (<code>ibd-parte6.pdf</code>)</h4>
+          <table class="compact-rule-table">
+            <thead>
+              <tr><th>Etapa / Regra</th><th>Critério Formal</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong> Fc — Passo 1</strong></td><td>Lado direito (RHS) sempre com <strong>1 único atributo</strong>: <code>X → AB</code> vira <code>X → A</code> e <code>X → B</code>.</td></tr>
+              <tr><td><strong>Fc — Passo 2</strong></td><td>Sem atributo estranho no LHS: em <code>XY → Z</code>, se <code>Y ∈ {X}+</code>, simplifique para <code>X → Z</code>.</td></tr>
+              <tr><td><strong>Fc — Passo 3</strong></td><td>Sem DF redundante: se <code>A ∈ {X}+</code> calculado em <code>F - {X → A}</code>, remova <code>X → A</code>.</td></tr>
+              <tr><td><strong>2FN (Geral)</strong></td><td>Proíbe que atributo <strong>não-primo</strong> dependa de subconjunto próprio de <em>qualquer</em> CK.</td></tr>
+              <tr><td><strong>3FN (Geral)</strong></td><td>Para toda <code>X → A</code>: ou <code>X</code> é <strong>superchave</strong>, ou <code>A</code> é <strong>atributo primo</strong>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sg-col-card">
+          <h4>🔄 Exemplo Análogo (Domínio Diferente: <em>SHOW_FESTIVAL</em>)</h4>
+          <p class="sg-hint-text"><code>SHOW(<u>CodFest, Ordem</u>, CodPalco, Horario, IdBanda, NomeBanda, CidadeFest, CapPalco)</code> com <code>CK1 = {CodFest, Ordem}</code> e <code>CK2 = {CodPalco, Horario}</code>:</p>
+          <pre><code>• Atributos Primos: {CodFest, Ordem, CodPalco, Horario}
+• Violações de 2FN (Parciais sobre CK1 e CK2):
+  - CodFest → CidadeFest  ==> FESTIVAL(CodFest(nn), CidadeFest)
+  - CodPalco → CapPalco   ==> PALCO(CodPalco(nn), CapPalco)
+• Violação de 3FN (Transitiva entre não-primos):
+  - IdBanda → NomeBanda   ==> BANDA(IdBanda(nn), NomeBanda)
 • Relação Principal em 3FN:
-  - SHOW(CodFestival(nn), OrdemShow(nn), CodPalco(nn), Horario(nn), IdBanda(nn))
-    PK: (CodFestival, OrdemShow) | UNIQUE: (CodPalco, Horario)</code></pre>
+  - SHOW(CodFest(nn), Ordem(nn), CodPalco(nn), Horario(nn), IdBanda(nn))</code></pre>
+        </div>
       </div>
     """
 }
 
 # ==============================================================================
-# 10 HIGH-QUALITY ROUND 1 EXERCISES (R1.1 TO R1.10)
+# 10 HIGH-QUALITY ROUND 1 EXERCISES (R1.1 TO R1.10) — CLEAN VISUAL HTML
 # ==============================================================================
 
 ROUND1_EXERCISES: Dict[str, Dict[str, Any]] = {
@@ -354,36 +360,32 @@ ROUND1_EXERCISES: Dict[str, Dict[str, Any]] = {
         "type": "oficial",
         "mode": "structured",
         "context_html": HOSPITAL_ER_SVG + """
-        <div class="problem-narrative">
-          <strong>Tarefa Completa (Discursiva + Checkpoints):</strong> Observe o esquema ER do <em>Sistema Hospitalar</em> acima. No seu <strong>Caderno de Resolução Discursiva</strong> abaixo, escreva o esquema relacional completo (com <code>(nn)</code>, chaves primárias e RIRs <code>-b-&gt;</code>, <code>-p-&gt;</code>, <code>-n-&gt;</code>) para as entidades <code>ALA_HOSPITALAR</code>, <code>MEDICO</code> (incluindo <code>Endereco</code> e <code>{Especialidades}</code>), <code>PACIENTE</code> e a entidade fraca <code>EXAME_LABORATORIAL</code>. Em seguida, confira a <strong>Folha de Gabarito Oficial</strong> e valide os 3 checkpoints estruturados.
+        <div class="task-checklist-bar">
+          <div class="task-chip"><strong>1. Entidades Fortes:</strong> <code>ALA_HOSPITALAR</code>, <code>MEDICO</code>, <code>PACIENTE</code></div>
+          <div class="task-chip"><strong>2. Atributos Especiais:</strong> Composto <code>Endereco(Rua, CEP)</code> e Multivalorado <code>{Especialidades}</code></div>
+          <div class="task-chip"><strong>3. Entidade Fraca:</strong> <code>EXAME_LABORATORIAL</code> (chave parcial <code>NumSeqExame</code>)</div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G1,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial Passo a Passo — Exercício R1.1</h4>
-        <ol>
-          <li><strong>Mapeamento das Entidades Fortes e Achatamento de Atributo Composto (Regras 1 e 2a):</strong>
-            <pre><code>ALA_HOSPITALAR(CodAla(nn), NomeAla(nn), Andar)
-  PK: CodAla
-
-MEDICO(CRM(nn), NomeMed(nn), Rua, CEP)
-  PK: CRM
-  -- Nota: O atributo composto Endereco(Rua, CEP) foi achatado (flattening) em colunas atômicas.
-
-PACIENTE(CNS(nn), NomePac(nn), CodAlaInternacao, NumLeito)
-  PK: CNS</code></pre>
-          </li>
-          <li><strong>Mapeamento do Atributo Multivalorado <code>{Especialidades}</code> (Regra 2b):</strong>
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 1 — ENTIDADES FORTES &amp; ATRIBUTO COMPOSTO (REGRAS 1 E 2A)</span>
+            <p>O atributo composto <code>Endereco(Rua, CEP)</code> é achatado (<em>flattening</em>) em colunas atômicas dentro de <code>MEDICO</code>:</p>
+            <pre><code>ALA_HOSPITALAR(CodAla(nn), NomeAla(nn), Andar)       -- PK: CodAla
+MEDICO(CRM(nn), NomeMed(nn), Rua, CEP)               -- PK: CRM
+PACIENTE(CNS(nn), NomePac(nn), CodAla, NumLeito)     -- PK: CNS</code></pre>
+          </div>
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 2 — ATRIBUTO MULTIVALORADO &amp; ENTIDADE FRACA (REGRAS 2B E 3)</span>
+            <p>Tanto o atributo multivalorado quanto a entidade fraca exigem PK composta e RIR com política <strong><code>p</code> (propagação / CASCADE)</strong>:</p>
             <pre><code>MEDICO_ESPECIALIDADES(CRM(nn), Especialidade(nn))
-  PK: (CRM, Especialidade)
-  RIR: MEDICO_ESPECIALIDADES[CRM] -p-> MEDICO[CRM]  (ON DELETE CASCADE)</code></pre>
-          </li>
-          <li><strong>Mapeamento da Entidade Fraca <code>EXAME_LABORATORIAL</code> e Relacionamento Identificador <code>REALIZA_EXAME</code> (Regra 3):</strong>
-            <pre><code>EXAME_LABORATORIAL(CNS(nn), NumSeqExame(nn), TipoExame(nn))
-  PK: (CNS, NumSeqExame)
-  RIR: EXAME_LABORATORIAL[CNS] -p-> PACIENTE[CNS]   (Política p obrigatória para entidade fraca)</code></pre>
-          </li>
-        </ol>
+  PK: (CRM, Especialidade)  |  RIR: MEDICO_ESPECIALIDADES[CRM] -p-> MEDICO[CRM]
+
+EXAME_LABORATORIAL(CNS(nn), NumSeqExame(nn), TipoExame(nn))
+  PK: (CNS, NumSeqExame)    |  RIR: EXAME_LABORATORIAL[CNS] -p-> PACIENTE[CNS]</code></pre>
+          </div>
+        </div>
         """,
         "fields": [
             {
@@ -430,36 +432,33 @@ PACIENTE(CNS(nn), NomePac(nn), CodAlaInternacao, NumLeito)
         "type": "oficial",
         "mode": "structured",
         "context_html": HOSPITAL_ER_SVG + """
-        <div class="problem-narrative">
-          <strong>Tarefa Completa (Discursiva + Checkpoints):</strong> Ainda sobre o diagrama ER do <em>Sistema Hospitalar</em> acima, analise os relacionamentos <code>CHEFIADA_POR</code> (<code>1:1</code> entre <code>ALA_HOSPITALAR (1,1)</code> e <code>MEDICO (0,1)</code> com atributo <code>DataPosse</code>), <code>INTERNADO_EM</code> (<code>1:N</code> entre <code>ALA_HOSPITALAR (0,N)</code> e <code>PACIENTE (0,1)</code> com atributo <code>NumLeito</code>) e <code>PRESCRICAO</code> (<code>M:N</code> entre <code>MEDICO (0,N)</code> e <code>PACIENTE (0,N)</code> com atributo <code>Dosagem</code>). Escreva as chaves estrangeiras e RIRs no seu <strong>Caderno de Resolução</strong>, consulte o <strong>Gabarito Oficial</strong> e responda aos checkpoints.
+        <div class="task-checklist-bar">
+          <div class="task-chip"><strong>1. Rel. 1:1 <code>CHEFIADA_POR</code>:</strong> <code>ALA_HOSPITALAR (1,1)</code> ↔ <code>MEDICO (0,1)</code> + <code>DataPosse</code></div>
+          <div class="task-chip"><strong>2. Rel. 1:N <code>INTERNADO_EM</code>:</strong> <code>ALA_HOSPITALAR (0,N)</code> ↔ <code>PACIENTE (0,1)</code> + <code>NumLeito</code></div>
+          <div class="task-chip"><strong>3. Rel. M:N <code>PRESCRICAO</code>:</strong> <code>MEDICO (0,N)</code> ↔ <code>PACIENTE (0,N)</code> + <code>Dosagem</code></div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G1,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial Passo a Passo — Exercício R1.2</h4>
-        <ol>
-          <li><strong>Relacionamento 1:1 <code>CHEFIADA_POR</code> (Regra 4 — Participação Total vs. Parcial):</strong>
-            <ul>
-              <li><code>ALA_HOSPITALAR</code> tem participação <strong>total <code>(1,1)</code></strong> e <code>MEDICO</code> tem participação <strong>parcial <code>(0,1)</code></strong>.</li>
-              <li>Logo, a chave estrangeira <code>CRMChefe(nn)</code> e o atributo <code>DataPosse</code> são incluídos em <code>ALA_HOSPITALAR</code>! Assim nenhum valor <code>NULL</code> é gerado.</li>
-              <li>Para garantir que o mesmo médico não chefie duas alas (<code>1:1</code>), <code>CRMChefe</code> recebe restrição de chave alternativa (<code>UNIQUE</code>).</li>
-              <li>Política RIR: <code>ALA_HOSPITALAR[CRMChefe] -b-> MEDICO[CRM]</code> (bloqueio, pois a ala não pode ficar sem chefe).</li>
-            </ul>
-          </li>
-          <li><strong>Relacionamento 1:N <code>INTERNADO_EM</code> (Regra 5 — Participação Parcial no Lado N):</strong>
-            <ul>
-              <li>O lado <strong>N</strong> é <code>PACIENTE</code> (pois cada paciente ocupa no máximo 1 ala: <code>(0,1)</code>, enquanto a ala abriga vários pacientes: <code>(0,N)</code>).</li>
-              <li><code>PACIENTE</code> recebe a FK <strong>anulável</strong> <code>CodAla</code> e o atributo do relacionamento <code>NumLeito</code> (pois pacientes ambulatoriais não estão internados).</li>
-              <li>Política RIR: <code>PACIENTE[CodAla] -b-> ALA_HOSPITALAR[CodAla]</code> (impede demolir/excluir uma ala com pacientes internados).</li>
-            </ul>
-          </li>
-          <li><strong>Relacionamento M:N <code>PRESCRICAO</code> (Regra 6):</strong>
-            <pre><code>PRESCRICAO(CRM(nn), CNS(nn), Dosagem)
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 1 — RELACIONAMENTO 1:1 CHEFIADA_POR (REGRA 4)</span>
+            <p><code>ALA_HOSPITALAR</code> tem participação <strong>total <code>(1,1)</code></strong>, logo absorve <code>CRMChefe(nn)</code> com <code>UNIQUE</code> e <code>DataPosse</code> (zero nulos!):</p>
+            <pre><code>ALA_HOSPITALAR(CodAla(nn), NomeAla(nn), Andar, CRMChefe(nn), DataPosse)
+  PK: CodAla  |  Chave Alternativa (UNIQUE): CRMChefe
+  RIR: ALA_HOSPITALAR[CRMChefe] -b-> MEDICO[CRM]</code></pre>
+          </div>
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 2 — RELACIONAMENTOS 1:N INTERNADO_EM &amp; M:N PRESCRICAO (REGRAS 5 E 6)</span>
+            <p><code>PACIENTE</code> está no lado N (cardinalidade máxima 1 em <code>(0,1)</code>) e recebe <code>CodAla</code> e <code>NumLeito</code> anuláveis. Já <code>PRESCRICAO</code> vira nova tabela:</p>
+            <pre><code>PACIENTE(CNS(nn), NomePac(nn), CodAla, NumLeito)
+  PK: CNS  |  RIR: PACIENTE[CodAla] -b-> ALA_HOSPITALAR[CodAla]
+
+PRESCRICAO(CRM(nn), CNS(nn), Dosagem)
   PK: (CRM, CNS)
-  RIR 1: PRESCRICAO[CRM] -b-> MEDICO[CRM]      (ou -p-> conforme regra de auditoria)
-  RIR 2: PRESCRICAO[CNS] -p-> PACIENTE[CNS]</code></pre>
-          </li>
-        </ol>
+  RIR 1: PRESCRICAO[CRM] -b-> MEDICO[CRM]  |  RIR 2: PRESCRICAO[CNS] -p-> PACIENTE[CNS]</code></pre>
+          </div>
+        </div>
         """,
         "fields": [
             {
@@ -506,19 +505,18 @@ PACIENTE(CNS(nn), NomePac(nn), CodAlaInternacao, NumLeito)
         "type": "oficial",
         "mode": "sql_ddl",
         "context_html": HOSPITAL_ER_SVG + """
-        <div class="problem-narrative">
-          <strong>Tarefa Prática SQL DDL (Injeção de Falhas):</strong> Traduza o núcleo do esquema ER Hospitalar para comandos <code>CREATE TABLE</code> executáveis criando exatamente as 3 tabelas abaixo:
-          <ul style="margin-top:8px; margin-left:20px; color:var(--text-secondary);">
-            <li><code>ALA_HOSPITALAR(CodAla INTEGER NOT NULL, NomeAla TEXT NOT NULL, Andar INTEGER)</code> com <code>PRIMARY KEY (CodAla)</code>.</li>
-            <li><code>PACIENTE(CNS TEXT NOT NULL, NomePac TEXT NOT NULL, CodAla INTEGER, NumLeito INTEGER)</code> com <code>PRIMARY KEY (CNS)</code> e <code>FOREIGN KEY (CodAla) REFERENCES ALA_HOSPITALAR(CodAla) ON DELETE RESTRICT</code>.</li>
-            <li><code>EXAME_LABORATORIAL(CNS TEXT NOT NULL, NumSeqExame INTEGER NOT NULL, TipoExame TEXT NOT NULL)</code> com chave primária composta <code>PRIMARY KEY (CNS, NumSeqExame)</code> e <code>FOREIGN KEY (CNS) REFERENCES PACIENTE(CNS) ON DELETE CASCADE</code>.</li>
-          </ul>
+        <div class="task-checklist-bar">
+          <div class="task-chip"><strong>Tabela 1:</strong> <code>ALA_HOSPITALAR(<u>CodAla</u>, NomeAla, Andar)</code></div>
+          <div class="task-chip"><strong>Tabela 2:</strong> <code>PACIENTE(<u>CNS</u>, NomePac, CodAla, NumLeito)</code> com <code>ON DELETE RESTRICT</code></div>
+          <div class="task-chip"><strong>Tabela 3:</strong> <code>EXAME_LABORATORIAL(<u>CNS, NumSeqExame</u>, TipoExame)</code> com <code>ON DELETE CASCADE</code></div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G1,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial — Script DDL Completo (Exercício R1.3)</h4>
-        <pre><code>CREATE TABLE ALA_HOSPITALAR (
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">GABARITO OFICIAL — SCRIPT SQL DDL COMPLETO (R1.3)</span>
+            <pre><code>CREATE TABLE ALA_HOSPITALAR (
     CodAla INTEGER NOT NULL,
     NomeAla TEXT NOT NULL,
     Andar INTEGER,
@@ -541,6 +539,8 @@ CREATE TABLE EXAME_LABORATORIAL (
     PRIMARY KEY (CNS, NumSeqExame),
     FOREIGN KEY (CNS) REFERENCES PACIENTE(CNS) ON DELETE CASCADE
 );</code></pre>
+          </div>
+        </div>
         """,
         "setup": "",
         "ddl_tests": [
@@ -604,47 +604,32 @@ CREATE TABLE EXAME_LABORATORIAL (
         "type": "oficial",
         "mode": "structured",
         "context_html": UNIVERSITY_EER_SVG + """
-        <div class="problem-narrative">
-          <strong>Tarefa Completa (Discursiva + Checkpoints):</strong> Observe o diagrama EER acima contendo duas hierarquias de especialização/generalização (<code>PESSOA</code> $\\to$ <code>{DOCENTE, ALUNO_POS}</code> parcial e sobreposta <code>o</code>; e <code>BOLSA_PESQUISA</code> $\\to$ <code>{BOLSA_MESTRADO, BOLSA_DOUTORADO}</code> total e disjunta <code>d</code>) e o relacionamento ternário <code>BANCA_DEFESA</code>. No seu <strong>Caderno de Resolução Discursiva</strong>, escreva o mapeamento relacional de ambas as hierarquias (comparando as Opções 1, 2 e 3 de <code>ibd-parte5.pdf</code>) e do relacionamento ternário. Depois confira a <strong>Folha de Gabarito Oficial</strong> e valide os checkpoints.
+        <div class="task-checklist-bar">
+          <div class="task-chip"><strong>1. Hierarquia Esquerda:</strong> <code>PESSOA</code> → <code>{DOCENTE, ALUNO_POS}</code> (Parcial e Sobreposta <code>o</code>)</div>
+          <div class="task-chip"><strong>2. Hierarquia Direita:</strong> <code>BOLSA_PESQUISA</code> ⇒ <code>{MESTRADO, DOUTORADO}</code> (Total e Disjunta <code>d</code>)</div>
+          <div class="task-chip"><strong>3. Relacionamento Ternário:</strong> <code>BANCA_DEFESA (M:N:P)</code> entre Docente, Aluno e Auditório</div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G2,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial Passo a Passo — Exercício R1.4</h4>
-        <ol>
-          <li><strong>Hierarquia 1: <code>PESSOA -> {DOCENTE, ALUNO_POS}</code> (Parcial e Sobreposta <code>o</code>):</strong>
-            <ul>
-              <li><strong>Por que a Opção 2 (apenas subclasses) é PROIBIDA aqui?</strong> Porque a especialização é <strong>parcial</strong> (uma pessoa pode não ser nem docente nem aluno de pós) e <strong>sobreposta</strong> (um docente que também faz doutorado teria <code>Nome</code> duplicado nas duas tabelas).</li>
-              <li><strong>Mapeamento pela Opção 3 (Superclasse + Subclasses):</strong>
-                <pre><code>PESSOA(CPF(nn), Nome(nn))
-  PK: CPF
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 1 — HIERARQUIA PARCIAL &amp; SOBREPOSTA PESSOA (OPÇÃO 3)</span>
+            <p>A Opção 2 (apenas subclasses) é proibida pois a cobertura é <strong>parcial</strong> e <strong>sobreposta</strong>. Pela Opção 3:</p>
+            <pre><code>PESSOA(CPF(nn), Nome(nn))                        -- PK: CPF
+DOCENTE(CPF(nn), Siape(nn), RegimeDed)           -- PK: CPF | RIR: -p-> PESSOA[CPF]
+ALUNO_POS(CPF(nn), NumMatr(nn), CoefRend)        -- PK: CPF | RIR: -p-> PESSOA[CPF]</code></pre>
+          </div>
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 2 — HIERARQUIA TOTAL &amp; DISJUNTA BOLSA (OPÇÃO 1) E TERNÁRIO BANCA_DEFESA</span>
+            <pre><code>BOLSA_PESQUISA(CodBolsa(nn), AgenciaFomento(nn), ValorMensal(nn), MesesDuracaoMestrado, TaxaBancadaDoutorado)
+  PK: CodBolsa | CHECK ((MesesDuracaoMestrado IS NOT NULL AND TaxaBancadaDoutorado IS NULL)
+                     OR (MesesDuracaoMestrado IS NULL AND TaxaBancadaDoutorado IS NOT NULL))
 
-DOCENTE(CPF(nn), Siape(nn), RegimeDed)
-  PK: CPF | RIR: DOCENTE[CPF] -p-> PESSOA[CPF]
-
-ALUNO_POS(CPF(nn), NumMatr(nn), CoefRend)
-  PK: CPF | RIR: ALUNO_POS[CPF] -p-> PESSOA[CPF]</code></pre>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Hierarquia 2: <code>BOLSA_PESQUISA -> {BOLSA_MESTRADO, BOLSA_DOUTORADO}</code> (Total e Disjunta <code>d</code>):</strong>
-            <ul>
-              <li>Aqui todas as 3 opções são válidas! Pela <strong>Opção 1 (Tabela Única + CHECK)</strong>:
-                <pre><code>BOLSA_PESQUISA(CodBolsa(nn), AgenciaFomento(nn), ValorMensal(nn), MesesDuracaoMestrado, TaxaBancadaDoutorado)
-  PK: CodBolsa
-  CHECK ((MesesDuracaoMestrado IS NOT NULL AND TaxaBancadaDoutorado IS NULL)
-      OR (MesesDuracaoMestrado IS NULL AND TaxaBancadaDoutorado IS NOT NULL))</code></pre>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Relacionamento Ternário <code>BANCA_DEFESA (M:N:P)</code>:</strong>
-            <pre><code>BANCA_DEFESA(CPFDocente(nn), CPFAlunoPos(nn), CodAud(nn))
-  PK: (CPFDocente, CPFAlunoPos, CodAud)
-  RIR 1: BANCA_DEFESA[CPFDocente] -p-> DOCENTE[CPF]
-  RIR 2: BANCA_DEFESA[CPFAlunoPos] -p-> ALUNO_POS[CPF]
-  RIR 3: BANCA_DEFESA[CodAud] -p-> AUDITORIO[CodAud]</code></pre>
-          </li>
-        </ol>
+BANCA_DEFESA(CPFDocente(nn), CPFAlunoPos(nn), CodAud(nn))
+  PK: (CPFDocente, CPFAlunoPos, CodAud) | 3 RIRs com política -p-></code></pre>
+          </div>
+        </div>
         """,
         "fields": [
             {
@@ -691,22 +676,17 @@ ALUNO_POS(CPF(nn), NumMatr(nn), CoefRend)
         "type": "oficial",
         "mode": "sql_ddl",
         "context_html": UNIVERSITY_EER_SVG + """
-        <div class="problem-narrative">
-          <strong>Tarefa Prática SQL DDL (Opção 1 + CHECK):</strong> Mapeie a hierarquia <strong>Disjunta e Total (<code>d</code>, linha dupla)</strong> de <code>BOLSA_PESQUISA</code> (lado direito do diagrama EER acima) em uma <strong>única tabela</strong> chamada <code>BOLSA_PESQUISA</code> contendo:
-          <ul style="margin-top:8px; margin-left:20px; color:var(--text-secondary);">
-            <li><code>CodBolsa INTEGER NOT NULL PRIMARY KEY</code></li>
-            <li><code>AgenciaFomento TEXT NOT NULL</code></li>
-            <li><code>ValorMensal REAL NOT NULL</code></li>
-            <li><code>MesesDuracaoMestrado INTEGER</code> (atributo específico de <code>BOLSA_MESTRADO</code>)</li>
-            <li><code>TaxaBancadaDoutorado REAL</code> (atributo específico de <code>BOLSA_DOUTORADO</code>)</li>
-            <li>Uma restrição <code>CHECK</code> de tupla que garanta simultaneamente a <strong>disjunção (<code>d</code>)</strong> e a <strong>totalidade (linha dupla)</strong> entre as duas subclasses!</li>
-          </ul>
+        <div class="task-checklist-bar">
+          <div class="task-chip"><strong>Tabela Única:</strong> <code>BOLSA_PESQUISA(<u>CodBolsa</u>, AgenciaFomento, ValorMensal, MesesDuracaoMestrado, TaxaBancadaDoutorado)</code></div>
+          <div class="task-chip"><strong>Restrição CHECK:</strong> Impor <strong>Disjunção (<code>d</code>)</strong> + <strong>Totalidade (Linha Dupla)</strong> entre Mestrado e Doutorado</div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G2,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial — Script DDL Completo (Exercício R1.5)</h4>
-        <pre><code>CREATE TABLE BOLSA_PESQUISA (
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">GABARITO OFICIAL — SCRIPT SQL DDL COMPLETO (R1.5)</span>
+            <pre><code>CREATE TABLE BOLSA_PESQUISA (
     CodBolsa INTEGER NOT NULL,
     AgenciaFomento TEXT NOT NULL,
     ValorMensal REAL NOT NULL,
@@ -719,6 +699,8 @@ ALUNO_POS(CPF(nn), NumMatr(nn), CoefRend)
         (MesesDuracaoMestrado IS NULL AND TaxaBancadaDoutorado IS NOT NULL)
     )
 );</code></pre>
+          </div>
+        </div>
         """,
         "setup": "",
         "ddl_tests": [
@@ -764,31 +746,34 @@ ALUNO_POS(CPF(nn), NumMatr(nn), CoefRend)
         "type": "oficial",
         "mode": "sql_query",
         "context_html": """
-        <div class="problem-narrative">
-          <strong>Tarefa Híbrida (Consulta SQL de Auditoria + Análise de Instância):</strong> Na Seção 2 de <code>ibd-parte6.pdf</code>, vimos que uma Dependência Funcional $X \\to Y$ é refutada em uma extensão $r(R)$ se existirem duas tuplas $t_1, t_2$ tais que $t_1[X] = t_2[X]$ e $t_1[Y] \\neq t_2[Y]$.<br><br>
-          A tabela <code>ESCALA_NAVIO(IdEscala, NomeNavio, TipoNavio, Porto, PaisPorto, Comandante, Tonelagem)</code> está carregada no banco de dados. Escreva uma consulta SQL que retorne <strong>todas as colunas (<code>IdEscala, NomeNavio, Comandante, Porto</code>)</strong> das tuplas que <strong>violam a dependência funcional proposta <code>NomeNavio -&gt; Comandante</code></strong>, ordenadas por <code>IdEscala</code>. Além disso, use a <strong>Folha de Gabarito Oficial</strong> para revisar quais outras DFs são refutadas ou satisfeitas nesta instância!
+        <div class="schema-card-box">
+          <div class="schema-card-header">🗄️ Esquema Analisado: <code>ESCALA_NAVIO(<u>IdEscala</u>, NomeNavio, TipoNavio, Porto, PaisPorto, Comandante, Tonelagem)</code></div>
+          <div class="fd-grid">
+            <div class="fd-chip fd-target">🔍 DF Auditada no SQL: <strong>NomeNavio → Comandante</strong></div>
+            <div class="fd-chip">Condição de Violação: <code>t1[NomeNavio] = t2[NomeNavio]</code> E <code>t1[Comandante] &lt;&gt; t2[Comandante]</code></div>
+            <div class="fd-chip">Colunas Esperadas: <code>IdEscala, NomeNavio, Comandante, Porto</code> (ordenadas por <code>IdEscala</code>)</div>
+          </div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G3,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial Passo a Passo — Exercício R1.6</h4>
-        <ol>
-          <li><strong>Consulta SQL para Refutar <code>NomeNavio -&gt; Comandante</code>:</strong>
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 1 — CONSULTA SQL DE AUDITORIA (SELF-JOIN DE CONTRAEXEMPLO)</span>
             <pre><code>SELECT DISTINCT e1.IdEscala, e1.NomeNavio, e1.Comandante, e1.Porto
 FROM ESCALA_NAVIO e1
 JOIN ESCALA_NAVIO e2
   ON e1.NomeNavio = e2.NomeNavio
  AND e1.Comandante &lt;&gt; e2.Comandante
 ORDER BY e1.IdEscala;</code></pre>
-          </li>
-          <li><strong>Análise Completa de Todas as DFs na Instância <code>ESCALA_NAVIO</code>:</strong>
-            <ul>
-              <li><code>NomeNavio -&gt; TipoNavio</code> e <code>NomeNavio -&gt; Tonelagem</code>: <strong>Satisfeitas na instância</strong> (Mercator é sempre Porta-Contentor/85000; Solaris é sempre Graneleiro/62000; Boreal é sempre Petroleiro/110000).</li>
-              <li><code>NomeNavio -&gt; Comandante</code>: <strong>REFUTADA (Falsa!)</strong> — O navio <code>'Mercator'</code> aparece nas escalas 1 e 4 com <code>'Cap. Rocha'</code>, mas na escala 6 aparece com <code>'Cap. Viana'</code>!</li>
-              <li><code>TipoNavio -&gt; Tonelagem</code>: <strong>REFUTADA (Falsa!)</strong> — Se houvesse dois navios do mesmo tipo com tonelagens diferentes; na instância atual cada tipo tem 1 navio, mas semântica do mini-mundo diz que dois porta-contentores podem ter tonelagens distintas (lembre-se: uma instância nunca prova que uma DF é regra do esquema!).</li>
-            </ul>
-          </li>
-        </ol>
+          </div>
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 2 — DIAGNÓSTICO DAS DEMAIS DFs NA INSTÂNCIA ESCALA_NAVIO</span>
+            <pre><code>• NomeNavio → Comandante : REFUTADA! ('Mercator' tem 'Cap. Rocha' nas escalas 1 e 4, mas 'Cap. Viana' na 6)
+• Porto → PaisPorto      : SATISFEITA na instância ('Santos' → 'Brasil', etc.)
+• NomeNavio → Tonelagem  : SATISFEITA na instância ('Mercator' → 85000, 'Solaris' → 62000)</code></pre>
+          </div>
+        </div>
         """,
         "setup": """
             CREATE TABLE ESCALA_NAVIO (
@@ -821,59 +806,43 @@ ORDER BY e1.IdEscala;</code></pre>
         "type": "oficial",
         "mode": "structured",
         "context_html": """
-        <div class="problem-narrative">
-          <strong>Problema Clássico de Exame (Silberschatz / UFMG — Múltiplas Chaves Candidatas):</strong><br>
-          Considere o esquema de relação $R(A, B, C, D, E, G)$ e o conjunto de Dependências Funcionais:<br>
-          $$F = \\{ AB \\to C, \\quad C \\to A, \\quad BC \\to D, \\quad ACD \\to B, \\quad D \\to EG, \\quad BE \\to C \\}$$
-          Use o seu <strong>Caderno de Resolução Discursiva</strong> para aplicar o método de particionamento de atributos (Essenciais à esquerda $L$, Somente à direita $D$, Intermediários $M$), calcular os fechos e determinar <strong>todas as chaves candidatas</strong> e os <strong>atributos primos e não-primos</strong> de $R$. Em seguida, valide os 3 checkpoints e confira a <strong>Folha de Gabarito Oficial</strong>.
+        <div class="schema-card-box">
+          <div class="schema-card-header">📐 Esquema Relacional: <code>R(A, B, C, D, E, G)</code> — Descoberta de Todas as Chaves Candidatas</div>
+          <div class="fd-grid">
+            <div class="fd-chip"><strong>DF1:</strong> <code>A, B → C</code></div>
+            <div class="fd-chip"><strong>DF2:</strong> <code>C → A</code></div>
+            <div class="fd-chip"><strong>DF3:</strong> <code>B, C → D</code></div>
+            <div class="fd-chip"><strong>DF4:</strong> <code>A, C, D → B</code></div>
+            <div class="fd-chip"><strong>DF5:</strong> <code>D → E, G</code></div>
+            <div class="fd-chip"><strong>DF6:</strong> <code>B, E → C</code></div>
+          </div>
+          <div class="task-checklist-bar" style="margin-top:10px;">
+            <div class="task-chip"><strong>1. Calcular Fechos:</strong> <code>{C, D}+</code> e <code>{A, D}+</code></div>
+            <div class="task-chip"><strong>2. Encontrar TODAS as Chaves Candidatas</strong> de tamanho 2</div>
+            <div class="task-chip"><strong>3. Separar:</strong> Atributos Primos vs. Não-Primos</div>
+          </div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G3,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial Passo a Passo — Exercício R1.7</h4>
-        <ol>
-          <li><strong>Passo 1 — Classificação dos Atributos de $R = \\{A, B, C, D, E, G\\}$:</strong>
-            <ul>
-              <li>Atributos que aparecem no lado direito (RHS) de alguma DF em $F$: $\\{C, A, B, D, E, G\\}$? Não! Olhe com cuidado:
-                <ul>
-                  <li>$AB \\to C$ (RHS: $C$)</li>
-                  <li>$C \\to A$ (RHS: $A$)</li>
-                  <li>$BC \\to D$ (RHS: $D$)</li>
-                  <li>$ACD \\to B$ (RHS: $B$)</li>
-                  <li>$D \\to EG$ (RHS: $E, G$)</li>
-                  <li>$BE \\to C$ (RHS: $C$)</li>
-                </ul>
-              </li>
-              <li>Atributos que aparecem <strong>apenas no lado direito (nunca no LHS)</strong>: **$G$** (logo $G$ jamais pertencerá a uma chave candidata!).</li>
-              <li>Algum atributo unitário determina tudo sozinho?
-                <ul>
-                  <li>$\\{A\\}^+ = \\{A\\}$</li>
-                  <li>$\\{B\\}^+ = \\{B\\}$</li>
-                  <li>$\\{C\\}^+ = \\{A, C\\}$</li>
-                  <li>$\\{D\\}^+ = \\{D, E, G\\}$</li>
-                  <li>$\\{E\\}^+ = \\{E\\}$</li>
-                </ul>
-                Nenhum atributo isolado é superchave!
-              </li>
-            </ul>
-          </li>
-          <li><strong>Passo 2 — Teste Sistemático dos Pares (2 atributos):</strong>
-            <ul>
-              <li><strong>$\\{A, B\\}^+$:</strong> $\\{A, B\\} \\xrightarrow{AB \\to C} \\{A, B, C\\} \\xrightarrow{BC \\to D} \\{A, B, C, D\\} \\xrightarrow{D \\to EG} \\{A, B, C, D, E, G\\} = R$ $\\implies$ <strong>$\\{A, B\\}$ é Chave Candidata!</strong></li>
-              <li><strong>$\\{B, C\\}^+$:</strong> $\\{B, C\\} \\xrightarrow{C \\to A} \\{A, B, C\\} \\xrightarrow{BC \\to D} \\{A, B, C, D\\} \\xrightarrow{D \\to EG} \\{A, B, C, D, E, G\\} = R$ $\\implies$ <strong>$\\{B, C\\}$ é Chave Candidata!</strong></li>
-              <li><strong>$\\{B, D\\}^+$:</strong> $\\{B, D\\} \\xrightarrow{D \\to EG} \\{B, D, E, G\\} \\xrightarrow{BE \\to C} \\{B, C, D, E, G\\} \\xrightarrow{C \\to A} \\{A, B, C, D, E, G\\} = R$ $\\implies$ <strong>$\\{B, D\\}$ é Chave Candidata!</strong></li>
-              <li><strong>$\\{B, E\\}^+$:</strong> $\\{B, E\\} \\xrightarrow{BE \\to C} \\{B, C, E\\} \\xrightarrow{BC \\to D} \\{B, C, D, E\\} \\xrightarrow{D \\to EG} \\{B, C, D, E, G\\} \\xrightarrow{C \\to A} \\{A, B, C, D, E, G\\} = R$ $\\implies$ <strong>$\\{B, E\\}$ é Chave Candidata!</strong></li>
-              <li><strong>$\\{A, C\\}^+ = \\{A, C\\}$</strong>; <strong>$\\{A, D\\}^+ = \\{A, D, E, G\\}$</strong>; <strong>$\\{C, D\\}^+ = \\{A, C, D, E, G\\} \\xrightarrow{ACD \\to B} \\{A, B, C, D, E, G\\} = R$ $\\implies$ $\\{C, D\\}$ também é Chave Candidata!</strong></li>
-            </ul>
-          </li>
-          <li><strong>Passo 3 — Resumo Final:</strong>
-            <ul>
-              <li><strong>Todas as 5 Chaves Candidatas de $R$:</strong> $\\{A, B\\}$, $\\{B, C\\}$, $\\{B, D\\}$, $\\{B, E\\}$ e $\\{C, D\\}$.</li>
-              <li><strong>Atributos Primos:</strong> $\\{A, B, C, D, E\\}$ (todos exceto $G$!).</li>
-              <li><strong>Único Atributo Não-Primo:</strong> $\\{G\\}$.</li>
-            </ul>
-          </li>
-        </ol>
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 1 — PARTICIONAMENTO DOS ATRIBUTOS DE R(A, B, C, D, E, G)</span>
+            <pre><code>• Somente à Direita (Nunca no LHS): D_dir = {G}  ==> G jamais pertencerá a uma chave candidata!
+• Atributos Unitários: {A}+={A}, {B}+={B}, {C}+={A,C}, {D}+={D,E,G}, {E}+={E} (nenhum fecha R sozinho).</code></pre>
+          </div>
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 2 — AS 5 CHAVES CANDIDATAS E ATRIBUTOS PRIMOS / NÃO-PRIMOS</span>
+            <pre><code>1. {A, B}+ = {A, B, C, D, E, G} = R   (CK1)
+2. {B, C}+ = {A, B, C, D, E, G} = R   (CK2 — via C → A e BC → D → EG)
+3. {B, D}+ = {A, B, C, D, E, G} = R   (CK3 — via D → EG, BE → C e C → A)
+4. {B, E}+ = {A, B, C, D, E, G} = R   (CK4 — via BE → C, BC → D → EG e C → A)
+5. {C, D}+ = {A, B, C, D, E, G} = R   (CK5 — via C → A, ACD → B e D → EG)
+
+• Atributos Primos (em CK1..CK5): {A, B, C, D, E}
+• Único Atributo Não-Primo:       {G}</code></pre>
+          </div>
+        </div>
         """,
         "fields": [
             {
@@ -920,46 +889,44 @@ ORDER BY e1.IdEscala;</code></pre>
         "type": "oficial",
         "mode": "structured",
         "context_html": """
-        <div class="problem-narrative">
-          <strong>Problema Algorítmico (<code>ibd-parte6.pdf</code>, Seção 3.4 — Cobertura Mínima):</strong><br>
-          Seja o esquema $R(A, B, C, D, E)$ e o conjunto inicial de Dependências Funcionais:<br>
-          $$F = \\{ A \\to BC, \\quad B \\to C, \\quad A \\to B, \\quad AB \\to D, \\quad D \\to E, \\quad A \\to E \\}$$
-          No seu <strong>Caderno de Resolução Discursiva</strong>, execute os <strong>3 passos formais</strong> do algoritmo de Cobertura Mínima ($F_c$):
-          <ol style="margin-top:6px; margin-left:20px; color:var(--text-secondary);">
-            <li><strong>Passo 1:</strong> Reescrever todas as DFs com um único atributo no lado direito (RHS canônico).</li>
-            <li><strong>Passo 2:</strong> Testar e eliminar atributos estranhos no lado esquerdo de $AB \\to D$.</li>
-            <li><strong>Passo 3:</strong> Testar e eliminar DFs redundantes calculando o fecho em $F - \\{f\\}$.</li>
-          </ol>
+        <div class="schema-card-box">
+          <div class="schema-card-header">📐 Conjunto Inicial de Dependências Funcionais em <code>R(A, B, C, D, E)</code>:</div>
+          <div class="fd-grid">
+            <div class="fd-chip"><strong>1:</strong> <code>A → B, C</code></div>
+            <div class="fd-chip"><strong>2:</strong> <code>B → C</code></div>
+            <div class="fd-chip"><strong>3:</strong> <code>A → B</code></div>
+            <div class="fd-chip"><strong>4:</strong> <code>A, B → D</code></div>
+            <div class="fd-chip"><strong>5:</strong> <code>D → E</code></div>
+            <div class="fd-chip"><strong>6:</strong> <code>A → E</code></div>
+          </div>
+          <div class="task-checklist-bar" style="margin-top:10px;">
+            <div class="task-chip"><strong>Passo 1:</strong> Desmembrar RHS composto (<code>A → B, C</code>)</div>
+            <div class="task-chip"><strong>Passo 2:</strong> Testar atributo estranho no LHS de <code>A, B → D</code></div>
+            <div class="task-chip"><strong>Passo 3:</strong> Eliminar DFs transitivas redundantes</div>
+          </div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G4,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial Passo a Passo — Exercício R1.8</h4>
-        <ol>
-          <li><strong>Passo 1 — Lado Direito Unitário (Decomposição de $A \\to BC$):</strong>
-            $$F_1 = \\{ A \\to B, \\; A \\to C, \\; B \\to C, \\; AB \\to D, \\; D \\to E, \\; A \\to E \\}$$
-            *(Nota: $A \\to B$ aparecia duas vezes e é unificada).*
-          </li>
-          <li><strong>Passo 2 — Eliminação de Atributo Estranho no Lado Esquerdo de $AB \\to D$:</strong>
-            <ul>
-              <li>Testamos se $B$ é estranho em $AB \\to D$: calculamos $\\{A\\}^+$ sob $F_1$:
-                $$\\{A\\}^+ = \\{A, B, C, D, E\\}$$
-                Como $B \\in \\{A\\}^+$ (pois já temos $A \\to B$), o atributo $B$ é <strong>estranho (redundante)</strong> no lado esquerdo de $AB \\to D$!</li>
-              <li>Substituímos $AB \\to D$ por **$A \\to D$**:
-                $$F_2 = \\{ A \\to B, \\; A \\to C, \\; B \\to C, \\; A \\to D, \\; D \\to E, \\; A \\to E \\}$$
-              </li>
-            </ul>
-          </li>
-          <li><strong>Passo 3 — Eliminação de Dependências Funcionais Redundantes:</strong>
-            <ul>
-              <li>Teste de **$A \\to C$**: Removendo $A \\to C$, calculamos $\\{A\\}^+$ usando $\\{A \\to B, B \\to C, A \\to D, D \\to E, A \\to E\\} \\implies \\{A, B, C, D, E\\}$. Como $C$ continua no fecho (via $A \\to B$ e $B \\to C$), **$A \\to C$ é redundante e é removida!**</li>
-              <li>Teste de **$A \\to E$**: Removendo $A \\to E$, calculamos $\\{A\\}^+$ usando $\\{A \\to B, B \\to C, A \\to D, D \\to E\\} \\implies \\{A, B, C, D, E\\}$. Como $E$ continua no fecho (via $A \\to D$ e $D \\to E$), **$A \\to E$ é redundante e é removida!**</li>
-            </ul>
-          </li>
-          <li><strong>Cobertura Mínima Final ($F_c$):</strong>
-            $$F_c = \\{ A \\to B, \\quad B \\to C, \\quad A \\to D, \\quad D \\to E \\}$$
-          </li>
-        </ol>
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 1 E PASSO 2 — RHS UNITÁRIO E REMOÇÃO DE ATRIBUTO ESTRANHO NO LHS</span>
+            <pre><code>• Passo 1 (RHS Unitário):
+  F1 = { A → B,  A → C,  B → C,  AB → D,  D → E,  A → E }
+
+• Passo 2 (Atributo Estranho em AB → D):
+  Calculamos {A}+ = {A, B, C, D, E}. Como B ∈ {A}+ (via A → B), B é estranho em AB → D!
+  F2 = { A → B,  A → C,  B → C,  A → D,  D → E,  A → E }</code></pre>
+          </div>
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 3 — REMOÇÃO DE DFs REDUNDANTES E COBERTURA MÍNIMA FINAL Fc</span>
+            <pre><code>• Teste de A → C: Sem ela, {A}+ ainda contém C (via A → B e B → C) ==> Redundante!
+• Teste de A → E: Sem ela, {A}+ ainda contém E (via A → D e D → E) ==> Redundante!
+
+• Cobertura Mínima Final:
+  Fc = { A → B,   B → C,   A → D,   D → E }</code></pre>
+          </div>
+        </div>
         """,
         "fields": [
             {
@@ -1006,59 +973,44 @@ ORDER BY e1.IdEscala;</code></pre>
         "type": "oficial",
         "mode": "structured",
         "context_html": """
-        <div class="problem-narrative">
-          <strong>Estudo de Caso Clássico (Elmasri &amp; Navathe Cap. 14 — <code>CAR_SALE</code> &amp; <code>ORDEM_COMPRA</code>):</strong><br>
-          <strong>Parte A (1FN):</strong> Uma tabela não-normalizada <code>ORDEM_COMPRA(<u>NumOrdem</u>, DataOrdem, CNPJFornecedor, RazaoFornecedor, {<u>CodPeca</u>, NomePeca, Quantidade, PrecoUnitario})</code> contém um grupo repetitivo multivalorado de itens comprados.<br>
-          <strong>Parte B (2FN e 3FN — Elmasri <code>CAR_SALE</code>):</strong> Considere a relação já em 1FN:<br>
-          $$\\text{CAR\\_SALE}(\\underline{\\text{Car}\\#, \\text{Salesperson}\\#}, \\text{Date\\_sold}, \\text{Commission}\\%, \\text{Discount\\_amt})$$
-          Onde a chave primária é composta por $\\{\\text{Car}\\#, \\text{Salesperson}\\#\\}$ e valem as seguintes DFs adicionais além da determinação pela PK:
-          <ul style="margin-top:6px; margin-left:20px; color:var(--text-secondary);">
-            <li>$\\text{Car}\\# \\to \\{\\text{Date\\_sold}, \\text{Discount\\_amt}\\}$</li>
-            <li>$\\text{Date\\_sold} \\to \\text{Discount\\_amt}$</li>
-            <li>$\\text{Salesperson}\\# \\to \\text{Commission}\\%$</li>
-          </ul>
-          Escreva a decomposição completa de ambas na sua área de rascunho, confira a <strong>Folha de Gabarito Oficial</strong> e valide os checkpoints.
+        <div class="schema-card-box">
+          <div class="schema-card-header">📐 Caso A (Não-1FN): <code>ORDEM_COMPRA(<u>NumOrdem</u>, DataOrdem, CNPJFornecedor, RazaoFornecedor, {<u>CodPeca</u>, NomePeca, Qtde, PrecoUnit})</code></div>
+          <div class="schema-card-header" style="margin-top:8px;">📐 Caso B (Elmasri Cap. 14): <code>CAR_SALE(<u>Car#, Salesperson#</u>, Date_sold, Commission%, Discount_amt)</code></div>
+          <div class="fd-grid">
+            <div class="fd-chip"><strong>PK de CAR_SALE:</strong> <code>{Car#, Salesperson#}</code></div>
+            <div class="fd-chip"><strong>DF1:</strong> <code>Car# → Date_sold, Discount_amt</code></div>
+            <div class="fd-chip"><strong>DF2:</strong> <code>Date_sold → Discount_amt</code></div>
+            <div class="fd-chip"><strong>DF3:</strong> <code>Salesperson# → Commission%</code></div>
+          </div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G4,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial Passo a Passo — Exercício R1.9</h4>
-        <ol>
-          <li><strong>Parte A — Normalização de <code>ORDEM_COMPRA</code> para 1FN, 2FN e 3FN:</strong>
-            <ul>
-              <li><strong>Passagem para 1FN (Eliminação do grupo multivalorado):</strong>
-                <pre><code>ORDEM(NumOrdem(nn), DataOrdem, CNPJFornecedor(nn), RazaoFornecedor) -- PK: NumOrdem
-ITEM_ORDEM(NumOrdem(nn), CodPeca(nn), NomePeca, Quantidade, PrecoUnitario) -- PK: (NumOrdem, CodPeca)</code></pre>
-              </li>
-              <li><strong>Passagem para 2FN (Eliminando dependência parcial <code>CodPeca -> NomePeca</code> em <code>ITEM_ORDEM</code>):</strong>
-                <pre><code>PECA(CodPeca(nn), NomePeca) -- PK: CodPeca
-ITEM_ORDEM_2FN(NumOrdem(nn), CodPeca(nn), Quantidade, PrecoUnitario) -- PK: (NumOrdem, CodPeca)</code></pre>
-              </li>
-              <li><strong>Passagem para 3FN (Eliminando dependência transitiva <code>CNPJFornecedor -> RazaoFornecedor</code> em <code>ORDEM</code>):</strong>
-                <pre><code>FORNECEDOR(CNPJFornecedor(nn), RazaoFornecedor) -- PK: CNPJFornecedor
-ORDEM_3FN(NumOrdem(nn), DataOrdem, CNPJFornecedor(nn)) -- PK: NumOrdem | FK: CNPJFornecedor</code></pre>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Parte B — Decomposição de <code>CAR_SALE</code> (Elmasri &amp; Navathe) para 2FN e 3FN:</strong>
-            <ul>
-              <li><strong>Diagnóstico em <code>CAR_SALE</code>:</strong>
-                <ul>
-                  <li>Viola <strong>2FN</strong> porque <code>Date_sold</code> e <code>Discount_amt</code> dependem apenas de <code>Car#</code> (subconjunto próprio da PK), e <code>Commission%</code> depende apenas de <code>Salesperson#</code> (subconjunto próprio da PK)!</li>
-                  <li>Assim, após extrair as dependências parciais para atingir a <strong>2FN</strong>, obtemos:
-                    <pre><code>R1_VENDA(Car#(nn), Salesperson#(nn))                  -- PK: (Car#, Salesperson#)
-R2_VENDEDOR(Salesperson#(nn), Commission%)            -- PK: Salesperson#
-R3_CARRO(Car#(nn), Date_sold, Discount_amt)           -- PK: Car#</code></pre>
-                  </li>
-                  <li>Porém, <code>R3_CARRO</code> ainda viola a <strong>3FN</strong>, pois <code>Car# -> Date_sold -> Discount_amt</code> é uma dependência transitiva! Decompondo <code>R3_CARRO</code> para <strong>3FN</strong>:
-                    <pre><code>R31_CARRO(Car#(nn), Date_sold)                        -- PK: Car# | FK: Date_sold -> R32_DESCONTO
-R32_DESCONTO(Date_sold(nn), Discount_amt)             -- PK: Date_sold</code></pre>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ol>
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">CASO A — DECOMPOSIÇÃO DE ORDEM_COMPRA (1FN → 2FN → 3FN)</span>
+            <pre><code>• 1FN (Remove grupo repetitivo):
+  ORDEM(NumOrdem(nn), DataOrdem, CNPJFornecedor(nn), RazaoFornecedor)
+  ITEM_ORDEM(NumOrdem(nn), CodPeca(nn), NomePeca, Qtde, PrecoUnit)
+
+• 2FN (Remove parcial CodPeca → NomePeca) e 3FN (Remove transitiva CNPJ → Razao):
+  FORNECEDOR(CNPJFornecedor(nn), RazaoFornecedor)
+  ORDEM_3FN(NumOrdem(nn), DataOrdem, CNPJFornecedor(nn))
+  PECA(CodPeca(nn), NomePeca)
+  ITEM_ORDEM_3FN(NumOrdem(nn), CodPeca(nn), Qtde, PrecoUnit)</code></pre>
+          </div>
+          <div class="ans-step-card">
+            <span class="ans-step-badge">CASO B — DECOMPOSIÇÃO DE CAR_SALE (ELMASRI &amp; NAVATHE)</span>
+            <pre><code>• 2FN (Remove parciais Car# → {Date_sold, Discount_amt} e Salesperson# → Commission%):
+  R1_VENDA(Car#(nn), Salesperson#(nn))           -- PK: (Car#, Salesperson#)
+  R2_VENDEDOR(Salesperson#(nn), Commission%)     -- PK: Salesperson#
+  R3_CARRO(Car#(nn), Date_sold, Discount_amt)    -- PK: Car#
+
+• 3FN (Remove transitiva Date_sold → Discount_amt de R3_CARRO):
+  R31_CARRO(Car#(nn), Date_sold)                 -- PK: Car# | FK: Date_sold
+  R32_DESCONTO(Date_sold(nn), Discount_amt)      -- PK: Date_sold</code></pre>
+          </div>
+        </div>
         """,
         "fields": [
             {
@@ -1105,73 +1057,41 @@ R32_DESCONTO(Date_sold(nn), Discount_amt)             -- PK: Date_sold</code></p
         "type": "oficial",
         "mode": "structured",
         "context_html": """
-        <div class="problem-narrative">
-          <strong>Problema Nível Prova Final UFMG (<code>ibd-parte6.pdf</code>, Seção 4 — Definição Geral de 2FN e 3FN):</strong><br>
-          Considere a relação universal <code>SESSAO_CONGRESSO</code> que registra apresentações em um congresso científico:<br>
-          $$\\text{SESSAO\\_CONGRESSO}(\\underline{\\text{CodTrilha}, \\text{NumSessao}}, \\text{Sala}, \\text{Horario}, \\text{CPFPalestrante}, \\text{NomePalestrante}, \\text{CNPJPatrocinador}, \\text{RazaoPatrocinador}, \\text{CapacidadeSala})$$
-          As regras de negócio (Dependências Funcionais $F$) são:
-          <ul style="margin-top:6px; margin-left:20px; color:var(--text-secondary);">
-            <li><strong>DF1:</strong> $\\{\\text{CodTrilha}, \\text{NumSessao}\\} \\to \\{\\text{Sala}, \\text{Horario}, \\text{CPFPalestrante}, \\text{CNPJPatrocinador}\\}$</li>
-            <li><strong>DF2:</strong> $\\{\\text{Sala}, \\text{Horario}\\} \\to \\{\\text{CodTrilha}, \\text{NumSessao}\\}$ <em>(Uma sala em um horário abriga no máximo uma sessão do congresso)</em></li>
-            <li><strong>DF3:</strong> $\\text{CodTrilha} \\to \\text{CNPJPatrocinador}$ <em>(Cada trilha temática tem um único patrocinador oficial)</em></li>
-            <li><strong>DF4:</strong> $\\text{CNPJPatrocinador} \\to \\text{RazaoPatrocinador}$</li>
-            <li><strong>DF5:</strong> $\\text{Sala} \\to \\text{CapacidadeSala}$</li>
-            <li><strong>DF6:</strong> $\\text{CPFPalestrante} \\to \\text{NomePalestrante}$</li>
-          </ul>
-          Use o seu <strong>Caderno de Resolução Discursiva</strong> para listar todas as chaves candidatas, atributos primos, decomposição para 2FN e decomposição para 3FN. Depois consulte a <strong>Folha de Gabarito Oficial</strong> e valide os checkpoints.
+        <div class="schema-card-box">
+          <div class="schema-card-header">📐 Relação Universal: <code>SESSAO_CONGRESSO(<u>CodTrilha, NumSessao</u>, Sala, Horario, CPFPalestrante, NomePalestrante, CNPJPatrocinador, RazaoPatrocinador, CapacidadeSala)</code></div>
+          <div class="fd-grid">
+            <div class="fd-chip"><strong>DF1:</strong> <code>{CodTrilha, NumSessao} → {Sala, Horario, CPFPalestrante, CNPJPatrocinador}</code></div>
+            <div class="fd-chip"><strong>DF2:</strong> <code>{Sala, Horario} → {CodTrilha, NumSessao}</code></div>
+            <div class="fd-chip"><strong>DF3:</strong> <code>CodTrilha → CNPJPatrocinador</code></div>
+            <div class="fd-chip"><strong>DF4:</strong> <code>CNPJPatrocinador → RazaoPatrocinador</code></div>
+            <div class="fd-chip"><strong>DF5:</strong> <code>Sala → CapacidadeSala</code></div>
+            <div class="fd-chip"><strong>DF6:</strong> <code>CPFPalestrante → NomePalestrante</code></div>
+          </div>
         </div>
         """,
         "study_guide": STUDY_GUIDE_G4,
         "answer_sheet_html": """
-        <h4>🔑 Folha de Gabarito Oficial Passo a Passo — Exercício R1.10</h4>
-        <ol>
-          <li><strong>Passo 1 — Chaves Candidatas e Atributos Primos:</strong>
-            <ul>
-              <li><strong>Chave Candidata 1 (PK):</strong> $CK_1 = \\{\\text{CodTrilha}, \\text{NumSessao}\\}$</li>
-              <li><strong>Chave Candidata 2 (AK / UNIQUE):</strong> $CK_2 = \\{\\text{Sala}, \\text{Horario}\\}$ (pois $\\{\\text{Sala}, \\text{Horario}\\} \\to \\{\\text{CodTrilha}, \\text{NumSessao}\\}$, que determina toda a tupla!).</li>
-              <li><strong>Atributos Primos (pertencem a $CK_1 \\cup CK_2$):</strong> <code>CodTrilha, NumSessao, Sala, Horario</code>.</li>
-              <li><strong>Atributos Não-Primos:</strong> <code>CPFPalestrante, NomePalestrante, CNPJPatrocinador, RazaoPatrocinador, CapacidadeSala</code>.</li>
-            </ul>
-          </li>
-          <li><strong>Passo 2 — Decomposição para 2FN (Pela Definição Geral de <code>ibd-parte6.pdf</code>):</strong>
-            <ul>
-              <li><strong>Violação 1 (Parcial sobre $CK_1$):</strong> $\\text{CodTrilha} \\to \\{\\text{CNPJPatrocinador}, \\text{RazaoPatrocinador}\\}$ (dependem apenas de parte de $CK_1$).</li>
-              <li><strong>Violação 2 (Parcial sobre $CK_2$):</strong> $\\text{Sala} \\to \\text{CapacidadeSala}$ (<code>CapacidadeSala</code> é não-primo e depende apenas de <code>Sala</code>, que é subconjunto próprio da chave candidata $CK_2 = \\{\\text{Sala}, \\text{Horario}\\}$!).</li>
-              <li><strong>Relações na 2FN:</strong>
-                <pre><code>TRILHA_2FN(CodTrilha(nn), CNPJPatrocinador(nn), RazaoPatrocinador)   -- PK: CodTrilha
-SALA_2FN(Sala(nn), CapacidadeSala)                                   -- PK: Sala
-SESSAO_2FN(CodTrilha(nn), NumSessao(nn), Sala(nn), Horario(nn), CPFPalestrante(nn), NomePalestrante)
-  PK: (CodTrilha, NumSessao) | Chave Alternativa: (Sala, Horario)</code></pre>
-              </li>
-            </ul>
-          </li>
-          <li><strong>Passo 3 — Decomposição para 3FN (Eliminando Dependências Transitivas):</strong>
-            <ul>
-              <li>Em <code>TRILHA_2FN</code>: $\\text{CodTrilha} \\to \\text{CNPJPatrocinador} \\to \\text{RazaoPatrocinador}$ viola 3FN!</li>
-              <li>Em <code>SESSAO_2FN</code>: $\\text{CPFPalestrante} \\to \\text{NomePalestrante}$ viola 3FN!</li>
-              <li><strong>Esquema Final Completo em 3FN (5 Relações):</strong>
-                <pre><code>1. PATROCINADOR(CNPJPatrocinador(nn), RazaoPatrocinador(nn))
-     PK: CNPJPatrocinador
+        <div class="ans-steps-grid">
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 1 E PASSO 2 — CHAVES CANDIDATAS, PRIMOS E DECOMPOSIÇÃO PARA 2FN</span>
+            <pre><code>• Chaves Candidatas: CK1 = {CodTrilha, NumSessao} (PK)  e  CK2 = {Sala, Horario} (AK/UNIQUE)
+• Atributos Primos:  {CodTrilha, NumSessao, Sala, Horario}
+• Violações de 2FN:  CodTrilha → {CNPJ, Razao} (parcial em CK1) e Sala → CapacidadeSala (parcial em CK2)
 
-2. TRILHA(CodTrilha(nn), CNPJPatrocinador(nn))
-     PK: CodTrilha | FK: CNPJPatrocinador -> PATROCINADOR
-
-3. SALA_CONGRESSO(Sala(nn), CapacidadeSala(nn))
-     PK: Sala
-
-4. PALESTRANTE(CPFPalestrante(nn), NomePalestrante(nn))
-     PK: CPFPalestrante
-
+  TRILHA_2FN(CodTrilha(nn), CNPJPatrocinador(nn), RazaoPatrocinador)
+  SALA_2FN(Sala(nn), CapacidadeSala(nn))
+  SESSAO_2FN(CodTrilha(nn), NumSessao(nn), Sala(nn), Horario(nn), CPFPalestrante(nn), NomePalestrante)</code></pre>
+          </div>
+          <div class="ans-step-card">
+            <span class="ans-step-badge">PASSO 3 — ESQUEMA FINAL EM 3FN (5 RELAÇÕES SEM TRANSITIVIDADES)</span>
+            <pre><code>1. PATROCINADOR(CNPJPatrocinador(nn), RazaoPatrocinador(nn))      -- PK: CNPJPatrocinador
+2. TRILHA(CodTrilha(nn), CNPJPatrocinador(nn))                    -- PK: CodTrilha | FK: CNPJPatrocinador
+3. SALA_CONGRESSO(Sala(nn), CapacidadeSala(nn))                   -- PK: Sala
+4. PALESTRANTE(CPFPalestrante(nn), NomePalestrante(nn))           -- PK: CPFPalestrante
 5. SESSAO(CodTrilha(nn), NumSessao(nn), Sala(nn), Horario(nn), CPFPalestrante(nn))
-     PK: (CodTrilha, NumSessao)
-     Chave Alternativa (UNIQUE): (Sala, Horario)
-     FK 1: CodTrilha -> TRILHA
-     FK 2: Sala -> SALA_CONGRESSO
-     FK 3: CPFPalestrante -> PALESTRANTE</code></pre>
-              </li>
-            </ul>
-          </li>
-        </ol>
+     PK: (CodTrilha, NumSessao)  |  UNIQUE: (Sala, Horario)</code></pre>
+          </div>
+        </div>
         """,
         "fields": [
             {

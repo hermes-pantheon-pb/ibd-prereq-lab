@@ -140,6 +140,21 @@ function setupUIEventListeners() {
     document.querySelectorAll(".module-group").forEach((grp) => grp.classList.add("open"));
   });
 
+  // Resource Sub-tab Switcher (Eliminates vertical wall of text)
+  document.querySelectorAll(".res-tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".res-tab-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const targetId = btn.dataset.resTarget;
+      ["ex-context-container", "ex-study-guide-container", "ex-open-resolution-container"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.style.display = id === targetId ? "block" : "none";
+        }
+      });
+    });
+  });
+
   // Toggle Study Guide body
   const btnToggleSg = document.getElementById("btn-toggle-sg");
   if (btnToggleSg) {
@@ -156,12 +171,16 @@ function setupUIEventListeners() {
   if (btnToggleAns) {
     btnToggleAns.addEventListener("click", () => {
       const ansBox = document.getElementById("answer-sheet-box");
+      const ansPlaceholder = document.getElementById("answer-sheet-placeholder");
       if (ansBox) {
         const isHidden = ansBox.style.display === "none";
         ansBox.style.display = isHidden ? "block" : "none";
+        if (ansPlaceholder) {
+          ansPlaceholder.style.display = isHidden ? "none" : "flex";
+        }
         btnToggleAns.innerText = isHidden
-          ? "🙈 Ocultar Folha de Gabarito (Answer Sheet)"
-          : "🔑 Ver Folha de Gabarito Completa (Answer Sheet)";
+          ? "🙈 Ocultar Folha de Gabarito"
+          : "🔑 Revelar Folha de Gabarito";
       }
     });
   }
@@ -342,54 +361,84 @@ async function selectExercise(exId) {
     document.getElementById("ex-mode-tag").innerText = currentExerciseMeta.mode.toUpperCase();
     document.getElementById("ex-title").innerText = currentExerciseMeta.title;
 
-    // 1. Render Rich Context / SVG Diagram if available
+    // Resource Sub-tab Bar & Panes (Eliminates vertical wall of text)
+    const resBar = document.getElementById("ex-resource-bar");
+    const btnCtx = document.getElementById("res-tab-btn-context");
+    const btnSg = document.getElementById("res-tab-btn-study");
+    const btnRes = document.getElementById("res-tab-btn-resolution");
+
     const ctxContainer = document.getElementById("ex-context-container");
+    const sgContainer = document.getElementById("ex-study-guide-container");
+    const orContainer = document.getElementById("ex-open-resolution-container");
+
+    const hasCtx = Boolean(currentExerciseMeta.contextHtml);
+    const hasSg = Boolean(currentExerciseMeta.studyGuide);
+    const hasRes = Boolean(currentExerciseMeta.answerSheetHtml);
+
+    // 1. Populate Rich Context / SVG Diagram if available
     if (ctxContainer) {
-      if (currentExerciseMeta.contextHtml) {
-        ctxContainer.style.display = "block";
-        ctxContainer.innerHTML = currentExerciseMeta.contextHtml;
-      } else {
-        ctxContainer.style.display = "none";
-        ctxContainer.innerHTML = "";
-      }
+      ctxContainer.innerHTML = hasCtx ? currentExerciseMeta.contextHtml : "";
+      ctxContainer.style.display = "none";
     }
 
-    // 2. Render Study Guide / Cheat Sheet with Parallel-Domain Example if available
-    const sgContainer = document.getElementById("ex-study-guide-container");
+    // 2. Populate Study Guide / Cheat Sheet with Parallel-Domain Example if available
     if (sgContainer) {
-      if (currentExerciseMeta.studyGuide) {
+      if (hasSg) {
         const sg = currentExerciseMeta.studyGuide;
-        sgContainer.style.display = "block";
         document.getElementById("sg-title").innerText = sg.title || "Ficha de Estudo";
         document.getElementById("sg-coursework-ref").innerText = sg.coursework_ref || "";
         document.getElementById("sg-file-path").innerText = sg.file_path || "";
         document.getElementById("sg-body").innerHTML = sg.summary_html || "";
         document.getElementById("sg-body").style.display = "block";
-      } else {
-        sgContainer.style.display = "none";
       }
+      sgContainer.style.display = "none";
     }
 
-    // 3. Render Open-Ended Scratchpad + Official Step-by-Step Answer Sheet if available
-    const orContainer = document.getElementById("ex-open-resolution-container");
+    // 3. Populate Open-Ended Scratchpad + Official Step-by-Step Answer Sheet if available
     if (orContainer) {
-      if (currentExerciseMeta.answerSheetHtml) {
-        orContainer.style.display = "block";
+      if (hasRes) {
         const scratchpad = document.getElementById("open-scratchpad");
         if (scratchpad) {
           scratchpad.value = localStorage.getItem(`ibd_scratch_${exId}`) || "";
         }
         const ansBox = document.getElementById("answer-sheet-box");
+        const ansPlaceholder = document.getElementById("answer-sheet-placeholder");
         const btnToggleAns = document.getElementById("btn-toggle-answersheet");
         if (ansBox) {
           ansBox.innerHTML = currentExerciseMeta.answerSheetHtml;
           ansBox.style.display = "none";
         }
+        if (ansPlaceholder) {
+          ansPlaceholder.style.display = "flex";
+        }
         if (btnToggleAns) {
-          btnToggleAns.innerText = "🔑 Ver Folha de Gabarito Completa (Answer Sheet)";
+          btnToggleAns.innerText = "🔑 Revelar Folha de Gabarito";
+        }
+      }
+      orContainer.style.display = "none";
+    }
+
+    // Show/Hide Resource Sub-tab Bar & activate primary tab
+    if (resBar) {
+      if (hasCtx || hasSg || hasRes) {
+        resBar.style.display = "flex";
+        if (btnCtx) btnCtx.style.display = hasCtx ? "inline-flex" : "none";
+        if (btnSg) btnSg.style.display = hasSg ? "inline-flex" : "none";
+        if (btnRes) btnRes.style.display = hasRes ? "inline-flex" : "none";
+
+        document.querySelectorAll(".res-tab-btn").forEach((b) => b.classList.remove("active"));
+        if (hasCtx && btnCtx && ctxContainer) {
+          btnCtx.classList.add("active");
+          ctxContainer.style.display = "block";
+        } else if (hasSg && btnSg && sgContainer) {
+          btnSg.classList.add("active");
+          sgContainer.style.display = "block";
+        } else if (hasRes && btnRes && orContainer) {
+          btnRes.classList.add("active");
+          orContainer.style.display = "block";
         }
       } else {
-        orContainer.style.display = "none";
+        resBar.style.display = "none";
       }
     }
 
@@ -472,19 +521,27 @@ function renderStructuredQuestions(fields) {
   const container = document.getElementById("questions-container");
   container.innerHTML = "";
   structuredAnswers = {};
+  const letters = ["A", "B", "C", "D", "E", "F"];
 
-  fields.forEach((f) => {
+  fields.forEach((f, qIdx) => {
     const block = document.createElement("div");
     block.className = "question-block";
     block.id = `qblock-${f.id}`;
 
-    let html = `<div class="question-title">${escapeHtml(f.label)}</div>`;
+    let html = `
+      <div class="q-header-row">
+        <span class="q-item-badge">QUESTÃO ${qIdx + 1} DE ${fields.length}</span>
+        <div class="question-title">${formatQuestionText(f.label)}</div>
+      </div>
+    `;
     html += `<div class="options-list">`;
     f.options.forEach((opt, idx) => {
+      const letter = letters[idx] || String(idx + 1);
       html += `
         <label class="option-item" id="opt-${f.id}-${idx}">
           <input type="radio" name="radio-${f.id}" value="${escapeHtml(opt)}" class="option-radio" />
-          <span>${escapeHtml(opt)}</span>
+          <span class="opt-letter-badge">${letter}</span>
+          <span class="opt-text-body">${formatQuestionText(opt)}</span>
         </label>
       `;
     });
@@ -819,12 +876,86 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
+function formatQuestionText(str) {
+  if (typeof str !== "string") return "";
+  let out = escapeHtml(str);
+  // Highlight single-quoted identifiers/schemas like 'CARRO (placa...)' or 'R1(A, B)'
+  out = out.replace(/&#039;([^&#]+?)&#039;/g, "<code class=\"inline-token\">$1</code>");
+  // Highlight backtick spans if any
+  out = out.replace(/`([^`]+?)`/g, "<code class=\"inline-token\">$1</code>");
+  // Highlight functional dependency arrows
+  out = out.replace(/\s*-&gt;\s*/g, " <strong style=\"color:#38bdf8;\">→</strong> ");
+  return out;
+}
+
 function formatMarkdown(text) {
   if (!text) return "";
   let out = escapeHtml(text);
+
+  // 1. Extract fenced code blocks ```sql ... ``` or ``` ... ```
+  const codeBlocks = [];
+  out = out.replace(/```(?:[a-zA-Z0-9_-]+)?\n([\s\S]*?)```/g, (_, code) => {
+    const idx = codeBlocks.length;
+    codeBlocks.push(`<pre class="md-code-block"><code>${code.trim()}</code></pre>`);
+    return `__CODE_BLOCK_${idx}__`;
+  });
+
+  // 2. Inline bold and inline code
   out = out.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-  out = out.replace(/`(.*?)`/g, "<code>$1</code>");
-  out = out.replace(/\n\n/g, "<br><br>");
+  out = out.replace(/`([^`\n]+?)`/g, "<code>$1</code>");
+
+  // 3. Process paragraphs & bullet/numbered lists cleanly
+  const blocks = out.split(/\n\n+/);
+  const renderedBlocks = blocks.map((blk) => {
+    const trimmed = blk.trim();
+    if (/^__CODE_BLOCK_\d+__$/.test(trimmed)) {
+      return trimmed;
+    }
+    const lines = trimmed.split("\n");
+    const isBulletList = lines.length > 1 && lines.every((l) => /^\s*-\s+/.test(l));
+    if (isBulletList) {
+      const items = lines
+        .map((l) => `<li>${l.replace(/^\s*-\s+/, "")}</li>`)
+        .join("");
+      return `<ul class="md-list">${items}</ul>`;
+    }
+    const isNumList = lines.length > 1 && lines.every((l) => /^\s*\d+\.\s+/.test(l));
+    if (isNumList) {
+      const items = lines
+        .map((l) => `<li>${l.replace(/^\s*\d+\.\s+/, "")}</li>`)
+        .join("");
+      return `<ol class="md-list">${items}</ol>`;
+    }
+    // Mixed block with header line + list items
+    if (lines.length > 1 && lines.slice(1).some((l) => /^\s*-\s+/.test(l))) {
+      let html = "";
+      let inList = false;
+      lines.forEach((l) => {
+        if (/^\s*-\s+/.test(l)) {
+          if (!inList) {
+            html += `<ul class="md-list">`;
+            inList = true;
+          }
+          html += `<li>${l.replace(/^\s*-\s+/, "")}</li>`;
+        } else {
+          if (inList) {
+            html += `</ul>`;
+            inList = false;
+          }
+          html += `<p class="md-para">${l}</p>`;
+        }
+      });
+      if (inList) html += `</ul>`;
+      return html;
+    }
+    return `<p class="md-para">${lines.join("<br>")}</p>`;
+  });
+
+  out = renderedBlocks.join("");
+  codeBlocks.forEach((cb, idx) => {
+    out = out.replace(`__CODE_BLOCK_${idx}__`, cb);
+  });
+
   return out;
 }
 
