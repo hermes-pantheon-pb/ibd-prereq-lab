@@ -2716,6 +2716,9 @@ EXERCISES_DATA: Dict[str, Dict[str, Any]] = {'T1.1': {'title': 'Esquema (IntensÃ
 from round1_exercises import ROUND1_EXERCISES
 EXERCISES_DATA.update(ROUND1_EXERCISES)
 
+from round2_exercises import ROUND2_EXERCISES
+EXERCISES_DATA.update(ROUND2_EXERCISES)
+
 
 def get_connection(ex_id: str) -> sqlite3.Connection:
     conn = sqlite3.connect(":memory:")

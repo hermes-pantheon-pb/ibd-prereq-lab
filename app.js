@@ -334,7 +334,17 @@ function getExerciseShortTitle(exId) {
     "R1.7": "[Rodada 1] Fecho X+ e 5 Chaves em R(A..G)",
     "R1.8": "[Rodada 1] Cobertura Mínima (3 Passos)",
     "R1.9": "[Rodada 1] Elmasri CAR_SALE & Ordem (1FN-3FN)",
-    "R1.10": "[Rodada 1] Congresso: 2FN/3FN Geral (2 CKs)"
+    "R1.10": "[Rodada 1] Congresso: 2FN/3FN Geral (2 CKs)",
+    "R2.1": "[Rodada 2] Recursivos: Manufatura (1:1, 1:N, M:N)",
+    "R2.2": "[Rodada 2] Cadeia de Fracas SQL: Resort -> Vaga",
+    "R2.3": "[Rodada 2] EER Reticulado & Agregação: Frota",
+    "R2.4": "[Rodada 2] Engenharia Reversa DDL -> Desenho ER",
+    "R2.5": "[Rodada 2] ASSERTION SQL-92: Clínica Total/d",
+    "R2.6": "[Rodada 2] Detetive SQL: Tuplas Espúrias (Perda)",
+    "R2.7": "[Rodada 2] Auditoria Sem Perda & Preservação DF",
+    "R2.8": "[Rodada 2] Dilema 3FN vs BCNF (Atributo Primo)",
+    "R2.9": "[Rodada 2] Algoritmo de Síntese 3FN (Fc -> R1..Rk)",
+    "R2.10": "[Rodada 2] Auditoria Integrada: ER E-Commerce -> 3FN"
   };
   return titles[exId] || exId;
 }
@@ -454,16 +464,53 @@ async function selectExercise(exId) {
     // Workspace mode switcher
     const structPane = document.getElementById("structured-pane");
     const codePane = document.getElementById("code-workspace-grid");
+    const structActions = structPane ? structPane.querySelector(".structured-actions") : null;
 
-    if (currentExerciseMeta.mode === "structured") {
+    if (currentExerciseMeta.mode === "open_design") {
       structPane.style.display = "block";
       codePane.style.display = "none";
+      if (structActions) structActions.style.display = "none";
+      document.getElementById("ex-statement").innerText = "Exercício de Desenho / Modelagem Discursiva Livre: resolva no papel ou no rascunho em '📑 Lado a Lado' e confira na Folha de Gabarito Visual.";
+      document.getElementById("ex-intuition-text").innerText = "Como envolve traçar um diagrama ER/EER completo ou projetar múltiplas estruturas livres, confira cada entidade, atributo e cardinalidade contra o Diagrama SVG da Folha de Gabarito.";
+
+      const qContainer = document.getElementById("questions-container");
+      qContainer.innerHTML = `
+        <div class="open-design-card">
+          <h4>✏️ Resolução Aberta &amp; Conferência Visual (Engenharia Reversa / Modelagem)</h4>
+          <p>
+            Analise o código ou especificação acima e desenhe seu diagrama completo (retângulos fortes/duplos, losangos, elipses sublinhadas/tracejadas, círculos <code>d</code>/<code>o</code> e notação <code>(min, max)</code> com inversão de lados) antes de revelar o gabarito.
+          </p>
+          <div class="open-design-actions">
+            <button type="button" class="btn-secondary" id="btn-open-design-sheet">🔑 Abrir / Ocultar Gabarito Visual (Diagrama ER/EER)</button>
+            <button type="button" class="btn-primary" id="btn-complete-open-design">✔ Marcar Exercício como Conferido e Concluído</button>
+          </div>
+        </div>
+      `;
+      const btnOpenSheet = document.getElementById("btn-open-design-sheet");
+      if (btnOpenSheet) {
+        btnOpenSheet.addEventListener("click", () => {
+          const btnMain = document.getElementById("btn-toggle-answersheet");
+          if (btnMain) btnMain.click();
+        });
+      }
+      const btnDone = document.getElementById("btn-complete-open-design");
+      if (btnDone) {
+        btnDone.addEventListener("click", () => {
+          markAsSolved(currentExerciseId);
+          showToast(`🎉 Exercício ${currentExerciseId} marcado como concluído!`);
+        });
+      }
+    } else if (currentExerciseMeta.mode === "structured") {
+      structPane.style.display = "block";
+      codePane.style.display = "none";
+      if (structActions) structActions.style.display = "flex";
       document.getElementById("ex-statement").innerText = "Responda às questões conceituais baseadas diretamente nos slides e nas listas oficiais do Prof. Marcos André Gonçalves:";
       document.getElementById("ex-intuition-text").innerText = "Leia com atenção os termos formais. Diferencie conceitos estruturais (esquema) de transientes (instância), e atente-se às regras de inversão de lado em (min, max).";
       renderStructuredQuestions(currentExerciseMeta.fields);
     } else {
       structPane.style.display = "none";
       codePane.style.display = "grid";
+      if (structActions) structActions.style.display = "flex";
 
       const modeLabels = {
         "sql_query": "Consulta SQL / Equivalência com Álgebra Relacional",
@@ -856,7 +903,7 @@ function updateProgressUI() {
   const count = solvedExercises.size;
   const total = curriculumData
     ? curriculumData.modules.reduce((acc, m) => acc + m.exercises.length, 0)
-    : 48;
+    : 58;
   const pct = Math.min(100, Math.round((count / total) * 100));
   document.getElementById("progress-text").innerText = `${count} / ${total} Concluídos`;
   document.getElementById("progress-bar-fill").style.width = `${pct}%`;

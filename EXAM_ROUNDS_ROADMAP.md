@@ -62,20 +62,46 @@ Este documento registra as diretrizes pedagógicas, padrões técnicos de qualid
 
 ---
 
-## 📋 Planejamento Salvo para as Próximas Rodadas (Não Executar Agora!)
+## ✅ Rodada 2 (`R2.1` a `R2.10`) — CONCLUÍDA E INTEGRADA AO LAB
 
-### Rodada 2 (`R2.1` a `R2.10`) — Tópicos Planejados:
-1. **`R2.1` (Módulo 7):** Relacionamentos Recursivos (Auto-relacionamentos `1:1`, `1:N` e `M:N` com papéis/roles explícitos, ex: `PECA_COMPOSTA` / Bill of Materials e `CASAMENTO`).
-2. **`R2.2` (Módulo 7):** Entidades Fracas em Cadeia (2 e 3 níveis: ex: `CONDOMINIO` $\to$ `BLOCO` $\to$ `APARTAMENTO` $\to$ `VAGA_GARAGEM`) e propagação de chaves e RIRs `-p->`.
-3. **`R2.3` (Módulo 7):** Subclasses Compartilhadas (Herança Múltipla / Reticulado EER) e Categorias (`UNION types` do Elmasri).
-4. **`R2.4` (Módulo 7):** Engenharia Reversa Completa: Dado um script SQL DDL com 6 tabelas, `UNIQUE`, `CHECK` e `FOREIGN KEY`, reconstruir o Diagrama ER/EER original e suas cardinalidades `(min, max)`.
-5. **`R2.5` (Módulo 7 — `sql_assertion`):** Mapeamento de restrições inter-tabelas de hierarquias EER (Opções 2 e 3) via `CREATE ASSERTION` em SQL-92.
-6. **`R2.6` (Módulo 8):** Propriedade da Junção Sem Perda (Lossless-Join Decomposition) — Teste formal $R_1 \cap R_2 \to R_1$ ou $R_1 \cap R_2 \to R_2$ e demonstração em SQL de tuplas espúrias em decomposições com perda.
-7. **`R2.7` (Módulo 8):** Preservação de Dependências Funcionais — Quando uma decomposição perde uma DF e como projetar $F$ sobre $R_i$.
-8. **`R2.8` (Módulo 8):** Forma Normal de Boyce-Codd (BCNF) vs. 3FN — O caso clássico onde $X \to A$ viola BCNF mas está em 3FN porque $A$ é atributo primo (ex: `ENDERECO_CEP` ou `ORIENTACAO_TCC`).
-9. **`R2.9` (Módulo 8):** Algoritmo de Síntese para 3FN a partir da Cobertura Mínima $F_c$ (garantindo Junção Sem Perda + Preservação de DFs).
-10. **`R2.10` (Integrado M7 + M8):** Auditoria de Normalização sobre um Esquema Mapeado de um Diagrama ER com atributos mal posicionados no relacionamento.
+### Grupo 5 (`R2.1` – `R2.3`): Recursividade, Cadeias de Entidades Fracas & Agregação/Reticulado EER
+- **Arquivo de Estudo:** `study_guides/G5_Recursividade_CadeiasFracas_e_AgregacaoEER.md`
+  - *Base nos Slides:* `ibd-parte5.pdf` (Etapa 1/4/5 auto-relacionamentos, Etapa 2 entidades fracas em cadeia, Slide 40 Agregação EER & Subclasses Compartilhadas).
+  - *Exemplos Análogos na Ficha:* **Grade Curricular (`DISCIPLINA`)**, **Copa Esportiva (`TORNEIO` -> `FASE` -> `PARTIDA`)** e **Consultoria (`ATUA_EM` -> `APONTAMENTO`)**.
+- **Domínio dos Exercícios (`R2.1`–`R2.3`):**
+  - **`R2.1` (`structured` + Diagrama SVG):** Recursividade `M:N` (`PECA` / `COMPOE`) e `1:N` (`ENGENHEIRO` / `SUPERVISIONA`) com renomeação por papéis.
+  - **`R2.2` (`sql_ddl` + Diagrama SVG):** Implementação SQLite DDL com `ON DELETE CASCADE` em cadeia de 3 níveis (`RESORT` -> `BLOCO` -> `APARTAMENTO`).
+  - **`R2.3` (`structured` + Diagrama EER SVG):** Subclasse compartilhada (`VEICULO` -> `TERRESTRE` & `CARGA_PESADA` -> `CAMINHAO_FROTA`) e agregação (`EXECUTA` -> `AUTO_FISCAL`).
+
+### Grupo 6 (`R2.4` – `R2.5`): Engenharia Reversa (DDL -> ER) & Assertions SQL-92
+- **Arquivo de Estudo:** `study_guides/G6_EngenhariaReversa_e_Assertions_EER.md`
+  - *Base nos Slides:* `ibd-parte5.pdf` (Leitura bidirecional Relacional <-> ER/EER e `CREATE ASSERTION`).
+  - *Exemplo Análogo na Ficha:* **Banco & Cartões (`CONTA_BANCARIA` -> `CONTA_CORRENTE`, `CONTA_POUPANCA`, `CARTAO`)**.
+- **Domínio dos Exercícios (`R2.4`–`R2.5`):**
+  - **`R2.4` (`open_design` + Gabarito Visual SVG):** Engenharia reversa completa do script SQL DDL da plataforma de streaming (`PLANO`, `ASSINANTE`, subclasses `INDIVIDUAL`/`FAMILIA`, fraca `PERFIL_USO`, `FAVORITA`, `MUSICA`) para desenho ER/EER no caderno com verificação visual.
+  - **`R2.5` (`sql_assertion` + Diagrama EER SVG):** Declaração em SQL-92 de `CREATE ASSERTION` garantindo disjunção (`d`) e totalidade entre `PROFISSIONAL`, `MEDICO` e `DENTISTA`.
+
+### Grupo 7 (`R2.6` – `R2.7`): Tuplas Espúrias, Junção Sem Perda & Preservação de DFs
+- **Arquivo de Estudo:** `study_guides/G7_JuncaoSemPerda_TuplasEspurias_e_PreservacaoDFs.md`
+  - *Base nos Slides:* `ibd-parte6.pdf` (Diretriz 4, Teste Binário NJP `(R1 ∩ R2)+`, Preservação de Dependências).
+  - *Exemplo Análogo na Ficha:* **Transporte de Encomendas (`ENTREGA(Envio, PlacaVan, Cidade)`)**.
+- **Domínio dos Exercícios (`R2.6`–`R2.7`):**
+  - **`R2.6` (`sql_query`):** Demonstração prática no SQLite de tuplas espúrias geradas ao recompor `EMP_LOCS NATURAL JOIN EMP_PROJ_BAD` sobre atributo não-superchave (`PLocation`).
+  - **`R2.7` (`structured`):** Análise formal do esquema universitário `R(A,B,C,D,E)` sob `F = {A->BC, CD->E, B->D, E->A}` nas decomposições `D1` e `D2`.
+
+### Grupo 8 (`R2.8` – `R2.10`): BCNF vs 3FN, Síntese 3FN (Fc) & Auditoria Integrada
+- **Arquivo de Estudo:** `study_guides/G8_BCNF_vs_3FN_Sintese_e_Auditoria.md`
+  - *Base nos Slides:* `ibd-parte6.pdf` (BCNF vs 3FN com atributo primo, Algoritmo de Síntese 3FN).
+  - *Exemplos Análogos na Ficha:* **Revisão de Artigos (`REVISAO`)** e síntese abstrata **`W(P, Q, R, S, U)`**.
+- **Domínio dos Exercícios (`R2.8`–`R2.10`):**
+  - **`R2.8` (`structured`):** Diagnóstico BCNF vs 3FN em `BANCA_TCC(Matricula, Area, Professor)` e `FORNECEDOR_CEP(IdForn, CEP, Cidade, Estado)`.
+  - **`R2.9` (`structured`):** Algoritmo completo de Síntese 3FN em `T(A,B,C,D,E,G)` com atributo estranho no LHS, DFs redundantes e inclusão da tabela extra da chave `{A,G}`.
+  - **`R2.10` (`structured` + Diagrama ER SVG):** Auditoria ER -> 2FN -> 3FN/BCNF refatorando `PEDIDO_BRUTO` de E-Commerce.
+
+---
+
+## 📋 Planejamento Salvo para a Próxima Rodada
 
 ### Rodada 3 (`R3.1` a `R3.10`) — Simulados Integrados de Prova Final:
-- 2 provas completas estilo UFMG divididas em 5 etapas cada (Leitura de Requisitos $\to$ Modelagem ER/EER $\to$ Mapeamento Lógico + RIRs $\to$ SQL DDL/Assertions $\to$ Normalização até 3FN/BCNF).
+- 2 provas completas estilo UFMG divididas em 5 etapas cada (Leitura de Requisitos -> Modelagem ER/EER -> Mapeamento Lógico + RIRs -> SQL DDL/Assertions -> Normalização até 3FN/BCNF).
 
