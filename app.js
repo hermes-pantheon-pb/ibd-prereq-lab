@@ -140,6 +140,39 @@ function setupUIEventListeners() {
     document.querySelectorAll(".module-group").forEach((grp) => grp.classList.add("open"));
   });
 
+  // Workbench View Mode Switcher: Schema Expandido (Default) vs Lado a Lado
+  let workbenchViewMode = localStorage.getItem("ibd_workbench_mode") || "expanded";
+  const btnModeExpanded = document.getElementById("btn-mode-expanded");
+  const btnModeSplit = document.getElementById("btn-mode-split");
+  const wbGrid = document.getElementById("workbench-main-grid");
+
+  function setWorkbenchMode(mode) {
+    workbenchViewMode = mode;
+    try {
+      localStorage.setItem("ibd_workbench_mode", mode);
+    } catch (e) {}
+
+    if (mode === "expanded") {
+      if (wbGrid) wbGrid.classList.add("expanded-mode");
+      if (btnModeExpanded) btnModeExpanded.classList.add("active");
+      if (btnModeSplit) btnModeSplit.classList.remove("active");
+    } else {
+      if (wbGrid) wbGrid.classList.remove("expanded-mode");
+      if (btnModeSplit) btnModeSplit.classList.add("active");
+      if (btnModeExpanded) btnModeExpanded.classList.remove("active");
+    }
+  }
+
+  // Set initial mode (Default: expanded)
+  setWorkbenchMode(workbenchViewMode);
+
+  if (btnModeExpanded) {
+    btnModeExpanded.addEventListener("click", () => setWorkbenchMode("expanded"));
+  }
+  if (btnModeSplit) {
+    btnModeSplit.addEventListener("click", () => setWorkbenchMode("split"));
+  }
+
   // Expandable Drawer 1: Worked Example
   const btnToggleExample = document.getElementById("btn-toggle-example");
   if (btnToggleExample) {

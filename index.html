@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body class="dark-theme">
   <!-- Header / Navigation Bar -->
@@ -112,7 +112,20 @@
 
           <!-- Unified Side-by-Side Exercise Workbench (Schema on Left + Quick Summary & Scratchpad on Right) -->
           <div id="ex-workbench" class="ex-workbench" style="display: none;">
-            <div class="workbench-main-grid">
+            <!-- View Mode Switcher: Schema Expandido (Padrão) vs Lado a Lado -->
+            <div class="workbench-mode-bar">
+              <span class="wb-mode-label">Modo de Visualização:</span>
+              <div class="wb-mode-buttons">
+                <button type="button" class="btn-mode-toggle active" id="btn-mode-expanded" title="Exibe o esquema em tela cheia/expandido com o texto recolhido">
+                  🔍 Esquema Expandido (Foco no Diagrama)
+                </button>
+                <button type="button" class="btn-mode-toggle" id="btn-mode-split" title="Exibe o esquema à esquerda e resumo/rascunho à direita">
+                  📑 Lado a Lado (Esquema + Resumo &amp; Rascunho)
+                </button>
+              </div>
+            </div>
+
+            <div class="workbench-main-grid expanded-mode" id="workbench-main-grid">
               <!-- Left Column: Always-visible Problem Schema / ER-EER Diagram / FD Grid -->
               <div id="ex-context-container" class="wb-left-schema"></div>
 
@@ -346,7 +359,7 @@ CHECK (NOT EXISTS (
     <span id="toast-message">Notificação</span>
   </div>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
 
