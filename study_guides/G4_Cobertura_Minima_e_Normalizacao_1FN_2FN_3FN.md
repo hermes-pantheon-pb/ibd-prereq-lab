@@ -65,3 +65,4 @@ Com as seguintes Dependências Funcionais $F$:
      - `SHOW(CodFestival(nn), OrdemShow(nn), CodPalco(nn), Horario(nn), IdBanda(nn), CacheShow)`
        - PK: `(CodFestival, OrdemShow)` | Chave Alternativa: `(CodPalco, Horario)`
        - FKs: `CodFestival -> FESTIVAL`, `CodPalco -> PALCO`, `IdBanda -> BANDA`.
+

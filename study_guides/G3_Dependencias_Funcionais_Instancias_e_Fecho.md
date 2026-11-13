@@ -69,3 +69,4 @@ Dado um esquema $R$ e um conjunto de DFs $F$, classifique os atributos de $R$ em
    - **Chaves Candidatas:** $\{P, Q\}$ e $\{Q, R\}$.
    - **Atributos Primos:** $\{P, Q, R\}$.
    - **Atributos Não-Primos:** $\{T, U\}$.
+

@@ -140,47 +140,32 @@ function setupUIEventListeners() {
     document.querySelectorAll(".module-group").forEach((grp) => grp.classList.add("open"));
   });
 
-  // Resource Sub-tab Switcher (Eliminates vertical wall of text)
-  document.querySelectorAll(".res-tab-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".res-tab-btn").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      const targetId = btn.dataset.resTarget;
-      ["ex-context-container", "ex-study-guide-container", "ex-open-resolution-container"].forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.style.display = id === targetId ? "block" : "none";
-        }
-      });
-    });
-  });
-
-  // Toggle Study Guide body
-  const btnToggleSg = document.getElementById("btn-toggle-sg");
-  if (btnToggleSg) {
-    btnToggleSg.addEventListener("click", () => {
-      const sgBody = document.getElementById("sg-body");
-      if (sgBody) {
-        sgBody.style.display = sgBody.style.display === "none" ? "block" : "none";
+  // Expandable Drawer 1: Worked Example
+  const btnToggleExample = document.getElementById("btn-toggle-example");
+  if (btnToggleExample) {
+    btnToggleExample.addEventListener("click", () => {
+      const exDrawer = document.getElementById("sg-example-drawer");
+      if (exDrawer) {
+        const isHidden = exDrawer.style.display === "none";
+        exDrawer.style.display = isHidden ? "block" : "none";
+        btnToggleExample.innerText = isHidden
+          ? "🙈 Fechar Exemplo Análogo"
+          : "📘 Ver Exemplo Análogo Resolvido";
       }
     });
   }
 
-  // Toggle Official Answer Sheet
+  // Expandable Drawer 2: Official Step-by-Step Answer Sheet
   const btnToggleAns = document.getElementById("btn-toggle-answersheet");
   if (btnToggleAns) {
     btnToggleAns.addEventListener("click", () => {
       const ansBox = document.getElementById("answer-sheet-box");
-      const ansPlaceholder = document.getElementById("answer-sheet-placeholder");
       if (ansBox) {
         const isHidden = ansBox.style.display === "none";
         ansBox.style.display = isHidden ? "block" : "none";
-        if (ansPlaceholder) {
-          ansPlaceholder.style.display = isHidden ? "none" : "flex";
-        }
         btnToggleAns.innerText = isHidden
-          ? "🙈 Ocultar Folha de Gabarito"
-          : "🔑 Revelar Folha de Gabarito";
+          ? "🙈 Ocultar Gabarito Oficial"
+          : "🔑 Ver Gabarito Passo a Passo";
       }
     });
   }
@@ -361,85 +346,76 @@ async function selectExercise(exId) {
     document.getElementById("ex-mode-tag").innerText = currentExerciseMeta.mode.toUpperCase();
     document.getElementById("ex-title").innerText = currentExerciseMeta.title;
 
-    // Resource Sub-tab Bar & Panes (Eliminates vertical wall of text)
-    const resBar = document.getElementById("ex-resource-bar");
-    const btnCtx = document.getElementById("res-tab-btn-context");
-    const btnSg = document.getElementById("res-tab-btn-study");
-    const btnRes = document.getElementById("res-tab-btn-resolution");
-
+    // Side-by-Side Workbench: Problem Schema (Left) + Quick Rules & Scratchpad (Right)
+    const wb = document.getElementById("ex-workbench");
     const ctxContainer = document.getElementById("ex-context-container");
+    const companionCol = document.getElementById("ex-companion-col");
     const sgContainer = document.getElementById("ex-study-guide-container");
     const orContainer = document.getElementById("ex-open-resolution-container");
+    const exDrawer = document.getElementById("sg-example-drawer");
+    const ansBox = document.getElementById("answer-sheet-box");
+    const btnToggleExample = document.getElementById("btn-toggle-example");
+    const btnToggleAns = document.getElementById("btn-toggle-answersheet");
 
     const hasCtx = Boolean(currentExerciseMeta.contextHtml);
     const hasSg = Boolean(currentExerciseMeta.studyGuide);
     const hasRes = Boolean(currentExerciseMeta.answerSheetHtml);
 
-    // 1. Populate Rich Context / SVG Diagram if available
+    // 1. Populate Left Schema & Context (Always visible)
     if (ctxContainer) {
       ctxContainer.innerHTML = hasCtx ? currentExerciseMeta.contextHtml : "";
-      ctxContainer.style.display = "none";
+      ctxContainer.style.display = hasCtx ? "flex" : "none";
     }
 
-    // 2. Populate Study Guide / Cheat Sheet with Parallel-Domain Example if available
+    // 2. Populate Quick Rule Summary (Always visible in companion col alongside schema)
     if (sgContainer) {
       if (hasSg) {
         const sg = currentExerciseMeta.studyGuide;
-        document.getElementById("sg-title").innerText = sg.title || "Ficha de Estudo";
+        document.getElementById("sg-title").innerText = sg.title || "Regras da Questão";
         document.getElementById("sg-coursework-ref").innerText = sg.coursework_ref || "";
-        document.getElementById("sg-file-path").innerText = sg.file_path || "";
-        document.getElementById("sg-body").innerHTML = sg.summary_html || "";
-        document.getElementById("sg-body").style.display = "block";
+        document.getElementById("sg-body").innerHTML = sg.quick_rules_html || sg.summary_html || "";
+        sgContainer.style.display = "block";
+
+        if (exDrawer) {
+          exDrawer.innerHTML = sg.example_html || "";
+          exDrawer.style.display = "none";
+        }
+        if (btnToggleExample) {
+          btnToggleExample.style.display = sg.example_html ? "inline-flex" : "none";
+          btnToggleExample.innerText = "📘 Ver Exemplo Análogo Resolvido";
+        }
+      } else {
+        sgContainer.style.display = "none";
+        if (exDrawer) exDrawer.style.display = "none";
       }
-      sgContainer.style.display = "none";
     }
 
-    // 3. Populate Open-Ended Scratchpad + Official Step-by-Step Answer Sheet if available
+    // 3. Populate Scratchpad (Always visible alongside schema) and Answer Sheet Drawer
     if (orContainer) {
       if (hasRes) {
         const scratchpad = document.getElementById("open-scratchpad");
         if (scratchpad) {
           scratchpad.value = localStorage.getItem(`ibd_scratch_${exId}`) || "";
         }
-        const ansBox = document.getElementById("answer-sheet-box");
-        const ansPlaceholder = document.getElementById("answer-sheet-placeholder");
-        const btnToggleAns = document.getElementById("btn-toggle-answersheet");
         if (ansBox) {
           ansBox.innerHTML = currentExerciseMeta.answerSheetHtml;
           ansBox.style.display = "none";
         }
-        if (ansPlaceholder) {
-          ansPlaceholder.style.display = "flex";
-        }
         if (btnToggleAns) {
-          btnToggleAns.innerText = "🔑 Revelar Folha de Gabarito";
+          btnToggleAns.style.display = "inline-flex";
+          btnToggleAns.innerText = "🔑 Ver Gabarito Passo a Passo";
         }
+        orContainer.style.display = "flex";
+      } else {
+        orContainer.style.display = "none";
+        if (ansBox) ansBox.style.display = "none";
+        if (btnToggleAns) btnToggleAns.style.display = "none";
       }
-      orContainer.style.display = "none";
     }
 
-    // Show/Hide Resource Sub-tab Bar & activate primary tab
-    if (resBar) {
-      if (hasCtx || hasSg || hasRes) {
-        resBar.style.display = "flex";
-        if (btnCtx) btnCtx.style.display = hasCtx ? "inline-flex" : "none";
-        if (btnSg) btnSg.style.display = hasSg ? "inline-flex" : "none";
-        if (btnRes) btnRes.style.display = hasRes ? "inline-flex" : "none";
-
-        document.querySelectorAll(".res-tab-btn").forEach((b) => b.classList.remove("active"));
-        if (hasCtx && btnCtx && ctxContainer) {
-          btnCtx.classList.add("active");
-          ctxContainer.style.display = "block";
-        } else if (hasSg && btnSg && sgContainer) {
-          btnSg.classList.add("active");
-          sgContainer.style.display = "block";
-        } else if (hasRes && btnRes && orContainer) {
-          btnRes.classList.add("active");
-          orContainer.style.display = "block";
-        }
-      } else {
-        resBar.style.display = "none";
-      }
+    // Show/Hide Entire Workbench
+    if (wb) {
+      wb.style.display = (hasCtx || hasSg || hasRes) ? "flex" : "none";
     }
 
     // Workspace mode switcher

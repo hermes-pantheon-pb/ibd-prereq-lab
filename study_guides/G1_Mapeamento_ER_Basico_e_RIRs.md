@@ -70,3 +70,4 @@ OPERACAO_CAIXA(CPFFunc(nn), CPFCli(nn), ValorMovimentado)
   RIR 1: OPERACAO_CAIXA[CPFFunc] -p-> FUNCIONARIO[CPF]
   RIR 2: OPERACAO_CAIXA[CPFCli] -p-> CLIENTE[CPFCli]
 ```
+

@@ -78,3 +78,4 @@ Este documento registra as diretrizes pedagógicas, padrões técnicos de qualid
 
 ### Rodada 3 (`R3.1` a `R3.10`) — Simulados Integrados de Prova Final:
 - 2 provas completas estilo UFMG divididas em 5 etapas cada (Leitura de Requisitos $\to$ Modelagem ER/EER $\to$ Mapeamento Lógico + RIRs $\to$ SQL DDL/Assertions $\to$ Normalização até 3FN/BCNF).
+

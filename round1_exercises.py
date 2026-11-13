@@ -197,70 +197,71 @@ UNIVERSITY_EER_SVG = """
 
 STUDY_GUIDE_G1 = {
     "id": "G1",
-    "title": "Ficha G1 — Mapeamento ER Básico, Entidades Fracas e Políticas RIR (b, p, n)",
+    "title": "Regras 1–6 (Mapeamento ER) e Políticas RIR (b, p, n)",
     "file_path": "study_guides/G1_Mapeamento_ER_Basico_e_RIRs.md",
-    "coursework_ref": "ibd-parte5.pdf (Etapa 1: Regras 1 a 6 e Políticas b, p, n) + ExercicioProjetoLogico.pdf",
-    "summary_html": """
-      <div class="sg-grid-2col">
-        <div class="sg-col-card">
-          <h4>📌 Resumo das 6 Regras (<code>ibd-parte5.pdf</code> — Etapa 1)</h4>
-          <table class="compact-rule-table">
-            <thead>
-              <tr><th>Construção ER</th><th>Mapeamento Relacional</th><th>RIR</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>2a. Composto</strong></td><td>Achatamento (<em>flattening</em>): entram apenas os sub-atributos simples.</td><td>—</td></tr>
-              <tr><td><strong>2b. Multivalorado</strong></td><td>Nova tabela <code>R_M(<u>PK_Dona(nn), M(nn)</u>)</code> com PK composta.</td><td><code>-p-&gt;</code></td></tr>
-              <tr><td><strong>3. Entidade Fraca</strong></td><td>Importa <code>PK_Dona(nn)</code>; PK composta <code>(<u>PK_Dona, ChaveParcial</u>)</code>.</td><td><code>-p-&gt;</code></td></tr>
-              <tr><td><strong>4. Rel. 1:1</strong></td><td>Lado de participação <strong>total <code>(1,1)</code></strong> absorve a FK <code>(nn)</code> + <code>UNIQUE</code>.</td><td><code>-b-&gt;</code></td></tr>
-              <tr><td><strong>5. Rel. 1:N</strong></td><td>Lado <strong>N</strong> (máximo <code>1</code> em <code>(min,max)</code>) absorve a FK do lado <strong>1</strong>.</td><td><code>-b-&gt; / -n-&gt;</code></td></tr>
-              <tr><td><strong>6. Rel. M:N</strong></td><td>Nova tabela associativa <code>R(<u>PK_A(nn), PK_B(nn)</u>, Atrib)</code>.</td><td><code>-p-&gt;</code></td></tr>
-            </tbody>
-          </table>
+    "coursework_ref": "ibd-parte5.pdf (Etapa 1: Regras 1 a 6)",
+    "quick_rules_html": """
+      <table class="compact-rule-table">
+        <thead>
+          <tr><th>Construção ER</th><th>Regra no Modelo Relacional</th><th>RIR</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>2a. Composto</strong></td><td>Achatamento (<em>flattening</em>): entram só os sub-atributos simples.</td><td>—</td></tr>
+          <tr><td><strong>2b. Multivalorado</strong></td><td>Nova relação <code>R_M(<u>PK_Dona(nn), M(nn)</u>)</code> com PK composta.</td><td><code>-p-&gt;</code></td></tr>
+          <tr><td><strong>3. Entidade Fraca</strong></td><td>Importa <code>PK_Dona(nn)</code>; PK composta <code>(<u>PK_Dona, ChaveParcial</u>)</code>.</td><td><code>-p-&gt;</code></td></tr>
+          <tr><td><strong>4. Rel. 1:1</strong></td><td>Lado de participação <strong>total <code>(1,1)</code></strong> absorve FK <code>(nn)</code> + <code>UNIQUE</code>.</td><td><code>-b-&gt;</code></td></tr>
+          <tr><td><strong>5. Rel. 1:N</strong></td><td>Lado <strong>N</strong> (máximo <code>1</code> em <code>(min,max)</code>) absorve a FK do lado <strong>1</strong>.</td><td><code>-b-&gt; / -n-&gt;</code></td></tr>
+          <tr><td><strong>6. Rel. M:N</strong></td><td>Nova tabela associativa <code>R(<u>PK_A(nn), PK_B(nn)</u>, Atrib)</code>.</td><td><code>-p-&gt;</code></td></tr>
+        </tbody>
+      </table>
+    """,
+    "example_html": """
+      <div class="sg-example-drawer-inner">
+        <div class="sg-example-header">
+          <strong>🔄 Exemplo Análogo Resolvido (Domínio Diferente: <em>Rede Bancária</em>)</strong>
+          <span>📄 Arquivo completo: <code>study_guides/G1_Mapeamento_ER_Basico_e_RIRs.md</code></span>
         </div>
-        <div class="sg-col-card">
-          <h4>🔄 Exemplo Análogo (Domínio Diferente: <em>Rede Bancária</em>)</h4>
-          <p class="sg-hint-text"><code>BANCO(CodBanco, Sede(Cidade, UF), {TelefonesSAC})</code> identifica a entidade fraca <code>AGENCIA(NumAgencia, Bairro)</code>; <code>AGENCIA (1,1)</code> é gerenciada por <code>FUNCIONARIO (0,1)</code>:</p>
-          <pre><code>1. BANCO(CodBanco(nn), Cidade, UF)
-   -- Atributo composto Sede foi achatado!
+        <p class="sg-hint-text">Considere <code>BANCO(CodBanco, Sede(Cidade, UF), {TelefonesSAC})</code> identificando a entidade fraca <code>AGENCIA(NumAgencia, Bairro)</code>, onde <code>AGENCIA (1,1)</code> é gerenciada por <code>FUNCIONARIO (0,1)</code>:</p>
+        <pre><code>1. BANCO(CodBanco(nn), Cidade, UF)
+   -- Atributo composto Sede(Cidade, UF) foi achatado (Regra 2a)
 
 2. BANCO_TELEFONES(CodBanco(nn), TelefoneSAC(nn))
-   PK: (CodBanco, TelefoneSAC) | RIR: -p-> BANCO
+   PK: (CodBanco, TelefoneSAC) | RIR: BANCO_TELEFONES[CodBanco] -p-> BANCO[CodBanco] (Regra 2b)
 
 3. AGENCIA(CodBanco(nn), NumAgencia(nn), Bairro, CPFGerente(nn), DataPosse)
-   PK: (CodBanco, NumAgencia)  | UNIQUE: CPFGerente
-   RIR 1: AGENCIA[CodBanco] -p-> BANCO[CodBanco]
-   RIR 2: AGENCIA[CPFGerente] -b-> FUNCIONARIO[CPF]</code></pre>
-        </div>
+   PK: (CodBanco, NumAgencia)  | UNIQUE: CPFGerente (Regra 3 + Regra 4 no lado total)
+   RIR 1: AGENCIA[CodBanco]   -p-> BANCO[CodBanco]      (Entidade Fraca -> CASCADE)
+   RIR 2: AGENCIA[CPFGerente] -b-> FUNCIONARIO[CPF]     (Gerente -> RESTRICT)</code></pre>
       </div>
     """
 }
 
 STUDY_GUIDE_G2 = {
     "id": "G2",
-    "title": "Ficha G2 — Hierarquias EER (d/o, Total/Parcial), CHECK e Ternários",
+    "title": "Hierarquias EER (Opções 1, 2 e 3), CHECK e Ternários",
     "file_path": "study_guides/G2_Mapeamento_EER_Hierarquias_e_Ternarios.md",
-    "coursework_ref": "ibd-parte5.pdf (Etapa 2: Opções 1, 2 e 3 para Hierarquias EER, Cláusula CHECK e Ternários)",
-    "summary_html": """
-      <div class="sg-grid-2col">
-        <div class="sg-col-card">
-          <h4>📌 As 3 Opções de Hierarquia EER (<code>ibd-parte5.pdf</code>)</h4>
-          <table class="compact-rule-table">
-            <thead>
-              <tr><th>Opção</th><th>Tabelas Criadas</th><th>Quando Usar / Restrição</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>Opção 1</strong></td><td>Tabela única na Superclasse</td><td>Usa <code>CHECK</code> de tupla para impor <code>d</code> e/ou Totalidade.</td></tr>
-              <tr><td><strong>Opção 2</strong></td><td>Apenas Tabelas das Subclasses</td><td><strong>Proibida se Parcial!</strong> E se for <code>o</code> (sobreposta), duplica atributos.</td></tr>
-              <tr><td><strong>Opção 3</strong></td><td>Superclasse + Subclasses</td><td>Universal. Subclasses herdam PK da superclasse com RIR <code>-p-&gt;</code>.</td></tr>
-              <tr><td><strong>Ternário</strong></td><td>Tabela <code>R(<u>PK1, PK2, PK3</u>)</code></td><td>PK composta pelas 3 chaves estrangeiras com política <code>-p-&gt;</code>.</td></tr>
-            </tbody>
-          </table>
+    "coursework_ref": "ibd-parte5.pdf (Etapa 2: EER e Ternários)",
+    "quick_rules_html": """
+      <table class="compact-rule-table">
+        <thead>
+          <tr><th>Opção EER</th><th>Tabelas Criadas</th><th>Quando Usar / Restrição</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Opção 1</strong></td><td>Tabela única na Superclasse</td><td>Usa <code>CHECK</code> de tupla para impor <code>d</code> (disjunção) e/ou Totalidade.</td></tr>
+          <tr><td><strong>Opção 2</strong></td><td>Apenas Tabelas das Subclasses</td><td><strong>Proibida se Parcial!</strong> Se for <code>o</code> (sobreposta), gera redundância.</td></tr>
+          <tr><td><strong>Opção 3</strong></td><td>Superclasse + Subclasses</td><td>Universal. Subclasses herdam PK da superclasse com RIR <code>-p-&gt;</code>.</td></tr>
+          <tr><td><strong>Ternário</strong></td><td>Tabela <code>R(<u>PK1, PK2, PK3</u>)</code></td><td>PK composta pelas 3 FKs participantes (ou 2 FKs se um lado for <code>1</code>).</td></tr>
+        </tbody>
+      </table>
+    """,
+    "example_html": """
+      <div class="sg-example-drawer-inner">
+        <div class="sg-example-header">
+          <strong>🔄 Exemplo Análogo Resolvido (Domínio Diferente: <em>Frota Marítima</em>)</strong>
+          <span>📄 Arquivo completo: <code>study_guides/G2_Mapeamento_EER_Hierarquias_e_Ternarios.md</code></span>
         </div>
-        <div class="sg-col-card">
-          <h4>🔄 Exemplo Análogo (Domínio Diferente: <em>Frota Marítima</em>)</h4>
-          <p class="sg-hint-text"><code>EMBARCACAO(CodIMO, NomeNavio)</code> especializada de forma <strong>Disjunta e Total (<code>d</code>, linha dupla)</strong> em <code>PETROLEIRO(CapBarris)</code> e <code>PORTA_CONTENTOR(MaxTEUs)</code>:</p>
-          <pre><code>CREATE TABLE EMBARCACAO (
+        <p class="sg-hint-text"><code>EMBARCACAO(CodIMO, NomeNavio)</code> especializada de forma <strong>Disjunta e Total (<code>d</code>, linha dupla)</strong> em <code>PETROLEIRO(CapBarris)</code> e <code>PORTA_CONTENTOR(MaxTEUs)</code> mapeada pela <strong>Opção 1</strong>:</p>
+        <pre><code>CREATE TABLE EMBARCACAO (
     CodIMO VARCHAR(15) NOT NULL PRIMARY KEY,
     NomeNavio VARCHAR(80) NOT NULL,
     CapBarris INTEGER,
@@ -271,73 +272,73 @@ STUDY_GUIDE_G2 = {
         (CapBarris IS NULL AND MaxTEUs IS NOT NULL)
     )
 );</code></pre>
-        </div>
       </div>
     """
 }
 
 STUDY_GUIDE_G3 = {
     "id": "G3",
-    "title": "Ficha G3 — DFs em Instâncias, Axiomas de Armstrong e Fecho X+ (Múltiplas Chaves)",
+    "title": "DFs em Instâncias, Fecho X+ e Múltiplas Chaves",
     "file_path": "study_guides/G3_Dependencias_Funcionais_Instancias_e_Fecho.md",
-    "coursework_ref": "ibd-parte6.pdf (Seções 1, 2 e 3: Semântica de DFs, Satisfação em r(R), Fecho X+ e Chaves)",
-    "summary_html": """
-      <div class="sg-grid-2col">
-        <div class="sg-col-card">
-          <h4>📌 Método Rápido de Particionamento para Chaves (<code>ibd-parte6.pdf</code>)</h4>
-          <table class="compact-rule-table">
-            <thead>
-              <tr><th>Classe de Atributos</th><th>Onde Aparece nas DFs</th><th>Papel nas Chaves Candidatas</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>Essenciais (<code>L</code>)</strong></td><td><strong>Nunca</strong> no lado direito (RHS)</td><td>Faz parte obrigatoriamente de <strong>TODAS</strong> as chaves candidatas!</td></tr>
-              <tr><td><strong>Somente-Direita (<code>D</code>)</strong></td><td><strong>Apenas</strong> no lado direito (RHS)</td><td><strong>Jamais</strong> participa de nenhuma chave candidata mínima.</td></tr>
-              <tr><td><strong>Intermediários (<code>M</code>)</strong></td><td>Ambos os lados (LHS e RHS)</td><td>Se <code>L+ ≠ R</code>, combine <code>L</code> com elementos de <code>M</code>.</td></tr>
-              <tr><td><strong>Atributo Primo</strong></td><td>Pertence a <strong>alguma</strong> CK</td><td>Qualquer atributo presente em <code>CK1 ∪ CK2 ∪ ...</code> é primo!</td></tr>
-            </tbody>
-          </table>
+    "coursework_ref": "ibd-parte6.pdf (Seções 1–3: DFs, X+ e Chaves)",
+    "quick_rules_html": """
+      <table class="compact-rule-table">
+        <thead>
+          <tr><th>Classe de Atributos</th><th>Onde Aparece nas DFs</th><th>Papel nas Chaves Candidatas</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Essenciais (<code>L</code>)</strong></td><td><strong>Nunca</strong> no lado direito (RHS)</td><td>Pertence obrigatoriamente a <strong>TODAS</strong> as chaves candidatas!</td></tr>
+          <tr><td><strong>Somente-Direita (<code>D</code>)</strong></td><td><strong>Apenas</strong> no lado direito (RHS)</td><td><strong>Jamais</strong> faz parte de nenhuma chave candidata mínima.</td></tr>
+          <tr><td><strong>Intermediários (<code>M</code>)</strong></td><td>Ambos os lados (LHS e RHS)</td><td>Se <code>L+ ≠ R</code>, estenda <code>L</code> com elementos de <code>M</code>.</td></tr>
+          <tr><td><strong>Atributo Primo</strong></td><td>Pertence a <strong>alguma</strong> CK</td><td>Qualquer atributo em <code>CK1 ∪ CK2 ∪ ...</code> é primo!</td></tr>
+        </tbody>
+      </table>
+    """,
+    "example_html": """
+      <div class="sg-example-drawer-inner">
+        <div class="sg-example-header">
+          <strong>🔄 Exemplo Análogo Resolvido (Domínio Diferente: <em>Esquema S(P, Q, R, T, U)</em>)</strong>
+          <span>📄 Arquivo completo: <code>study_guides/G3_Dependencias_Funcionais_Instancias_e_Fecho.md</code></span>
         </div>
-        <div class="sg-col-card">
-          <h4>🔄 Exemplo Análogo (Domínio Diferente: <em>Esquema S(P, Q, R, T, U)</em>)</h4>
-          <p class="sg-hint-text">Dado <code>S(P, Q, R, T, U)</code> com <code>F = { PQ → R, R → P, QR → T, T → U }</code>:</p>
-          <pre><code>1. Nunca no RHS: L = {Q}  ==> Q está em toda chave!
+        <p class="sg-hint-text">Dado <code>S(P, Q, R, T, U)</code> com <code>F = { PQ → R, R → P, QR → T, T → U }</code>:</p>
+        <pre><code>1. Nunca no RHS: L = {Q}  ==> Q está em toda chave!
 2. Apenas no RHS: D = {U} ==> U nunca entra em chave.
 3. Fecho {Q}+ = {Q} ≠ S. Testando pares com M = {P, R, T}:
    • {P, Q}+ = {P, Q, R, T, U} = S  ==> CK1 = {P, Q}
    • {Q, R}+ = {Q, R, P, T, U} = S  ==> CK2 = {Q, R}
    • {Q, T}+ = {Q, T, U} ≠ S        ==> Não é superchave.
 4. Primos: {P, Q, R}  |  Não-Primos: {T, U}.</code></pre>
-        </div>
       </div>
     """
 }
 
 STUDY_GUIDE_G4 = {
     "id": "G4",
-    "title": "Ficha G4 — Cobertura Mínima (3 Passos) e Decomposição 1FN → 2FN → 3FN",
+    "title": "Cobertura Mínima (3 Passos) e Formas Normais (1FN–3FN)",
     "file_path": "study_guides/G4_Cobertura_Minima_e_Normalizacao_1FN_2FN_3FN.md",
-    "coursework_ref": "ibd-parte6.pdf (Seção 3.4: Cobertura Mínima; Seção 4: 1FN, 2FN, 3FN Geral) + Lista de Normalização",
-    "summary_html": """
-      <div class="sg-grid-2col">
-        <div class="sg-col-card">
-          <h4>📌 Cobertura Mínima e Formas Normais (<code>ibd-parte6.pdf</code>)</h4>
-          <table class="compact-rule-table">
-            <thead>
-              <tr><th>Etapa / Regra</th><th>Critério Formal</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong> Fc — Passo 1</strong></td><td>Lado direito (RHS) sempre com <strong>1 único atributo</strong>: <code>X → AB</code> vira <code>X → A</code> e <code>X → B</code>.</td></tr>
-              <tr><td><strong>Fc — Passo 2</strong></td><td>Sem atributo estranho no LHS: em <code>XY → Z</code>, se <code>Y ∈ {X}+</code>, simplifique para <code>X → Z</code>.</td></tr>
-              <tr><td><strong>Fc — Passo 3</strong></td><td>Sem DF redundante: se <code>A ∈ {X}+</code> calculado em <code>F - {X → A}</code>, remova <code>X → A</code>.</td></tr>
-              <tr><td><strong>2FN (Geral)</strong></td><td>Proíbe que atributo <strong>não-primo</strong> dependa de subconjunto próprio de <em>qualquer</em> CK.</td></tr>
-              <tr><td><strong>3FN (Geral)</strong></td><td>Para toda <code>X → A</code>: ou <code>X</code> é <strong>superchave</strong>, ou <code>A</code> é <strong>atributo primo</strong>.</td></tr>
-            </tbody>
-          </table>
+    "coursework_ref": "ibd-parte6.pdf (Seções 3.4 e 4: Fc, 2FN e 3FN)",
+    "quick_rules_html": """
+      <table class="compact-rule-table">
+        <thead>
+          <tr><th>Etapa / Forma Normal</th><th>Critério Formal dos Slides (<code>ibd-parte6.pdf</code>)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Fc — Passo 1 (RHS)</strong></td><td>Decompor lado direito para conter apenas <strong>1 atributo</strong>: <code>X → AB</code> vira <code>X → A, X → B</code>.</td></tr>
+          <tr><td><strong>Fc — Passo 2 (LHS)</strong></td><td>Atributo estranho no LHS: em <code>XY → Z</code>, se <code>Y ∈ {X}+</code>, simplifique para <code>X → Z</code>.</td></tr>
+          <tr><td><strong>Fc — Passo 3 (DF)</strong></td><td>DF redundante: se <code>A ∈ {X}+</code> usando <code>F - {X → A}</code>, elimine <code>X → A</code>.</td></tr>
+          <tr><td><strong>2FN (Geral)</strong></td><td>Nenhum atributo <strong>não-primo</strong> depende parcialmente de <em>qualquer</em> chave candidata.</td></tr>
+          <tr><td><strong>3FN (Geral)</strong></td><td>Para toda <code>X → A</code> não-trivial: ou <code>X</code> é <strong>superchave</strong>, ou <code>A</code> é <strong>primo</strong>.</td></tr>
+        </tbody>
+      </table>
+    """,
+    "example_html": """
+      <div class="sg-example-drawer-inner">
+        <div class="sg-example-header">
+          <strong>🔄 Exemplo Análogo Resolvido (Domínio Diferente: <em>SHOW_FESTIVAL</em>)</strong>
+          <span>📄 Arquivo completo: <code>study_guides/G4_Cobertura_Minima_e_Normalizacao_1FN_2FN_3FN.md</code></span>
         </div>
-        <div class="sg-col-card">
-          <h4>🔄 Exemplo Análogo (Domínio Diferente: <em>SHOW_FESTIVAL</em>)</h4>
-          <p class="sg-hint-text"><code>SHOW(<u>CodFest, Ordem</u>, CodPalco, Horario, IdBanda, NomeBanda, CidadeFest, CapPalco)</code> com <code>CK1 = {CodFest, Ordem}</code> e <code>CK2 = {CodPalco, Horario}</code>:</p>
-          <pre><code>• Atributos Primos: {CodFest, Ordem, CodPalco, Horario}
+        <p class="sg-hint-text"><code>SHOW(<u>CodFest, Ordem</u>, CodPalco, Horario, IdBanda, NomeBanda, CidadeFest, CapPalco)</code> com <code>CK1 = {CodFest, Ordem}</code> e <code>CK2 = {CodPalco, Horario}</code>:</p>
+        <pre><code>• Atributos Primos: {CodFest, Ordem, CodPalco, Horario}
 • Violações de 2FN (Parciais sobre CK1 e CK2):
   - CodFest → CidadeFest  ==> FESTIVAL(CodFest(nn), CidadeFest)
   - CodPalco → CapPalco   ==> PALCO(CodPalco(nn), CapPalco)
@@ -345,7 +346,6 @@ STUDY_GUIDE_G4 = {
   - IdBanda → NomeBanda   ==> BANDA(IdBanda(nn), NomeBanda)
 • Relação Principal em 3FN:
   - SHOW(CodFest(nn), Ordem(nn), CodPalco(nn), Horario(nn), IdBanda(nn))</code></pre>
-        </div>
       </div>
     """
 }

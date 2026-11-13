@@ -83,3 +83,4 @@ Quando mapeamos na **Opção 1** (tabela única) com um atributo específico $b_
     RIR 2: ATRACACAO[CodPorto] -p-> PORTO[CodPorto]
     RIR 3: ATRACACAO[CNPJAgente] -p-> AGENTE_MARITIMO[CNPJAgente]
   ```
+

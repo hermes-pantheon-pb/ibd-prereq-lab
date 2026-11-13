@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body class="dark-theme">
   <!-- Header / Navigation Bar -->
@@ -27,7 +27,7 @@
     </div>
 
     <div class="header-right">
-      <button class="nav-btn btn-secondary" id="btn-exam-modal" title="Ver Diagrama Oficial do Exame de Projeto Lógico"><span class="icon">✈️</span> Diagrama do Exame (Sistema Aéreo)</button>
+      <button class="nav-btn" id="btn-exam-modal" title="Ver Diagrama Oficial do Exame de Projeto Lógico"><span class="icon">✈️</span> Diagrama do Exame</button>
       <button class="nav-btn" id="btn-cheatsheet-modal" title="Ver Resumo de Fórmulas e Regras">
         <span class="icon">📖</span> Guia Rápido (Cheat Sheet)
       </button>
@@ -110,58 +110,48 @@
           </div>
           <p class="ex-statement" id="ex-statement">Carregando detalhes...</p>
 
-          <!-- Segmented Resource Switcher (Eliminates vertical wall of text) -->
-          <div id="ex-resource-bar" class="resource-subtabs" style="display: none;">
-            <button class="res-tab-btn active" id="res-tab-btn-context" data-res-target="ex-context-container">
-              📐 1. Esquema &amp; Dados do Problema
-            </button>
-            <button class="res-tab-btn" id="res-tab-btn-study" data-res-target="ex-study-guide-container">
-              📘 2. Ficha de Estudo &amp; Exemplo Análogo
-            </button>
-            <button class="res-tab-btn" id="res-tab-btn-resolution" data-res-target="ex-open-resolution-container">
-              📝 3. Rascunho Discursivo &amp; 🔑 Folha de Gabarito
-            </button>
-          </div>
+          <!-- Unified Side-by-Side Exercise Workbench (Schema on Left + Quick Summary & Scratchpad on Right) -->
+          <div id="ex-workbench" class="ex-workbench" style="display: none;">
+            <div class="workbench-main-grid">
+              <!-- Left Column: Always-visible Problem Schema / ER-EER Diagram / FD Grid -->
+              <div id="ex-context-container" class="wb-left-schema"></div>
 
-          <!-- Resource View 1: Rich Problem Context / Embedded ER/EER SVG Diagram -->
-          <div id="ex-context-container" class="res-view-pane" style="display: none;"></div>
+              <!-- Right Column: Always-visible Quick Rule Summary + Scratchpad + Drawer Toggles -->
+              <div id="ex-companion-col" class="wb-right-companion">
+                <!-- Card 1: Quick Rule Summary (Cola da Questão) -->
+                <div id="ex-study-guide-container" class="study-guide-panel" style="display: none;">
+                  <div class="sg-header">
+                    <div class="sg-header-left">
+                      <span class="sg-badge">⚡ RESUMO RÁPIDO</span>
+                      <strong id="sg-title">Regras Aplicáveis</strong>
+                    </div>
+                    <span class="sg-meta-pill" title="Referência nos Slides/Listas">📚 <code id="sg-coursework-ref"></code></span>
+                  </div>
+                  <div class="sg-body" id="sg-body"></div>
+                  <div class="sg-footer-actions">
+                    <button type="button" class="btn-secondary btn-sm" id="btn-toggle-example">
+                      📘 Ver Exemplo Análogo Resolvido
+                    </button>
+                    <button type="button" class="btn-secondary btn-sm" id="btn-toggle-answersheet">
+                      🔑 Ver Gabarito Passo a Passo
+                    </button>
+                  </div>
+                </div>
 
-          <!-- Resource View 2: Dedicated Study Guide / Cheat Sheet with Parallel-Domain Example -->
-          <div id="ex-study-guide-container" class="study-guide-panel res-view-pane" style="display: none;">
-            <div class="sg-header" id="sg-toggle-bar">
-              <div class="sg-header-left">
-                <span class="sg-badge">FICHA DE ESTUDO &amp; EXEMPLO ANÁLOGO</span>
-                <strong id="sg-title">Guia de Estudo Vinculado</strong>
-              </div>
-              <div class="sg-meta-pills">
-                <span class="sg-meta-pill">📚 <code id="sg-coursework-ref"></code></span>
-                <span class="sg-meta-pill">📄 <code id="sg-file-path"></code></span>
+                <!-- Card 2: Persistent Open-Ended Scratchpad (Always visible alongside Schema) -->
+                <div id="ex-open-resolution-container" class="open-resolution-panel" style="display: none;">
+                  <div class="or-col-header">
+                    <strong>📝 Rascunho Discursivo (Esquema / Fechos / 3FN)</strong>
+                    <span class="or-sub-badge">Salvo automaticamente</span>
+                  </div>
+                  <textarea id="open-scratchpad" class="scratchpad-textarea" placeholder="Estruture aqui seu esquema relacional completo enquanto olha para o diagrama ao lado:&#10;• Relações R(A(nn), B) e Chaves Primárias (PK)&#10;• Políticas de RIR (-b->, -p->, -n->)&#10;• Fechos X+, Chaves Candidatas ou Decomposição 1FN -> 2FN -> 3FN..."></textarea>
+                </div>
               </div>
             </div>
-            <div class="sg-body" id="sg-body"></div>
-          </div>
 
-          <!-- Resource View 3: Side-by-Side Scratchpad + Official Step-by-Step Answer Sheet -->
-          <div id="ex-open-resolution-container" class="open-resolution-panel res-view-pane" style="display: none;">
-            <div class="or-split-grid">
-              <div class="or-left-col">
-                <div class="or-col-header">
-                  <strong>📝 Meu Caderno de Resolução Discursiva (Rascunho)</strong>
-                  <span class="or-sub-badge">Salvo automaticamente</span>
-                </div>
-                <textarea id="open-scratchpad" class="scratchpad-textarea" placeholder="Estruture aqui seu esquema relacional completo:&#10;• Relações R(A(nn), B) e Chaves Primárias (PK)&#10;• Políticas de RIR (-b->, -p->, -n->)&#10;• Fechos X+, Chaves Candidatas ou Decomposição 1FN -> 2FN -> 3FN..."></textarea>
-              </div>
-              <div class="or-right-col">
-                <div class="or-col-header">
-                  <strong>🔑 Folha de Gabarito Oficial Passo a Passo (Answer Sheet)</strong>
-                  <button class="btn-secondary btn-sm" id="btn-toggle-answersheet">🔑 Revelar Gabarito Oficial</button>
-                </div>
-                <div id="answer-sheet-placeholder" class="answer-sheet-placeholder">
-                  <span>🔒 Tente estruturar sua solução no rascunho ao lado primeiro, ou clique em <strong>Revelar Gabarito Oficial</strong> para ver a resolução completa passo a passo.</span>
-                </div>
-                <div id="answer-sheet-box" class="answer-sheet-box" style="display: none;"></div>
-              </div>
-            </div>
+            <!-- Inline Expandable Drawers (Open below workbench without hiding the Schema!) -->
+            <div id="sg-example-drawer" class="wb-drawer example-drawer" style="display: none;"></div>
+            <div id="answer-sheet-box" class="wb-drawer answer-sheet-box" style="display: none;"></div>
           </div>
 
           <div class="intuition-callout" id="intuition-callout">
@@ -356,7 +346,7 @@ CHECK (NOT EXISTS (
     <span id="toast-message">Notificação</span>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
 
