@@ -152,9 +152,27 @@ Este documento registra as diretrizes pedagógicas, padrões técnicos de qualid
 
 ---
 
-## 📋 Planejamento Salvo para a Próxima Rodada (Não Executar Agora)
+## ✅ Rodada 5 (`R5.1` a `R5.10`) — A ORQUESTRA FINAL (CONCLUÍDA E INTEGRADA AO LAB)
 
-### Rodada 5 (`R5.1` a `R5.10`) — Reforço Focado em Provas Anteriores (100% dentro de `ibd-parte5.pdf` & `ibd-parte6.pdf`):
-- **Módulo 7 (`R5.1`–`R5.5`):** Novas variações realistas estilo `ExercicioProjetoLogico.pdf` cobrindo: mapeamento inverso (Esquema Lógico + RIRs -> leitura de cardinalidades), atributo composto + multivalorado aninhado, `1:1` com participação total de ambos os lados vs parcial, cadeia de fracas em sistema acadêmico/hospitalar em SQL DDL, e mini-simulado aberto estilo prova de papel.
-- **Módulo 8 (`R5.6`–`R5.10`):** Novas variações de listas oficiais de normalização cobrindo: cálculo de cobertura mínima passo a passo com 2 atributos estranhos no LHS, detetive SQL de anomalia de atualização/DF em tabela de vendas, esquema multicandidato de 4 chaves com 3FN vs BCNF, decomposição completa comentada (estilo `E8.3`) e bateria relâmpago de revisão pré-prova.
+> **Banco Completo Consolidado:** 5 Rodadas × 10 exercícios (`R1.1`–`R5.10`) + 38 exercícios base/oficiais = **88 exercícios** cobrindo integralmente `ibd-parte5.pdf`, `ibd-parte6.pdf`, `ExercicioProjetoLogico.pdf` e `ExerciciosNormalizacaoSemResposta.pdf`.
+
+### Grupo 13 (`R5.1` – `R5.5`): Orquestra Final Módulo 7 — Leitura Inversa, `1:1` Assimétrico, Cadeia DDL & Mini-Simulado
+- **Arquivo de Estudo:** `study_guides/G13_M7_LeituraInversa_1a1_e_ChecklistFinal.md`
+  - *Exemplos Análogos na Ficha:* **`COFRE` vs `GERENTE` (`1:1`)**, **`FORNECEDOR` (multivalorado composto)** e **Porto/Rodovia (`SEM_LACO`)**.
+- **Exercícios (`R5.1`–`R5.5`):**
+  - **`R5.1` (`structured`):** Leitura inversa (Esquema Lógico + RIRs -> Cardinalidades ER) em Secretaria Acadêmica.
+  - **`R5.2` (`structured` + SVG ER):** `1:1` assimétrico `VEICULO(1,1)` vs `RASTREADOR(0,1)` + composto simples e multivalorado composto em Seguradora.
+  - **`R5.3` (`sql_ddl`):** Cadeia Hospitalar 3 níveis (`UNIDADE -> SETOR -> LEITO`) com `ON DELETE CASCADE`, `CHECK` de Status e `INTERNACAO` com `ON DELETE RESTRICT`.
+  - **`R5.4` (`open_design` + Gabarito Duplo SVG + Esquema Lógico):** Prova completa de papel — Agência Espacial (`TRIPULANTE {o, total}`, `BASE -> PLATAFORMA`, `MISSAO`).
+  - **`R5.5` (`sql_assertion`):** SQL-92 `CREATE ASSERTION` para Rede Ferroviária (`SEM_AUTOLACO` e `EXPRESSA_CAPACIDADE`).
+
+### Grupo 14 (`R5.6` – `R5.10`): Orquestra Final Módulo 8 — `Fc` em Cascata, Ciclos de 4 Chaves & Checklist Pré-Prova
+- **Arquivo de Estudo:** `study_guides/G14_M8_CoberturaMinima_CiclosChaves_e_ChecklistFinal.md`
+  - *Exemplos Análogos na Ficha:* **`Fc` passo 2+3** e **Esquema Cíclico `X(P, Q, R, S, T)`**.
+- **Exercícios (`R5.6`–`R5.10`):**
+  - **`R5.6` (`structured`):** Cobertura mínima `Fc` passo a passo com 2 atributos estranhos no LHS (`AB -> D`, `BC -> E`) e eliminação de `A -> E`.
+  - **`R5.7` (`sql_query`):** Auditoria SQL em `VENDAS_FISCAL` refutando `CPFCliente -> CodVendedor`.
+  - **`R5.8` (`structured`):** Esquema cíclico com 4 chaves candidatas `{AE, BE, CE, DE}` (3FN vs BCNF sem cair na falsa violação de 2FN).
+  - **`R5.9` (`open_design`):** Estudo de caso aberto `1FN -> 2FN -> 3FN` (`GUIA_EXAMES`) com gabarito completo em 6 tabelas.
+  - **`R5.10` (`structured`):** Checklist cirúrgico final cobrindo impossibilidades de `-n->`, 3FN vs BCNF e NJP sequencial.
 

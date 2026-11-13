@@ -364,7 +364,17 @@ function getExerciseShortTitle(exId) {
     "R4.7": "[Rodada 4] Armstrong & Equivalência (F ≡ G)",
     "R4.8": "[Rodada 4] Particionamento Chaves L/M/R R(A..G)",
     "R4.9": "[Rodada 4] Discursiva 1FN -> 2FN -> 3FN Boletim",
-    "R4.10": "[Rodada 4] Bateria Final: Anomalias & Sem Perda"
+    "R4.10": "[Rodada 4] Bateria Final: Anomalias & Sem Perda",
+    "R5.1": "[Orquestra Final] Leitura Inversa: Lógico -> ER",
+    "R5.2": "[Orquestra Final] 1:1 Assimétrico & Multival. Composto",
+    "R5.3": "[Orquestra Final] Cadeia Hospitalar DDL + CHECK",
+    "R5.4": "[Orquestra Final] Prova Aberta: Agência Espacial",
+    "R5.5": "[Orquestra Final] ASSERTION: Rede Ferroviária",
+    "R5.6": "[Orquestra Final] Cobertura Mínima Fc (2 Estranhos)",
+    "R5.7": "[Orquestra Final] Detetive SQL: Vendas Fiscais DF",
+    "R5.8": "[Orquestra Final] Ciclo 4 Chaves: 3FN vs BCNF",
+    "R5.9": "[Orquestra Final] Discursiva E8.3: Exames -> 3FN",
+    "R5.10": "[Orquestra Final] Checklist Cirúrgico M7 & M8"
   };
   return titles[exId] || exId;
 }
@@ -923,7 +933,7 @@ function updateProgressUI() {
   const count = solvedExercises.size;
   const total = curriculumData
     ? curriculumData.modules.reduce((acc, m) => acc + m.exercises.length, 0)
-    : 78;
+    : 88;
   const pct = Math.min(100, Math.round((count / total) * 100));
   document.getElementById("progress-text").innerText = `${count} / ${total} Concluídos`;
   document.getElementById("progress-bar-fill").style.width = `${pct}%`;
