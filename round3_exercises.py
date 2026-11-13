@@ -104,11 +104,11 @@ ROUND3_EXERCISES = {
 <div class="answer-sheet-box">
   <h4>Gabarito Visual Oficial (Etapa 1 do Simulado A) — Diagrama EER do Congresso</h4>
   <div style="text-align:center; margin: 10px 0;">
-  <svg viewBox="0 0 760 360" width="100%" style="max-width:740px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
+  <svg viewBox="0 0 800 365" width="100%" style="max-width:780px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
     <!-- PESSOA + multivalued Emails -->
     <rect x="40" y="34" width="148" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
     <text x="114" y="54" text-anchor="middle" fill="#f0f6fc" font-size="12" font-weight="700">PESSOA</text>
-    <text x="114" y="70" text-anchor="middle" fill="#8b949e" font-size="10">(<u>CPF</u>, Nome)</text>
+    <text x="114" y="70" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">CPF</tspan>, Nome)</text>
     <ellipse cx="242" cy="40" rx="42" ry="18" fill="#161b22" stroke="#79c0ff" stroke-width="1.4"/>
     <ellipse cx="242" cy="40" rx="37" ry="13" fill="none" stroke="#79c0ff" stroke-width="1.2"/>
     <text x="242" y="44" text-anchor="middle" fill="#e6edf3" font-size="10">Emails</text>
@@ -145,33 +145,37 @@ ROUND3_EXERCISES = {
     <!-- ARTIGO -->
     <rect x="295" y="252" width="136" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
     <text x="363" y="272" text-anchor="middle" fill="#f0f6fc" font-size="12" font-weight="700">ARTIGO</text>
-    <text x="363" y="288" text-anchor="middle" fill="#8b949e" font-size="10">(<u>CodArtigo</u>, Titulo)</text>
+    <text x="363" y="288" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">CodArtigo</tspan>, Titulo)</text>
 
     <!-- Ternary PARECER (Revisor, Artigo, Criterio) -->
-    <polygon points="363,165 415,137 467,165 415,193" fill="#1f2937" stroke="#f2cc60" stroke-width="2"/>
-    <text x="415" y="169" text-anchor="middle" fill="#f2cc60" font-size="10" font-weight="700">PARECER</text>
-    <text x="415" y="128" text-anchor="middle" fill="#f2cc60" font-size="9">Attr: Nota</text>
-    <line x1="254" y1="175" x2="363" y2="165" stroke="#8b949e" stroke-width="1.5"/>
-    <text x="308" y="162" text-anchor="middle" fill="#ffa657" font-size="10">N</text>
-    <line x1="415" y1="193" x2="375" y2="252" stroke="#8b949e" stroke-width="1.5"/>
-    <text x="405" y="226" text-anchor="middle" fill="#ffa657" font-size="10">M</text>
-    <line x1="467" y1="165" x2="532" y2="165" stroke="#8b949e" stroke-width="1.5"/>
-    <text x="500" y="157" text-anchor="middle" fill="#ffa657" font-size="10">P</text>
+    <polygon points="348,170 400,142 452,170 400,198" fill="#1f2937" stroke="#f2cc60" stroke-width="2"/>
+    <text x="400" y="174" text-anchor="middle" fill="#f2cc60" font-size="10" font-weight="700">PARECER</text>
+    <text x="400" y="134" text-anchor="middle" fill="#f2cc60" font-size="9">Attr: Nota</text>
+    <line x1="254" y1="172" x2="348" y2="170" stroke="#8b949e" stroke-width="1.5"/>
+    <text x="301" y="163" text-anchor="middle" fill="#ffa657" font-size="10">N</text>
+    <line x1="400" y1="198" x2="363" y2="252" stroke="#8b949e" stroke-width="1.5"/>
+    <text x="394" y="228" text-anchor="middle" fill="#ffa657" font-size="10">M</text>
+    <line x1="452" y1="170" x2="520" y2="170" stroke="#8b949e" stroke-width="1.5"/>
+    <text x="486" y="162" text-anchor="middle" fill="#ffa657" font-size="10">P</text>
 
     <!-- CRITERIO -->
-    <rect x="532" y="143" width="128" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-    <text x="596" y="163" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">CRITERIO</text>
-    <text x="596" y="178" text-anchor="middle" fill="#8b949e" font-size="10">(<u>CodCrit</u>, Desc)</text>
+    <rect x="520" y="148" width="132" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="586" y="168" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">CRITERIO</text>
+    <text x="586" y="183" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">CodCrit</tspan>, Desc)</text>
 
     <!-- TRILHA -> TEM -> SESSAO (Weak) and ARTIGO -> PERTENCE -> TRILHA -->
     <rect x="330" y="34" width="142" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
     <text x="401" y="54" text-anchor="middle" fill="#f0f6fc" font-size="12" font-weight="700">TRILHA</text>
-    <text x="401" y="70" text-anchor="middle" fill="#8b949e" font-size="10">(<u>CodTrilha</u>, TituloTr.)</text>
+    <text x="401" y="70" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">CodTrilha</tspan>, TituloTr.)</text>
 
-    <!-- ARTIGO -- PERTENCE -- TRILHA -->
-    <line x1="335" y1="252" x2="335" y2="115" stroke="#58a6ff" stroke-width="1.2" stroke-dasharray="4,3"/>
-    <text x="315" y="218" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
-    <text x="355" y="96" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+    <!-- ARTIGO / PERTENCE / TRILHA -->
+    <line x1="431" y1="272" x2="490" y2="272" stroke="#58a6ff" stroke-width="1.5"/>
+    <line x1="431" y1="278" x2="490" y2="278" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="460" y="264" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
+    <polygon points="490,275 535,248 580,275 535,302" fill="#1f2937" stroke="#58a6ff" stroke-width="1.8"/>
+    <text x="535" y="279" text-anchor="middle" fill="#79c0ff" font-size="9" font-weight="700">PERTENCE</text>
+    <path d="M 580,275 L 705,275 L 705,108 L 401,108 L 401,80" fill="none" stroke="#8b949e" stroke-width="1.5"/>
+    <text x="422" y="99" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
 
     <!-- Identifying TEM_SESSAO -->
     <line x1="472" y1="57" x2="522" y2="57" stroke="#8b949e" stroke-width="1.5"/>
@@ -184,10 +188,10 @@ ROUND3_EXERCISES = {
     <text x="607" y="45" text-anchor="middle" fill="#ffa657" font-size="9">(1,1)</text>
 
     <!-- SESSAO (Weak) -->
-    <rect x="625" y="32" width="120" height="50" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
-    <rect x="630" y="37" width="110" height="40" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-    <text x="685" y="54" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">SESSAO</text>
-    <text x="685" y="69" text-anchor="middle" fill="#ffa657" font-size="9">({NumSessao}, Sala)</text>
+    <rect x="625" y="32" width="128" height="50" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+    <rect x="630" y="37" width="118" height="40" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+    <text x="689" y="54" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">SESSAO</text>
+    <text x="689" y="69" text-anchor="middle" fill="#ffa657" font-size="9">({NumSessao}, Sala)</text>
   </svg>
   </div>
   <ul>
@@ -206,51 +210,59 @@ ROUND3_EXERCISES = {
         "context_html": """
 <p><strong>Simulado A (Etapa 2 de 5 — Leitura Crítica do EER Oficial):</strong> Considere o Diagrama EER consolidado do <strong>Congresso Científico</strong> abaixo para responder às decisões de projeto lógico antes da geração das tabelas:</p>
 <div style="text-align:center; margin: 10px 0;">
-<svg viewBox="0 0 760 210" width="100%" style="max-width:740px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
-  <rect x="24" y="20" width="150" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="99" y="38" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">PESSOA (<u>CPF</u>, Nome)</text>
-  <text x="99" y="53" text-anchor="middle" fill="#79c0ff" font-size="9">Multivalorado: {{Emails}}</text>
-  <line x1="99" y1="62" x2="99" y2="85" stroke="#8b949e" stroke-width="1.5"/>
-  <circle cx="99" cy="98" r="12" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
-  <text x="99" y="102" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="700">o</text>
-  <line x1="89" y1="106" x2="56" y2="132" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="109" y1="106" x2="145" y2="132" stroke="#8b949e" stroke-width="1.5"/>
+<svg viewBox="0 0 780 265" width="100%" style="max-width:760px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
+  <rect x="24" y="20" width="160" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="104" y="38" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">PESSOA (<tspan text-decoration="underline">CPF</tspan>, Nome)</text>
+  <text x="104" y="53" text-anchor="middle" fill="#79c0ff" font-size="9">Multivalorado: {{Emails}}</text>
+  <line x1="104" y1="62" x2="104" y2="85" stroke="#8b949e" stroke-width="1.5"/>
+  <circle cx="104" cy="98" r="12" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="104" y="102" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="700">o</text>
+  <line x1="94" y1="106" x2="56" y2="132" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="114" y1="106" x2="156" y2="132" stroke="#8b949e" stroke-width="1.5"/>
   <rect x="12" y="132" width="88" height="36" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
   <text x="56" y="154" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">AUTOR</text>
-  <rect x="108" y="132" width="92" height="36" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
-  <text x="154" y="154" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">REVISOR</text>
+  <rect x="110" y="132" width="92" height="36" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
+  <text x="156" y="154" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">REVISOR</text>
 
   <!-- Center: TRILHA -> TEM -> SESSAO (Weak) -->
-  <rect x="248" y="20" width="136" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="316" y="38" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">TRILHA</text>
-  <text x="316" y="53" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodTrilha</u>, Titulo)</text>
-  <line x1="384" y1="41" x2="430" y2="41" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="407" y="32" text-anchor="middle" fill="#79c0ff" font-size="9">(1,N)</text>
-  <polygon points="430,41 464,18 498,41 464,64" fill="#1f2937" stroke="#f0883e" stroke-width="1.8"/>
-  <polygon points="436,41 464,23 492,41 464,59" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-  <text x="464" y="45" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="700">TEM</text>
-  <line x1="498" y1="38" x2="540" y2="38" stroke="#f0883e" stroke-width="1.5"/>
-  <line x1="498" y1="44" x2="540" y2="44" stroke="#f0883e" stroke-width="1.5"/>
-  <text x="519" y="30" text-anchor="middle" fill="#ffa657" font-size="9">(1,1)</text>
-  <rect x="540" y="18" width="130" height="46" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
-  <rect x="545" y="23" width="120" height="36" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-  <text x="605" y="39" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">SESSAO</text>
-  <text x="605" y="53" text-anchor="middle" fill="#ffa657" font-size="9">({NumSessao}, Sala)</text>
+  <rect x="265" y="20" width="142" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="336" y="38" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">TRILHA</text>
+  <text x="336" y="53" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodTrilha</tspan>, Titulo)</text>
+  <line x1="407" y1="41" x2="450" y2="41" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="428" y="32" text-anchor="middle" fill="#79c0ff" font-size="9">(1,N)</text>
+  <polygon points="450,41 484,18 518,41 484,64" fill="#1f2937" stroke="#f0883e" stroke-width="1.8"/>
+  <polygon points="456,41 484,23 512,41 484,59" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+  <text x="484" y="45" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="700">TEM</text>
+  <line x1="518" y1="38" x2="560" y2="38" stroke="#f0883e" stroke-width="1.5"/>
+  <line x1="518" y1="44" x2="560" y2="44" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="539" y="30" text-anchor="middle" fill="#ffa657" font-size="9">(1,1)</text>
+  <rect x="560" y="18" width="134" height="46" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <rect x="565" y="23" width="124" height="36" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+  <text x="627" y="39" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">SESSAO</text>
+  <text x="627" y="53" text-anchor="middle" fill="#ffa657" font-size="9">({NumSessao}, Sala)</text>
 
-  <!-- Bottom: Ternary PARECER -->
-  <rect x="255" y="132" width="125" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="317" y="151" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ARTIGO</text>
-  <text x="317" y="165" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodArtigo</u>, Titulo)</text>
+  <!-- Bottom: Ternary PARECER (REVISOR, ARTIGO, CRITERIO) -->
+  <rect x="305" y="102" width="132" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="371" y="121" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ARTIGO</text>
+  <text x="371" y="135" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodArtigo</tspan>, Titulo)</text>
 
-  <polygon points="435,153 482,126 529,153 482,180" fill="#1f2937" stroke="#f2cc60" stroke-width="2"/>
-  <text x="482" y="157" text-anchor="middle" fill="#f2cc60" font-size="10" font-weight="700">PARECER</text>
-  <text x="482" y="196" text-anchor="middle" fill="#e6edf3" font-size="9">Nota &bull; participa de REVISOR(N), ARTIGO(M), CRITERIO(P)</text>
-  <line x1="200" y1="150" x2="255" y2="110" stroke="none"/>
-  <line x1="380" y1="153" x2="435" y2="153" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="529" y1="153" x2="585" y2="153" stroke="#8b949e" stroke-width="1.5"/>
-  <rect x="585" y="132" width="135" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="652" y="151" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">CRITERIO</text>
-  <text x="652" y="165" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodCrit</u>, Desc)</text>
+  <polygon points="322,204 371,176 420,204 371,232" fill="#1f2937" stroke="#f2cc60" stroke-width="2"/>
+  <text x="371" y="208" text-anchor="middle" fill="#f2cc60" font-size="10" font-weight="700">PARECER</text>
+  <text x="415" y="247" text-anchor="middle" fill="#e6edf3" font-size="9">Attr: Nota</text>
+
+  <!-- REVISOR(N) -> PARECER -->
+  <path d="M 156,168 L 156,204 L 322,204" fill="none" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="235" y="196" text-anchor="middle" fill="#ffa657" font-size="10">N</text>
+  <!-- ARTIGO(M) -> PARECER -->
+  <line x1="371" y1="144" x2="371" y2="176" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="383" y="164" text-anchor="middle" fill="#ffa657" font-size="10">M</text>
+  <!-- CRITERIO(P) -> PARECER -->
+  <line x1="420" y1="204" x2="545" y2="204" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="482" y="196" text-anchor="middle" fill="#ffa657" font-size="10">P</text>
+
+  <rect x="545" y="182" width="142" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="616" y="201" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">CRITERIO</text>
+  <text x="616" y="216" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodCrit</tspan>, Desc)</text>
 </svg>
 </div>
 """,
@@ -558,49 +570,48 @@ CREATE TABLE PARECER (
   <li>Cada <code>LEILAO(<u>CodLeilao</u>, Titulo, Status)</code> é aberto por um único vendedor e recebe um histórico completo de <code>LANCE(<u>SeqLance</u>, Valor, Instante)</code> numerados dentro de cada leilão.</li>
 </ul>
 <div style="text-align:center; margin: 10px 0;">
-<svg viewBox="0 0 760 190" width="100%" style="max-width:740px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
-  <rect x="24" y="20" width="146" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="97" y="45" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">USUARIO (<u>IdUser</u>)</text>
+<svg viewBox="0 0 800 205" width="100%" style="max-width:780px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
+  <rect x="24" y="20" width="150" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="99" y="45" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">USUARIO (<tspan text-decoration="underline">IdUser</tspan>)</text>
   <!-- Double line total + 'o' -->
-  <line x1="94" y1="62" x2="94" y2="85" stroke="#f2cc60" stroke-width="1.6"/>
-  <line x1="100" y1="62" x2="100" y2="85" stroke="#f2cc60" stroke-width="1.6"/>
-  <circle cx="97" cy="99" r="13" fill="#161b22" stroke="#f2cc60" stroke-width="2"/>
-  <text x="97" y="103" text-anchor="middle" fill="#f2cc60" font-size="11" font-weight="700">o</text>
-  <line x1="86" y1="107" x2="54" y2="132" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="108" y1="107" x2="144" y2="132" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="96" y1="62" x2="96" y2="85" stroke="#f2cc60" stroke-width="1.6"/>
+  <line x1="102" y1="62" x2="102" y2="85" stroke="#f2cc60" stroke-width="1.6"/>
+  <circle cx="99" cy="99" r="13" fill="#161b22" stroke="#f2cc60" stroke-width="2"/>
+  <text x="99" y="103" text-anchor="middle" fill="#f2cc60" font-size="11" font-weight="700">o</text>
+  <line x1="88" y1="107" x2="54" y2="132" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="110" y1="107" x2="146" y2="132" stroke="#8b949e" stroke-width="1.5"/>
   <rect x="12" y="132" width="90" height="36" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
   <text x="57" y="154" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">VENDEDOR</text>
   <rect x="112" y="132" width="96" height="36" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
   <text x="160" y="154" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">COMPRADOR</text>
 
   <!-- LEILAO -->
-  <rect x="275" y="20" width="150" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="350" y="39" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">LEILAO</text>
-  <text x="350" y="54" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodLeilao</u>, Status, IdVend)</text>
+  <rect x="268" y="20" width="154" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="345" y="39" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">LEILAO</text>
+  <text x="345" y="54" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodLeilao</tspan>, Status, IdVend)</text>
 
   <!-- Identifying RECEBE -> LANCE -->
-  <line x1="425" y1="42" x2="475" y2="42" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="450" y="33" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
-  <polygon points="475,42 512,18 549,42 512,66" fill="#1f2937" stroke="#f0883e" stroke-width="1.8"/>
-  <polygon points="481,42 512,23 543,42 512,61" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-  <text x="512" y="46" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="700">RECEBE</text>
-  <line x1="549" y1="39" x2="588" y2="39" stroke="#f0883e" stroke-width="1.5"/>
-  <line x1="549" y1="45" x2="588" y2="45" stroke="#f0883e" stroke-width="1.5"/>
-  <text x="568" y="31" text-anchor="middle" fill="#ffa657" font-size="9">(1,1)</text>
-  <rect x="588" y="18" width="148" height="48" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
-  <rect x="593" y="23" width="138" height="38" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-  <text x="662" y="39" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">LANCE</text>
-  <text x="662" y="54" text-anchor="middle" fill="#ffa657" font-size="9">({SeqLance}, Valor, Instante)</text>
+  <line x1="422" y1="42" x2="468" y2="42" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="445" y="33" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+  <polygon points="468,42 505,18 542,42 505,66" fill="#1f2937" stroke="#f0883e" stroke-width="1.8"/>
+  <polygon points="474,42 505,23 536,42 505,61" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+  <text x="505" y="46" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="700">RECEBE</text>
+  <line x1="542" y1="39" x2="582" y2="39" stroke="#f0883e" stroke-width="1.5"/>
+  <line x1="542" y1="45" x2="582" y2="45" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="562" y="31" text-anchor="middle" fill="#ffa657" font-size="9">(1,1)</text>
+  <rect x="582" y="18" width="194" height="48" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <rect x="587" y="23" width="184" height="38" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+  <text x="679" y="39" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">LANCE</text>
+  <text x="679" y="54" text-anchor="middle" fill="#ffa657" font-size="9">({SeqLance}, Valor, Instante)</text>
 
   <!-- OFERTA from COMPRADOR to LANCE -->
   <line x1="208" y1="150" x2="365" y2="150" stroke="#8b949e" stroke-width="1.5"/>
   <text x="285" y="142" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
   <polygon points="365,150 405,126 445,150 405,174" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.8"/>
   <text x="405" y="154" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="700">FAZ</text>
-  <line x1="445" y1="147" x2="662" y2="147" stroke="#58a6ff" stroke-width="1.5"/>
-  <line x1="445" y1="153" x2="662" y2="153" stroke="#58a6ff" stroke-width="1.5"/>
-  <line x1="662" y1="150" x2="662" y2="66" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="550" y="140" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
+  <path d="M 445,147 L 676,147 L 676,66" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <path d="M 445,153 L 682,153 L 682,66" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="560" y="139" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
 </svg>
 </div>
 """,

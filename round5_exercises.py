@@ -160,7 +160,7 @@ PARTICIPA(<u>Matr</u>, <u>IdProj</u>, Horas)
   <!-- SEGURADO -->
   <rect x="26" y="75" width="146" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
   <text x="99" y="94" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">SEGURADO</text>
-  <text x="99" y="109" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CPF</u>, Nome)</text>
+  <text x="99" y="109" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CPF</tspan>, Nome)</text>
   <!-- Composite Endereco(Rua, Cidade) -->
   <ellipse cx="75" cy="30" rx="52" ry="16" fill="#161b22" stroke="#8b949e" stroke-width="1.3"/>
   <text x="75" y="34" text-anchor="middle" fill="#e6edf3" font-size="9">End(Rua, Cidade)</text>
@@ -183,7 +183,7 @@ PARTICIPA(<u>Matr</u>, <u>IdProj</u>, Horas)
   <!-- VEICULO -->
   <rect x="322" y="75" width="136" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
   <text x="390" y="94" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">VEICULO</text>
-  <text x="390" y="109" text-anchor="middle" fill="#8b949e" font-size="9">(<u>Placa</u>, Ano)</text>
+  <text x="390" y="109" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">Placa</tspan>, Ano)</text>
 
   <!-- 1:1 Asymmetrical EQUIPADO -> RASTREADOR -->
   <!-- Double line on VEICULO side (1,1), single line on RASTREADOR side (0,1) -->
@@ -198,7 +198,7 @@ PARTICIPA(<u>Matr</u>, <u>IdProj</u>, Horas)
   <!-- RASTREADOR -->
   <rect x="625" y="75" width="120" height="46" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
   <text x="685" y="94" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">RASTREADOR</text>
-  <text x="685" y="109" text-anchor="middle" fill="#8b949e" font-size="9">(<u>NumSerie</u>, Lote)</text>
+  <text x="685" y="109" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">NumSerie</tspan>, Lote)</text>
 </svg>
 </div>
 <p>Realize o mapeamento lógico exato seguindo as regras da Etapa 1 de <code>ibd-parte5.pdf</code>.</p>
@@ -380,48 +380,72 @@ Com base nos requisitos abaixo, faça em seu caderno <strong>(A) o Diagrama EER 
 <div class="answer-sheet-box">
   <h4>Gabarito Duplo Oficial — R5.4 (EER Visual + Esquema Lógico)</h4>
   <div style="text-align:center; margin: 10px 0;">
-  <svg viewBox="0 0 760 270" width="100%" style="max-width:740px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
-    <rect x="20" y="18" width="165" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-    <text x="102" y="36" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">TRIPULANTE</text>
-    <text x="102" y="51" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodTrip</u>, Nome, Pass(Num,Pais))</text>
-    <line x1="99" y1="62" x2="99" y2="82" stroke="#f2cc60" stroke-width="1.5"/>
-    <line x1="105" y1="62" x2="105" y2="82" stroke="#f2cc60" stroke-width="1.5"/>
-    <circle cx="102" cy="95" r="12" fill="#161b22" stroke="#f2cc60" stroke-width="1.8"/>
-    <text x="102" y="99" text-anchor="middle" fill="#f2cc60" font-size="11" font-weight="700">o</text>
-    <line x1="91" y1="103" x2="55" y2="128" stroke="#8b949e" stroke-width="1.4"/>
-    <line x1="113" y1="103" x2="150" y2="128" stroke="#8b949e" stroke-width="1.4"/>
-    <rect x="12" y="128" width="96" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.6"/>
-    <text x="60" y="146" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">COMANDANTE</text>
-    <text x="60" y="160" text-anchor="middle" fill="#8b949e" font-size="9">(HorasVoo)</text>
-    <rect x="116" y="128" width="106" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.6"/>
-    <text x="169" y="146" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">ESPECIALISTA</text>
-    <text x="169" y="160" text-anchor="middle" fill="#8b949e" font-size="9">(AreaCient.)</text>
+  <svg viewBox="0 0 820 340" width="100%" style="max-width:800px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
+    <!-- TRIPULANTE {o, total} -> COMANDANTE, ESPECIALISTA -->
+    <rect x="18" y="16" width="214" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="125" y="34" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">TRIPULANTE</text>
+    <text x="125" y="49" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodTrip</tspan>, Nome, Pass(Num,Pais))</text>
+    <line x1="122" y1="60" x2="122" y2="80" stroke="#f2cc60" stroke-width="1.5"/>
+    <line x1="128" y1="60" x2="128" y2="80" stroke="#f2cc60" stroke-width="1.5"/>
+    <circle cx="125" cy="93" r="12" fill="#161b22" stroke="#f2cc60" stroke-width="1.8"/>
+    <text x="125" y="97" text-anchor="middle" fill="#f2cc60" font-size="11" font-weight="700">o</text>
+    <line x1="114" y1="101" x2="67" y2="126" stroke="#8b949e" stroke-width="1.4"/>
+    <line x1="136" y1="101" x2="186" y2="126" stroke="#8b949e" stroke-width="1.4"/>
+    <rect x="16" y="126" width="102" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.6"/>
+    <text x="67" y="144" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">COMANDANTE</text>
+    <text x="67" y="158" text-anchor="middle" fill="#8b949e" font-size="9">(HorasVoo)</text>
+    <rect x="130" y="126" width="112" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.6"/>
+    <text x="186" y="144" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">ESPECIALISTA</text>
+    <text x="186" y="158" text-anchor="middle" fill="#8b949e" font-size="9">(AreaCient.)</text>
 
     <!-- BASE -> TEM -> PLATAFORMA -->
-    <rect x="330" y="18" width="122" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-    <text x="391" y="36" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">BASE</text>
-    <text x="391" y="50" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodBase</u>, Local)</text>
-    <line x1="452" y1="39" x2="495" y2="39" stroke="#8b949e" stroke-width="1.4"/>
-    <polygon points="495,39 530,17 565,39 530,61" fill="#1f2937" stroke="#f0883e" stroke-width="1.8"/>
-    <polygon points="501,39 530,22 559,39 530,56" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-    <text x="530" y="43" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="700">TEM</text>
-    <line x1="565" y1="36" x2="600" y2="36" stroke="#f0883e" stroke-width="1.5"/>
-    <line x1="565" y1="42" x2="600" y2="42" stroke="#f0883e" stroke-width="1.5"/>
-    <rect x="600" y="16" width="142" height="46" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
-    <rect x="605" y="21" width="132" height="36" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-    <text x="671" y="36" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">PLATAFORMA</text>
-    <text x="671" y="50" text-anchor="middle" fill="#ffa657" font-size="9">({NumPlat}, CapKg)</text>
+    <rect x="365" y="16" width="128" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="429" y="34" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">BASE</text>
+    <text x="429" y="48" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodBase</tspan>, Local)</text>
+    <line x1="493" y1="37" x2="535" y2="37" stroke="#8b949e" stroke-width="1.4"/>
+    <text x="514" y="29" text-anchor="middle" fill="#79c0ff" font-size="9">(1,N)</text>
+    <polygon points="535,37 570,15 605,37 570,59" fill="#1f2937" stroke="#f0883e" stroke-width="1.8"/>
+    <polygon points="541,37 570,20 599,37 570,54" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+    <text x="570" y="41" text-anchor="middle" fill="#f0883e" font-size="9" font-weight="700">TEM</text>
+    <line x1="605" y1="34" x2="645" y2="34" stroke="#f0883e" stroke-width="1.5"/>
+    <line x1="605" y1="40" x2="645" y2="40" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="625" y="26" text-anchor="middle" fill="#ffa657" font-size="9">(1,1)</text>
+    <rect x="645" y="14" width="152" height="46" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+    <rect x="650" y="19" width="142" height="36" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+    <text x="721" y="34" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">PLATAFORMA</text>
+    <text x="721" y="48" text-anchor="middle" fill="#ffa657" font-size="9">({NumPlat}, CapKg)</text>
 
     <!-- MISSAO in middle-bottom -->
-    <rect x="335" y="185" width="148" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
-    <text x="409" y="204" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">MISSAO</text>
-    <text x="409" y="219" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodMissao</u>, DataPrev)</text>
-    <line x1="60" y1="168" x2="335" y2="207" stroke="#8b949e" stroke-width="1.4"/>
-    <text x="195" y="182" text-anchor="middle" fill="#79c0ff" font-size="9">LIDERA 1:N (1,1)</text>
-    <line x1="169" y1="168" x2="335" y2="195" stroke="#d2a8ff" stroke-width="1.4"/>
-    <text x="275" y="220" text-anchor="middle" fill="#d2a8ff" font-size="9">EQUIPE M:N [FuncaoBordo]</text>
-    <line x1="671" y1="62" x2="483" y2="207" stroke="#58a6ff" stroke-width="1.4"/>
-    <text x="605" y="152" text-anchor="middle" fill="#79c0ff" font-size="9">DECOLA 1:N (1,1)</text>
+    <rect x="370" y="205" width="160" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
+    <text x="450" y="224" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">MISSAO</text>
+    <text x="450" y="239" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodMissao</tspan>, DataPrev)</text>
+
+    <!-- EQUIPE M:N [FuncaoBordo] between ESPECIALISTA and MISSAO -->
+    <path d="M 186,166 L 186,228 L 245,228" fill="none" stroke="#8b949e" stroke-width="1.4"/>
+    <text x="215" y="220" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+    <polygon points="245,228 288,204 331,228 288,252" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.8"/>
+    <text x="288" y="232" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="700">EQUIPE</text>
+    <text x="288" y="264" text-anchor="middle" fill="#d2a8ff" font-size="9">[FuncaoBordo]</text>
+    <line x1="331" y1="228" x2="370" y2="228" stroke="#8b949e" stroke-width="1.4"/>
+    <text x="350" y="220" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+
+    <!-- LIDERA 1:N total in MISSAO from COMANDANTE -->
+    <path d="M 67,166 L 67,298 L 195,298" fill="none" stroke="#8b949e" stroke-width="1.4"/>
+    <text x="130" y="290" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+    <polygon points="195,298 240,274 285,298 240,322" fill="#1f2937" stroke="#58a6ff" stroke-width="1.8"/>
+    <text x="240" y="302" text-anchor="middle" fill="#79c0ff" font-size="9" font-weight="700">LIDERA</text>
+    <path d="M 285,295 L 447,295 L 447,251" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+    <path d="M 285,301 L 453,301 L 453,251" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="366" y="287" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
+
+    <!-- DECOLA 1:N total in MISSAO from PLATAFORMA -->
+    <line x1="721" y1="60" x2="721" y2="118" stroke="#8b949e" stroke-width="1.4"/>
+    <text x="742" y="92" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+    <polygon points="676,142 721,118 766,142 721,166" fill="#1f2937" stroke="#58a6ff" stroke-width="1.8"/>
+    <text x="721" y="146" text-anchor="middle" fill="#79c0ff" font-size="9" font-weight="700">DECOLA</text>
+    <path d="M 676,139 L 582,139 L 582,225 L 530,225" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+    <path d="M 676,145 L 588,145 L 588,231 L 530,231" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="630" y="131" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
   </svg>
   </div>
   <pre class="sql-code">TRIPULANTE(<u>CodTrip</u>, Nome, PassNumero, PassPais)

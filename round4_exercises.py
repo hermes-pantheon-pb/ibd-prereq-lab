@@ -103,7 +103,7 @@ ROUND4_EXERCISES = {
   <!-- Hierarchy 1: MIDIA -> {FILME, SERIE} {d, total} -->
   <rect x="85" y="16" width="175" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
   <text x="172" y="34" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">MIDIA</text>
-  <text x="172" y="49" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodMidia</u>, Titulo, Ano)</text>
+  <text x="172" y="49" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodMidia</tspan>, Titulo, Ano)</text>
   <!-- Double line total + d -->
   <line x1="169" y1="58" x2="169" y2="82" stroke="#f2cc60" stroke-width="1.6"/>
   <line x1="175" y1="58" x2="175" y2="82" stroke="#f2cc60" stroke-width="1.6"/>
@@ -123,7 +123,7 @@ ROUND4_EXERCISES = {
   <!-- Hierarchy 2: COLABORADOR -> {DIRETOR, ROTEIRISTA} {o, parcial} -->
   <rect x="480" y="16" width="185" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
   <text x="572" y="34" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">COLABORADOR</text>
-  <text x="572" y="49" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CPF</u>, Nome, Pais)</text>
+  <text x="572" y="49" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CPF</tspan>, Nome, Pais)</text>
   <!-- Single line partial + o -->
   <line x1="572" y1="58" x2="572" y2="82" stroke="#8b949e" stroke-width="1.6"/>
   <circle cx="572" cy="96" r="13" fill="#161b22" stroke="#d2a8ff" stroke-width="2"/>
@@ -287,11 +287,11 @@ CREATE TABLE VEICULO (
 <svg viewBox="0 0 760 220" width="100%" style="max-width:740px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
   <rect x="24" y="25" width="145" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
   <text x="96" y="44" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ALUNO</text>
-  <text x="96" y="59" text-anchor="middle" fill="#8b949e" font-size="9">(<u>Matr</u>, Nome)</text>
+  <text x="96" y="59" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">Matr</tspan>, Nome)</text>
 
   <rect x="580" y="25" width="155" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
   <text x="657" y="44" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">EMPRESA</text>
-  <text x="657" y="59" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CNPJ</u>, RazaoSoc)</text>
+  <text x="657" y="59" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CNPJ</tspan>, RazaoSoc)</text>
 
   <!-- Diamond ORIENTA_ESTAGIO -->
   <polygon points="325,52 380,20 435,52 380,84" fill="#1f2937" stroke="#f2cc60" stroke-width="2"/>
@@ -306,17 +306,17 @@ CREATE TABLE VEICULO (
   <line x1="380" y1="84" x2="380" y2="148" stroke="#8b949e" stroke-width="1.6"/>
   <text x="396" y="128" text-anchor="middle" fill="#ffa657" font-size="12" font-weight="700">1</text>
 
-  <rect x="290" y="148" width="180" height="44" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <rect x="282" y="148" width="196" height="44" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
   <text x="380" y="167" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ORIENTADOR</text>
-  <text x="380" y="182" text-anchor="middle" fill="#8b949e" font-size="9">(<u>SIAPE</u>, NomeProf, IdLab?)</text>
+  <text x="380" y="182" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">SIAPE</tspan>, NomeProf, IdLab?)</text>
 
   <!-- Partial N:1 ORIENTADOR -> LAB -->
-  <line x1="470" y1="170" x2="578" y2="170" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="500" y="162" text-anchor="middle" fill="#ffa657" font-size="9">(0,1)</text>
+  <line x1="478" y1="170" x2="578" y2="170" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="502" y="162" text-anchor="middle" fill="#ffa657" font-size="9">(0,1)</text>
   <text x="556" y="162" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
   <rect x="578" y="148" width="155" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
   <text x="655" y="167" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">LABORATORIO</text>
-  <text x="655" y="182" text-anchor="middle" fill="#8b949e" font-size="9">(<u>IdLab</u>, Sala)</text>
+  <text x="655" y="182" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">IdLab</tspan>, Sala)</text>
 </svg>
 </div>
 <p><strong>Regra de negócio explícita:</strong> Um mesmo par <code>(ALUNO, EMPRESA)</code> possui no máximo <strong>1</strong> <code>ORIENTADOR</code> responsável (indicado pelo <code>1</code> na perna de <code>ORIENTADOR</code>). Além disso, cada <code>ORIENTADOR</code> pode estar vinculado opcionalmente <code>(0,1)</code> a um <code>LABORATORIO</code>.</p>
@@ -383,7 +383,7 @@ Dado o Diagrama ER/EER abaixo de uma Cooperativa de Crédito, <strong>escreva em
   <!-- COOPERATIVA -->
   <rect x="24" y="24" width="142" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
   <text x="95" y="43" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">COOPERATIVA</text>
-  <text x="95" y="58" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodCoop</u>, Razao)</text>
+  <text x="95" y="58" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodCoop</tspan>, Razao)</text>
   <line x1="166" y1="46" x2="215" y2="46" stroke="#8b949e" stroke-width="1.5"/>
   <text x="190" y="37" text-anchor="middle" fill="#79c0ff" font-size="9">(1,N)</text>
   <polygon points="215,46 250,23 285,46 250,69" fill="#1f2937" stroke="#f0883e" stroke-width="1.8"/>
@@ -398,7 +398,7 @@ Dado o Diagrama ER/EER abaixo de uma Cooperativa de Crédito, <strong>escreva em
   <text x="397" y="43" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">POSTO</text>
   <text x="397" y="58" text-anchor="middle" fill="#ffa657" font-size="9">({NumPosto}, Bairro)</text>
 
-  <!-- POSTO -- ABRE -- CONTA -->
+  <!-- POSTO / ABRE / CONTA -->
   <line x1="466" y1="46" x2="510" y2="46" stroke="#8b949e" stroke-width="1.5"/>
   <text x="488" y="37" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
   <polygon points="510,46 544,24 578,46 544,68" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.8"/>
@@ -410,34 +410,33 @@ Dado o Diagrama ER/EER abaixo de uma Cooperativa de Crédito, <strong>escreva em
   <!-- CONTA -->
   <rect x="616" y="24" width="124" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
   <text x="678" y="43" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">CONTA</text>
-  <text x="678" y="58" text-anchor="middle" fill="#8b949e" font-size="9">(<u>NumConta</u>, Saldo)</text>
+  <text x="678" y="58" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">NumConta</tspan>, Saldo)</text>
 
   <!-- ASSOCIADO {d, total} -> PF, PJ + multivalued Telefones -->
-  <rect x="180" y="135" width="150" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="255" y="153" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ASSOCIADO</text>
-  <text x="255" y="168" text-anchor="middle" fill="#8b949e" font-size="9">(<u>IdAssoc</u>, Email, {{Fones}})</text>
+  <rect x="165" y="135" width="176" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="253" y="153" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ASSOCIADO</text>
+  <text x="253" y="168" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">IdAssoc</tspan>, Email, {{Fones}})</text>
 
   <!-- Double line + d -->
-  <line x1="252" y1="179" x2="252" y2="199" stroke="#f2cc60" stroke-width="1.5"/>
-  <line x1="258" y1="179" x2="258" y2="199" stroke="#f2cc60" stroke-width="1.5"/>
-  <circle cx="255" cy="212" r="12" fill="#161b22" stroke="#f2cc60" stroke-width="1.8"/>
-  <text x="255" y="216" text-anchor="middle" fill="#f2cc60" font-size="11" font-weight="700">d</text>
-  <line x1="244" y1="220" x2="185" y2="236" stroke="#8b949e" stroke-width="1.4"/>
-  <line x1="266" y1="220" x2="325" y2="236" stroke="#8b949e" stroke-width="1.4"/>
-  <rect x="120" y="236" width="122" height="32" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.6"/>
-  <text x="181" y="256" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">PF (<u>CPF</u>, Nome)</text>
-  <rect x="268" y="236" width="132" height="32" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.6"/>
-  <text x="334" y="256" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">PJ (<u>CNPJ</u>, Fantasia)</text>
+  <line x1="250" y1="179" x2="250" y2="199" stroke="#f2cc60" stroke-width="1.5"/>
+  <line x1="256" y1="179" x2="256" y2="199" stroke="#f2cc60" stroke-width="1.5"/>
+  <circle cx="253" cy="212" r="12" fill="#161b22" stroke="#f2cc60" stroke-width="1.8"/>
+  <text x="253" y="216" text-anchor="middle" fill="#f2cc60" font-size="11" font-weight="700">d</text>
+  <line x1="242" y1="220" x2="185" y2="236" stroke="#8b949e" stroke-width="1.4"/>
+  <line x1="264" y1="220" x2="325" y2="236" stroke="#8b949e" stroke-width="1.4"/>
+  <rect x="118" y="236" width="128" height="32" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.6"/>
+  <text x="182" y="256" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">PF (<tspan text-decoration="underline">CPF</tspan>, Nome)</text>
+  <rect x="266" y="236" width="136" height="32" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.6"/>
+  <text x="334" y="256" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">PJ (<tspan text-decoration="underline">CNPJ</tspan>, Fantasia)</text>
 
-  <!-- ASSOCIADO -- TITULAR (M:N, Papel) -- CONTA -->
-  <line x1="330" y1="157" x2="465" y2="157" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="396" y="149" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+  <!-- ASSOCIADO / TITULAR (M:N, Papel) / CONTA -->
+  <line x1="341" y1="157" x2="465" y2="157" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="403" y="149" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
   <polygon points="465,157 512,132 559,157 512,182" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.8"/>
   <text x="512" y="161" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="700">TITULAR</text>
   <text x="512" y="196" text-anchor="middle" fill="#e6edf3" font-size="9">Attr: Papel</text>
-  <line x1="559" y1="154" x2="678" y2="154" stroke="#58a6ff" stroke-width="1.5"/>
-  <line x1="559" y1="160" x2="678" y2="160" stroke="#58a6ff" stroke-width="1.5"/>
-  <line x1="678" y1="157" x2="678" y2="68" stroke="#58a6ff" stroke-width="1.5"/>
+  <path d="M 559,154 L 675,154 L 675,68" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
+  <path d="M 559,160 L 681,160 L 681,68" fill="none" stroke="#58a6ff" stroke-width="1.5"/>
   <text x="618" y="145" text-anchor="middle" fill="#79c0ff" font-size="9">(1,N)</text>
 </svg>
 </div>

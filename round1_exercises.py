@@ -29,19 +29,19 @@ HOSPITAL_ER_SVG = """
     <text x="235" y="86" fill="#38bdf8" font-size="12" font-weight="bold">(1, 1)</text>
     <text x="615" y="86" fill="#e2e8f0" font-size="12" font-weight="bold">(0, 1)</text>
 
-    <!-- ALA_HOSPITALAR (0,N) -- INTERNADO_EM -- (0,1) PACIENTE -->
+    <!-- ALA_HOSPITALAR (0,N) / INTERNADO_EM / (0,1) PACIENTE -->
     <line x1="130" y1="125" x2="130" y2="195" stroke="#94a3b8" stroke-width="2"/>
     <line x1="130" y1="255" x2="130" y2="315" stroke="#94a3b8" stroke-width="2"/>
     <text x="138" y="152" fill="#e2e8f0" font-size="12" font-weight="bold">(0, N)</text>
     <text x="138" y="302" fill="#e2e8f0" font-size="12" font-weight="bold">(0, 1)</text>
 
-    <!-- MEDICO (0,N) -- PRESCRICAO -- (0,N) PACIENTE -->
+    <!-- MEDICO (0,N) / PRESCRICAO / (0,N) PACIENTE -->
     <line x1="740" y1="125" x2="450" y2="215" stroke="#94a3b8" stroke-width="2"/>
     <line x1="390" y1="225" x2="210" y2="335" stroke="#94a3b8" stroke-width="2"/>
     <text x="625" y="152" fill="#e2e8f0" font-size="12" font-weight="bold">(0, N)</text>
     <text x="235" y="302" fill="#e2e8f0" font-size="12" font-weight="bold">(0, N)</text>
 
-    <!-- PACIENTE (0,N) -- REALIZA_EXAME (Weak ID) == (1,1) EXAME_LABORATORIAL -->
+    <!-- PACIENTE (0,N) / REALIZA_EXAME (Weak ID) / (1,1) EXAME_LABORATORIAL -->
     <line x1="210" y1="350" x2="390" y2="350" stroke="#94a3b8" stroke-width="2"/>
     <line x1="510" y1="347" x2="660" y2="347" stroke="#f59e0b" stroke-width="3"/>
     <line x1="510" y1="353" x2="660" y2="353" stroke="#f59e0b" stroke-width="3"/>

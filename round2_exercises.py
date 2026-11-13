@@ -181,23 +181,23 @@ ROUND2_EXERCISES = {
   <rect x="45" y="105" width="160" height="58" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
   <text x="125" y="139" text-anchor="middle" fill="#f0f6fc" font-size="15" font-weight="700">PECA</text>
   <!-- Attributes PECA -->
-  <ellipse cx="75" cy="48" rx="48" ry="20" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="75" y="53" text-anchor="middle" fill="#e6edf3" font-size="12" text-decoration="underline" font-weight="700">IdPeca</text>
-  <line x1="85" y1="68" x2="105" y2="105" stroke="#8b949e" stroke-width="1.5"/>
+  <ellipse cx="68" cy="48" rx="46" ry="20" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="68" y="53" text-anchor="middle" fill="#e6edf3" font-size="12" text-decoration="underline" font-weight="700">IdPeca</text>
+  <line x1="78" y1="68" x2="94" y2="105" stroke="#8b949e" stroke-width="1.5"/>
 
-  <ellipse cx="180" cy="48" rx="46" ry="20" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="180" y="53" text-anchor="middle" fill="#e6edf3" font-size="12">Peso</text>
-  <line x1="168" y1="68" x2="145" y2="105" stroke="#8b949e" stroke-width="1.5"/>
+  <ellipse cx="164" cy="48" rx="40" ry="20" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="164" y="53" text-anchor="middle" fill="#e6edf3" font-size="12">Peso</text>
+  <line x1="154" y1="68" x2="136" y2="105" stroke="#8b949e" stroke-width="1.5"/>
 
   <!-- Recursive Diamond COMPOE -->
   <polygon points="315,134 365,98 415,134 365,170" fill="#1f2937" stroke="#d2a8ff" stroke-width="2"/>
   <text x="365" y="138" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="700">COMPOE</text>
   <!-- Role top: [composto] (0,N) -->
-  <path d="M 160,105 L 160,82 L 365,82 L 365,98" fill="none" stroke="#8b949e" stroke-width="1.6"/>
-  <text x="260" y="76" text-anchor="middle" fill="#79c0ff" font-size="11">[composto] (0, N)</text>
+  <path d="M 188,105 L 188,80 L 365,80 L 365,98" fill="none" stroke="#8b949e" stroke-width="1.6"/>
+  <text x="275" y="74" text-anchor="middle" fill="#79c0ff" font-size="11">[composto] (0, N)</text>
   <!-- Role bottom: [componente] (0,N) -->
-  <path d="M 160,163 L 160,192 L 365,192 L 365,170" fill="none" stroke="#8b949e" stroke-width="1.6"/>
-  <text x="260" y="208" text-anchor="middle" fill="#79c0ff" font-size="11">[componente] (0, N)</text>
+  <path d="M 188,163 L 188,192 L 365,192 L 365,170" fill="none" stroke="#8b949e" stroke-width="1.6"/>
+  <text x="275" y="208" text-anchor="middle" fill="#79c0ff" font-size="11">[componente] (0, N)</text>
   <!-- Attr Qtd on COMPOE -->
   <ellipse cx="365" cy="240" rx="42" ry="18" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
   <text x="365" y="244" text-anchor="middle" fill="#e6edf3" font-size="12">Qtd</text>
@@ -319,7 +319,7 @@ ROUND2_EXERCISES = {
   <rect x="345" y="90" width="112" height="46" rx="2" fill="none" stroke="#f0883e" stroke-width="1.3"/>
   <text x="401" y="118" text-anchor="middle" fill="#f0f6fc" font-size="14" font-weight="700">BLOCO</text>
   <ellipse cx="401" cy="36" rx="48" ry="18" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="401" y="40" text-anchor="middle" fill="#e6edf3" font-size="11" stroke-dasharray="3,2" font-weight="700">CodBloco</text>
+  <text x="401" y="40" text-anchor="middle" fill="#e6edf3" font-size="11" font-weight="700">CodBloco</text>
   <line x1="372" y1="44" x2="430" y2="44" stroke="#f0883e" stroke-width="1.3" stroke-dasharray="3,2"/>
   <line x1="401" y1="54" x2="401" y2="85" stroke="#8b949e" stroke-width="1.4"/>
 
@@ -441,8 +441,8 @@ CREATE TABLE APARTAMENTO (
 <div style="text-align:center; margin: 12px 0;">
 <svg viewBox="0 0 760 320" width="100%" style="max-width:740px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
   <!-- VEICULO -->
-  <rect x="135" y="18" width="130" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="200" y="44" text-anchor="middle" fill="#f0f6fc" font-size="13" font-weight="700">VEICULO (<u>Placa</u>)</text>
+  <rect x="122" y="18" width="156" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="200" y="44" text-anchor="middle" fill="#f0f6fc" font-size="13" font-weight="700">VEICULO (<tspan text-decoration="underline">Placa</tspan>)</text>
   <!-- Circle (d) total -->
   <line x1="200" y1="60" x2="200" y2="78" stroke="#8b949e" stroke-width="1.8"/>
   <circle cx="200" cy="92" r="14" fill="#161b22" stroke="#d2a8ff" stroke-width="2"/>
@@ -458,7 +458,7 @@ CREATE TABLE APARTAMENTO (
   <!-- Convergence into Shared Subclass CAMINHAO_FROTA -->
   <line x1="110" y1="168" x2="170" y2="215" stroke="#3fb950" stroke-width="1.8"/>
   <line x1="295" y1="168" x2="230" y2="215" stroke="#3fb950" stroke-width="1.8"/>
-  <!-- Aggregation dashed container around (CAMINHAO_FROTA -- EXECUTA -- ROTA) -->
+  <!-- Aggregation dashed container around CAMINHAO_FROTA / EXECUTA / ROTA -->
   <rect x="92" y="205" width="468" height="92" rx="8" fill="none" stroke="#f2cc60" stroke-width="1.8" stroke-dasharray="6,4"/>
   <text x="326" y="290" text-anchor="middle" fill="#f2cc60" font-size="10">Agregação: Execução de Rota</text>
 
@@ -472,11 +472,11 @@ CREATE TABLE APARTAMENTO (
   <text x="340" y="244" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="700">EXECUTA</text>
   <text x="340" y="276" text-anchor="middle" fill="#e6edf3" font-size="9">Attr: KmRodado</text>
 
-  <line x1="385" y1="240" x2="430" y2="240" stroke="#8b949e" stroke-width="1.6"/>
-  <text x="407" y="232" text-anchor="middle" fill="#79c0ff" font-size="10">(0,N)</text>
-  <rect x="430" y="218" width="116" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="488" y="237" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ROTA</text>
-  <text x="488" y="253" text-anchor="middle" fill="#8b949e" font-size="10">(<u>IdRota</u>, Origem)</text>
+  <line x1="385" y1="240" x2="424" y2="240" stroke="#8b949e" stroke-width="1.6"/>
+  <text x="404" y="232" text-anchor="middle" fill="#79c0ff" font-size="10">(0,N)</text>
+  <rect x="424" y="218" width="126" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="487" y="237" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ROTA</text>
+  <text x="487" y="253" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">IdRota</tspan>, Origem)</text>
 
   <!-- Relationship from Aggregation to AUTO_FISCAL -->
   <line x1="560" y1="248" x2="600" y2="155" stroke="#f2cc60" stroke-width="1.8"/>
@@ -485,9 +485,9 @@ CREATE TABLE APARTAMENTO (
   <text x="645" y="159" text-anchor="middle" fill="#f2cc60" font-size="10" font-weight="700">GERA</text>
   <line x1="645" y1="130" x2="645" y2="82" stroke="#8b949e" stroke-width="1.6"/>
   <text x="665" y="110" text-anchor="middle" fill="#ffa657" font-size="10">(1,1)</text>
-  <rect x="580" y="34" width="138" height="48" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+  <rect x="576" y="34" width="146" height="48" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
   <text x="649" y="54" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">AUTO_FISCAL</text>
-  <text x="649" y="70" text-anchor="middle" fill="#8b949e" font-size="10">(<u>NumAuto</u>, Valor)</text>
+  <text x="649" y="70" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">NumAuto</tspan>, Valor)</text>
 </svg>
 </div>
 <p>Considere o mapeamento da hierarquia pela <strong>Opção 8A</strong> e da agregação conforme o Slide 40 de <code>ibd-parte5.pdf</code>.</p>
@@ -599,70 +599,70 @@ CREATE TABLE FAVORITA (
 <div class="answer-sheet-box">
   <h4>Gabarito Visual (Diagrama ER/EER Reconstruído) — R2.4</h4>
   <div style="text-align:center; margin: 10px 0;">
-  <svg viewBox="0 0 760 330" width="100%" style="max-width:740px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
+  <svg viewBox="0 0 800 330" width="100%" style="max-width:780px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
     <!-- PLANO -->
-    <rect x="28" y="34" width="130" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-    <text x="93" y="53" text-anchor="middle" fill="#f0f6fc" font-size="12" font-weight="700">PLANO</text>
-    <text x="93" y="69" text-anchor="middle" fill="#8b949e" font-size="10">(<u>CodPlano</u>, Nome, Preco)</text>
+    <rect x="20" y="34" width="148" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="94" y="53" text-anchor="middle" fill="#f0f6fc" font-size="12" font-weight="700">PLANO</text>
+    <text x="94" y="69" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">CodPlano</tspan>, Nome, Preco)</text>
 
     <!-- CONTRATA (1:N total in ASSINANTE) -->
-    <line x1="158" y1="56" x2="215" y2="56" stroke="#8b949e" stroke-width="1.6"/>
-    <text x="186" y="47" text-anchor="middle" fill="#79c0ff" font-size="10">(0, N)</text>
+    <line x1="168" y1="56" x2="215" y2="56" stroke="#8b949e" stroke-width="1.6"/>
+    <text x="191" y="47" text-anchor="middle" fill="#79c0ff" font-size="10">(0, N)</text>
     <polygon points="215,56 260,32 305,56 260,80" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.8"/>
     <text x="260" y="60" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="700">CONTRATA</text>
     <!-- Double line total -->
-    <line x1="305" y1="53" x2="365" y2="53" stroke="#58a6ff" stroke-width="1.5"/>
-    <line x1="305" y1="59" x2="365" y2="59" stroke="#58a6ff" stroke-width="1.5"/>
-    <text x="335" y="44" text-anchor="middle" fill="#79c0ff" font-size="10">(1, 1)</text>
+    <line x1="305" y1="53" x2="362" y2="53" stroke="#58a6ff" stroke-width="1.5"/>
+    <line x1="305" y1="59" x2="362" y2="59" stroke="#58a6ff" stroke-width="1.5"/>
+    <text x="333" y="44" text-anchor="middle" fill="#79c0ff" font-size="10">(1, 1)</text>
 
     <!-- ASSINANTE -->
-    <rect x="365" y="34" width="155" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
+    <rect x="362" y="34" width="160" height="44" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2.2"/>
     <text x="442" y="53" text-anchor="middle" fill="#f0f6fc" font-size="12" font-weight="700">ASSINANTE</text>
-    <text x="442" y="69" text-anchor="middle" fill="#8b949e" font-size="10">(<u>IdAssinante</u>, Email*)</text>
+    <text x="442" y="69" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">IdAssinante</tspan>, Email*)</text>
 
     <!-- EER Specialization -->
     <line x1="442" y1="78" x2="442" y2="105" stroke="#8b949e" stroke-width="1.6"/>
     <circle cx="442" cy="120" r="14" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
     <text x="442" y="124" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="700">d</text>
-    <line x1="430" y1="128" x2="355" y2="160" stroke="#8b949e" stroke-width="1.6"/>
+    <line x1="430" y1="128" x2="335" y2="160" stroke="#8b949e" stroke-width="1.6"/>
     <line x1="454" y1="128" x2="530" y2="160" stroke="#8b949e" stroke-width="1.6"/>
-    <rect x="275" y="160" width="155" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
-    <text x="352" y="178" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ASSINANTE_INDIVIDUAL</text>
-    <text x="352" y="192" text-anchor="middle" fill="#8b949e" font-size="10">(CPF*)</text>
-    <rect x="465" y="160" width="155" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
-    <text x="542" y="178" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ASSINANTE_FAMILIA</text>
-    <text x="542" y="192" text-anchor="middle" fill="#8b949e" font-size="10">(MaxTelas)</text>
+    <rect x="245" y="160" width="176" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
+    <text x="333" y="178" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ASSINANTE_INDIVIDUAL</text>
+    <text x="333" y="192" text-anchor="middle" fill="#8b949e" font-size="10">(CPF*)</text>
+    <rect x="445" y="160" width="165" height="40" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
+    <text x="527" y="178" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">ASSINANTE_FAMILIA</text>
+    <text x="527" y="192" text-anchor="middle" fill="#8b949e" font-size="10">(MaxTelas)</text>
 
     <!-- Identifying TEM_PERFIL -->
-    <line x1="520" y1="56" x2="585" y2="56" stroke="#8b949e" stroke-width="1.6"/>
-    <text x="552" y="46" text-anchor="middle" fill="#79c0ff" font-size="10">(1, N)</text>
-    <polygon points="585,56 625,30 665,56 625,82" fill="#1f2937" stroke="#f0883e" stroke-width="2"/>
-    <polygon points="592,56 625,35 658,56 625,77" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-    <text x="625" y="59" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="700">CRIA</text>
+    <line x1="522" y1="56" x2="650" y2="56" stroke="#8b949e" stroke-width="1.6"/>
+    <text x="586" y="46" text-anchor="middle" fill="#79c0ff" font-size="10">(1, N)</text>
+    <polygon points="650,56 692,30 734,56 692,82" fill="#1f2937" stroke="#f0883e" stroke-width="2"/>
+    <polygon points="657,56 692,35 727,56 692,77" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+    <text x="692" y="59" text-anchor="middle" fill="#f0883e" font-size="10" font-weight="700">CRIA</text>
     <!-- Total to PERFIL_USO -->
-    <line x1="622" y1="82" x2="622" y2="122" stroke="#f0883e" stroke-width="1.5"/>
-    <line x1="628" y1="82" x2="628" y2="122" stroke="#f0883e" stroke-width="1.5"/>
-    <text x="650" y="106" text-anchor="middle" fill="#ffa657" font-size="10">(1, 1)</text>
+    <line x1="689" y1="82" x2="689" y2="122" stroke="#f0883e" stroke-width="1.5"/>
+    <line x1="695" y1="82" x2="695" y2="122" stroke="#f0883e" stroke-width="1.5"/>
+    <text x="716" y="106" text-anchor="middle" fill="#ffa657" font-size="10">(1, 1)</text>
 
     <!-- PERFIL_USO (Weak) -->
-    <rect x="630" y="122" width="118" height="48" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
-    <rect x="635" y="127" width="108" height="38" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
-    <text x="689" y="144" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">PERFIL_USO</text>
-    <text x="689" y="159" text-anchor="middle" fill="#ffa657" font-size="9">({Apelido}, Faixa)</text>
+    <rect x="630" y="122" width="124" height="48" rx="4" fill="#161b22" stroke="#f0883e" stroke-width="2"/>
+    <rect x="635" y="127" width="114" height="38" rx="2" fill="none" stroke="#f0883e" stroke-width="1.2"/>
+    <text x="692" y="144" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">PERFIL_USO</text>
+    <text x="692" y="159" text-anchor="middle" fill="#ffa657" font-size="9">({Apelido}, Faixa)</text>
 
     <!-- M:N FAVORITA to MUSICA -->
-    <line x1="689" y1="170" x2="689" y2="215" stroke="#8b949e" stroke-width="1.6"/>
-    <text x="712" y="196" text-anchor="middle" fill="#79c0ff" font-size="10">(0, N)</text>
-    <polygon points="642,240 689,215 736,240 689,265" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.8"/>
-    <text x="689" y="244" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="700">FAVORITA</text>
-    <text x="689" y="278" text-anchor="middle" fill="#8b949e" font-size="9">(DataMarcacao)</text>
-    <line x1="642" y1="240" x2="545" y2="240" stroke="#8b949e" stroke-width="1.6"/>
-    <text x="593" y="232" text-anchor="middle" fill="#79c0ff" font-size="10">(0, N)</text>
+    <line x1="692" y1="170" x2="692" y2="215" stroke="#8b949e" stroke-width="1.6"/>
+    <text x="715" y="196" text-anchor="middle" fill="#79c0ff" font-size="10">(0, N)</text>
+    <polygon points="645,240 692,215 739,240 692,265" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.8"/>
+    <text x="692" y="244" text-anchor="middle" fill="#d2a8ff" font-size="10" font-weight="700">FAVORITA</text>
+    <text x="692" y="278" text-anchor="middle" fill="#8b949e" font-size="9">(DataMarcacao)</text>
+    <line x1="645" y1="240" x2="545" y2="240" stroke="#8b949e" stroke-width="1.6"/>
+    <text x="595" y="232" text-anchor="middle" fill="#79c0ff" font-size="10">(0, N)</text>
 
     <!-- MUSICA -->
     <rect x="405" y="220" width="140" height="42" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
     <text x="475" y="238" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">MUSICA</text>
-    <text x="475" y="253" text-anchor="middle" fill="#8b949e" font-size="10">(<u>ISRC</u>, Titulo)</text>
+    <text x="475" y="253" text-anchor="middle" fill="#8b949e" font-size="10">(<tspan text-decoration="underline">ISRC</tspan>, Titulo)</text>
   </svg>
   </div>
   <ul>
@@ -698,20 +698,20 @@ INSERT INTO DENTISTA VALUES ('REG-02', 'MG');
         "context_html": """
 <p><strong>Restrições Semânticas {d, total} via SQL-92 <code>CREATE ASSERTION</code>:</strong> A especialização abaixo foi mapeada pela <strong>Opção 8A</strong> em três tabelas já carregadas no banco (<code>PROFISSIONAL</code>, <code>MEDICO</code> e <code>DENTISTA</code>).</p>
 <div style="text-align:center; margin: 10px 0;">
-<svg viewBox="0 0 460 155" width="100%" style="max-width:440px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
-  <rect x="145" y="12" width="170" height="36" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="230" y="34" text-anchor="middle" fill="#f0f6fc" font-size="12" font-weight="700">PROFISSIONAL (<u>RegConselho</u>)</text>
+<svg viewBox="0 0 500 160" width="100%" style="max-width:480px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
+  <rect x="135" y="12" width="230" height="36" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="250" y="34" text-anchor="middle" fill="#f0f6fc" font-size="12" font-weight="700">PROFISSIONAL (<tspan text-decoration="underline">RegConselho</tspan>)</text>
   <!-- Double line = total -->
-  <line x1="227" y1="48" x2="227" y2="70" stroke="#f2cc60" stroke-width="1.8"/>
-  <line x1="233" y1="48" x2="233" y2="70" stroke="#f2cc60" stroke-width="1.8"/>
-  <circle cx="230" cy="84" r="14" fill="#161b22" stroke="#f2cc60" stroke-width="2"/>
-  <text x="230" y="88" text-anchor="middle" fill="#f2cc60" font-size="12" font-weight="700">d</text>
-  <line x1="218" y1="92" x2="120" y2="112" stroke="#8b949e" stroke-width="1.6"/>
-  <line x1="242" y1="92" x2="340" y2="112" stroke="#8b949e" stroke-width="1.6"/>
-  <rect x="40" y="112" width="150" height="34" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
-  <text x="115" y="133" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">MEDICO (CRM_Esp.)</text>
-  <rect x="270" y="112" width="150" height="34" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
-  <text x="345" y="133" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">DENTISTA (CRO_UF)</text>
+  <line x1="247" y1="48" x2="247" y2="70" stroke="#f2cc60" stroke-width="1.8"/>
+  <line x1="253" y1="48" x2="253" y2="70" stroke="#f2cc60" stroke-width="1.8"/>
+  <circle cx="250" cy="84" r="14" fill="#161b22" stroke="#f2cc60" stroke-width="2"/>
+  <text x="250" y="88" text-anchor="middle" fill="#f2cc60" font-size="12" font-weight="700">d</text>
+  <line x1="238" y1="92" x2="125" y2="112" stroke="#8b949e" stroke-width="1.6"/>
+  <line x1="262" y1="92" x2="375" y2="112" stroke="#8b949e" stroke-width="1.6"/>
+  <rect x="45" y="112" width="160" height="34" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
+  <text x="125" y="133" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">MEDICO (CRM_Esp.)</text>
+  <rect x="295" y="112" width="160" height="34" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
+  <text x="375" y="133" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">DENTISTA (CRO_UF)</text>
 </svg>
 </div>
 <p>As chaves estrangeiras padrão não garantem nem a <strong>disjunção (<code>d</code>)</strong> nem a <strong>totalidade (linha dupla)</strong>. Escreva <strong>duas declarações <code>CREATE ASSERTION ... CHECK (NOT EXISTS (...));</code></strong> separadas por ponto-e-vírgula:</p>
@@ -1021,40 +1021,46 @@ WHERE NOT EXISTS (
         "context_html": """
 <p><strong>Integração Módulos 7 + 8:</strong> Um desenvolvedor implementou o diagrama ER de E-Commerce abaixo de forma apressada em apenas uma grande tabela desnormalizada chamada <code>PEDIDO_BRUTO</code>.</p>
 <div style="text-align:center; margin: 12px 0;">
-<svg viewBox="0 0 760 155" width="100%" style="max-width:740px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
-  <rect x="16" y="45" width="128" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="80" y="64" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">CLIENTE</text>
-  <text x="80" y="79" text-anchor="middle" fill="#8b949e" font-size="9">(<u>IdCli</u>, Nome, UF)</text>
+<svg viewBox="0 0 860 160" width="100%" style="max-width:820px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
+  <rect x="14" y="45" width="128" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="78" y="64" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">CLIENTE</text>
+  <text x="78" y="79" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">IdCli</tspan>, Nome, UF)</text>
 
-  <line x1="144" y1="68" x2="176" y2="68" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="160" y="59" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
-  <polygon points="176,68 206,48 236,68 206,88" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.6"/>
-  <text x="206" y="71" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="700">FAZ</text>
-  <line x1="236" y1="65" x2="270" y2="65" stroke="#58a6ff" stroke-width="1.5"/>
-  <line x1="236" y1="71" x2="270" y2="71" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="253" y="57" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
+  <line x1="142" y1="68" x2="174" y2="68" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="158" y="59" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+  <polygon points="174,68 204,48 234,68 204,88" fill="#1f2937" stroke="#d2a8ff" stroke-width="1.6"/>
+  <text x="204" y="71" text-anchor="middle" fill="#d2a8ff" font-size="9" font-weight="700">FAZ</text>
+  <line x1="234" y1="65" x2="266" y2="65" stroke="#58a6ff" stroke-width="1.5"/>
+  <line x1="234" y1="71" x2="266" y2="71" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="250" y="57" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
 
-  <rect x="270" y="45" width="118" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="329" y="64" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">PEDIDO</text>
-  <text x="329" y="79" text-anchor="middle" fill="#8b949e" font-size="9">(<u>IdPed</u>, DataPed)</text>
+  <rect x="266" y="45" width="120" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="326" y="64" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">PEDIDO</text>
+  <text x="326" y="79" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">IdPed</tspan>, DataPed)</text>
 
-  <line x1="388" y1="68" x2="418" y2="68" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="403" y="59" text-anchor="middle" fill="#79c0ff" font-size="9">(1,N)</text>
-  <polygon points="418,68 455,44 492,68 455,92" fill="#1f2937" stroke="#f2cc60" stroke-width="1.6"/>
-  <text x="455" y="71" text-anchor="middle" fill="#f2cc60" font-size="9" font-weight="700">CONTEM</text>
-  <text x="455" y="108" text-anchor="middle" fill="#8b949e" font-size="9">(Qtd, PrecoUnit)</text>
-  <line x1="492" y1="68" x2="522" y2="68" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="507" y="59" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+  <line x1="386" y1="68" x2="416" y2="68" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="401" y="59" text-anchor="middle" fill="#79c0ff" font-size="9">(1,N)</text>
+  <polygon points="416,68 453,44 490,68 453,92" fill="#1f2937" stroke="#f2cc60" stroke-width="1.6"/>
+  <text x="453" y="71" text-anchor="middle" fill="#f2cc60" font-size="9" font-weight="700">CONTEM</text>
+  <text x="453" y="108" text-anchor="middle" fill="#8b949e" font-size="9">(Qtd, PrecoUnit)</text>
+  <line x1="490" y1="68" x2="520" y2="68" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="505" y="59" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
 
-  <rect x="522" y="45" width="128" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
-  <text x="586" y="64" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">PRODUTO</text>
-  <text x="586" y="79" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodProd</u>, Titulo)</text>
+  <rect x="520" y="45" width="126" height="46" rx="4" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="583" y="64" text-anchor="middle" fill="#f0f6fc" font-size="11" font-weight="700">PRODUTO</text>
+  <text x="583" y="79" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodProd</tspan>, Titulo)</text>
 
-  <line x1="650" y1="68" x2="672" y2="68" stroke="#8b949e" stroke-width="1.5"/>
-  <text x="685" y="58" text-anchor="middle" fill="#79c0ff" font-size="9">1:N</text>
-  <rect x="672" y="45" width="76" height="46" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
-  <text x="710" y="64" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">CATEG</text>
-  <text x="710" y="79" text-anchor="middle" fill="#8b949e" font-size="9">(<u>CodCat</u>)</text>
+  <line x1="646" y1="65" x2="676" y2="65" stroke="#3fb950" stroke-width="1.5"/>
+  <line x1="646" y1="71" x2="676" y2="71" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="661" y="57" text-anchor="middle" fill="#79c0ff" font-size="9">(1,1)</text>
+  <polygon points="676,68 712,44 748,68 712,92" fill="#1f2937" stroke="#3fb950" stroke-width="1.6"/>
+  <text x="712" y="71" text-anchor="middle" fill="#3fb950" font-size="9" font-weight="700">PERTENCE</text>
+  <line x1="748" y1="68" x2="774" y2="68" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="761" y="59" text-anchor="middle" fill="#79c0ff" font-size="9">(0,N)</text>
+
+  <rect x="774" y="45" width="74" height="46" rx="4" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
+  <text x="811" y="64" text-anchor="middle" fill="#f0f6fc" font-size="10" font-weight="700">CATEG</text>
+  <text x="811" y="79" text-anchor="middle" fill="#8b949e" font-size="9">(<tspan text-decoration="underline">CodCat</tspan>)</text>
 </svg>
 </div>
 <pre class="sql-code">PEDIDO_BRUTO(<u>IdPed</u>, <u>CodProd</u>, DataPed, IdCli, Nome, UF, Qtd, PrecoUnit, Titulo, CodCat)</pre>
