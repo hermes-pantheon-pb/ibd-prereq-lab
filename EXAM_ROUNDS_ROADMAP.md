@@ -126,9 +126,35 @@ Este documento registra as diretrizes pedagógicas, padrões técnicos de qualid
 
 ---
 
+## ✅ Rodada 4 (`R4.1` a `R4.10`) — CONCLUÍDA E INTEGRADA AO LAB
+
+### Grupo 11 (`R4.1` – `R4.5`): Alta Incidência Módulo 7 — Opções 1/2/3 + AR, DDL (`CHECK` + `-n->`), Ternário `M:N:1` & Lista Oficial
+- **Arquivo de Estudo:** `study_guides/G11_M7_Hierarquias8B_TernarioMN1_e_RIRs.md`
+  - *Base nos Slides:* `ibd-parte5.pdf` (Opções 1/2/3, Fórmulas AR, Ternário com lado `1`, RIRs `-b->`, `-p->`, `-n->`) & `ExercicioProjetoLogico.pdf`.
+  - *Exemplos Análogos na Ficha:* **Passagem Rodoviária** (`CHECK` XOR `{d, total}`), **Clínica Veterinária** (`CONSULTA_VET`) e **`CLINICA`** (Equações AR -> `ASSERTION`).
+- **Exercícios (`R4.1`–`R4.5`):**
+  - **`R4.1` (`structured` + SVG EER):** Comparação Opções 1/2/3 e equações em Álgebra Relacional em `MIDIA` (`{d, total}`) vs `COLABORADOR` (`{o, parcial}`).
+  - **`R4.2` (`sql_ddl`):** Tabela única `VEICULO` `{d, total}` com `CHECK` XOR + relação parcial `N:1` com `INSPETOR` usando `-n->` (`ON DELETE SET NULL`).
+  - **`R4.3` (`structured` + SVG ER):** Ternário `ESTAGIO(ALUNO: N, EMPRESA: M, ORIENTADOR: 1)` com PK dupla `(Matr, CNPJ)` + RIR `-n->` em `ORIENTADOR[IdLab]`.
+  - **`R4.4` (`open_design` + SVG EER):** Mapeamento lógico formal completo no caderno (PKs, `(nn)` e setas RIR) do sistema de Cooperativa Bancária com gabarito completo.
+  - **`R4.5` (`sql_assertion`):** Tradução direta das equações AR de disjunção (`∩ = ∅`) e totalidade (`∪ = π_PK(ACERVO)`) da Opção 1 em Biblioteca (`ACERVO`, `LIVRO_FISICO`, `PERIODICO`).
+
+### Grupo 12 (`R4.6` – `R4.10`): Alta Incidência Módulo 8 — DFs em SQL, Armstrong/Equivalência, Particionamento L/M/R & 1FN–3FN
+- **Arquivo de Estudo:** `study_guides/G12_M8_Armstrong_Equivalencia_Particionamento_1a3FN.md`
+  - *Base nos Slides:* `ibd-parte6.pdf` (Anomalias, DFs em instâncias, Armstrong, `F ≡ G`, Particionamento de chaves, 1FN->2FN->3FN) & `ExerciciosNormalizacaoSemResposta.pdf`.
+  - *Exemplos Análogos na Ficha:* Esquema abstrato **`S(P, Q, R, T, U, W)`** e comparação `F1` vs `F2`.
+- **Exercícios (`R4.6`–`R4.10`):**
+  - **`R4.6` (`sql_query`):** Auditoria SQL em `MATRICULA_HIST` refutando `Sala -> CPFProf`.
+  - **`R4.7` (`structured`):** Derivação via Armstrong (Pseudotransitividade) e testes bidirecionais de cobertura / equivalência `F ≡ G` vs `P ≢ Q`.
+  - **`R4.8` (`structured`):** Método dos 3 conjuntos (`L / M / R`) em `R(A,B,C,D,E,G)` descobrindo `{AB, AC, AE}` e diagnosticando violação de 2FN (Def. Geral) em `C -> D`.
+  - **`R4.9` (`open_design`):** Questão discursiva completa passo a passo (`1FN -> 2FN -> 3FN`) sobre `BOLETIM_ANUAL` com gabarito detalhado.
+  - **`R4.10` (`structured`):** Bateria mista sobre Anomalia de Inserção (`PLANTAO_MEDICO`), 3FN (`OS_OFICINA`) e perda de informação + tuplas espúrias (`EMP`).
+
+---
+
 ## 📋 Planejamento Salvo para a Próxima Rodada (Não Executar Agora)
 
-### Rodada 4 (`R4.1` a `R4.10`) — Tópicos Avançados & Casos de Borda de Prova:
-- **Módulo 7 (`R4.1`–`R4.5`):** Categorias (`UNION types`), hierarquia EER multi-nível completa (4 níveis), tradução completa SQL DDL Opção 8B (somente subclasses em especialização total `{d, total}`), cardinalidade ternária com lado `1` (`M:N:1`) e leitura cruzada de RIRs `-n->` vs `-b->`.
-- **Módulo 8 (`R4.6`–`R4.10`):** Algoritmo Tabular de Junção Sem Perda (Chase / Tableau Test para decomposições n-árias >= 3 relações), 4ª Forma Normal (4FN / Dependências Multivaloradas `MVD` - Elmasri), equivalência entre dois conjuntos de DFs `F ≡ G`, e 2 questões estilo múltipla escolha mista de revisão relâmpago.
+### Rodada 5 (`R5.1` a `R5.10`) — Reforço Focado em Provas Anteriores (100% dentro de `ibd-parte5.pdf` & `ibd-parte6.pdf`):
+- **Módulo 7 (`R5.1`–`R5.5`):** Novas variações realistas estilo `ExercicioProjetoLogico.pdf` cobrindo: mapeamento inverso (Esquema Lógico + RIRs -> leitura de cardinalidades), atributo composto + multivalorado aninhado, `1:1` com participação total de ambos os lados vs parcial, cadeia de fracas em sistema acadêmico/hospitalar em SQL DDL, e mini-simulado aberto estilo prova de papel.
+- **Módulo 8 (`R5.6`–`R5.10`):** Novas variações de listas oficiais de normalização cobrindo: cálculo de cobertura mínima passo a passo com 2 atributos estranhos no LHS, detetive SQL de anomalia de atualização/DF em tabela de vendas, esquema multicandidato de 4 chaves com 3FN vs BCNF, decomposição completa comentada (estilo `E8.3`) e bateria relâmpago de revisão pré-prova.
 

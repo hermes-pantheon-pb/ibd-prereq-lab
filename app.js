@@ -354,7 +354,17 @@ function getExerciseShortTitle(exId) {
     "R3.7": "[Simulado B — Etapa 2] ASSERTION SQL-92: Auto-lance",
     "R3.8": "[Simulado B — Etapa 3] Detetive SQL: Violação DF Leilões",
     "R3.9": "[Simulado B — Etapa 4] Rigor: Chaves/NJP/BCNF R(M..S)",
-    "R3.10": "[Simulado B — Etapa 5] Def. Geral 2FN/3FN/BCNF: Drones"
+    "R3.10": "[Simulado B — Etapa 5] Def. Geral 2FN/3FN/BCNF: Drones",
+    "R4.1": "[Rodada 4] Opções EER (1/2/3) & Álg. Relacional",
+    "R4.2": "[Rodada 4] SQL DDL: Tabela Única {d, total} & -n->",
+    "R4.3": "[Rodada 4] Ternário M:N:1 (Estágio) & RIRs",
+    "R4.4": "[Rodada 4] Lista Aberta: Esquema Lógico Cooperativa",
+    "R4.5": "[Rodada 4] ASSERTION: AR -> SQL-92 (Biblioteca)",
+    "R4.6": "[Rodada 4] Detetive SQL: Violação DF Turmas",
+    "R4.7": "[Rodada 4] Armstrong & Equivalência (F ≡ G)",
+    "R4.8": "[Rodada 4] Particionamento Chaves L/M/R R(A..G)",
+    "R4.9": "[Rodada 4] Discursiva 1FN -> 2FN -> 3FN Boletim",
+    "R4.10": "[Rodada 4] Bateria Final: Anomalias & Sem Perda"
   };
   return titles[exId] || exId;
 }
@@ -913,7 +923,7 @@ function updateProgressUI() {
   const count = solvedExercises.size;
   const total = curriculumData
     ? curriculumData.modules.reduce((acc, m) => acc + m.exercises.length, 0)
-    : 68;
+    : 78;
   const pct = Math.min(100, Math.round((count / total) * 100));
   document.getElementById("progress-text").innerText = `${count} / ${total} Concluídos`;
   document.getElementById("progress-bar-fill").style.width = `${pct}%`;
