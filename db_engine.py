@@ -2719,6 +2719,9 @@ EXERCISES_DATA.update(ROUND1_EXERCISES)
 from round2_exercises import ROUND2_EXERCISES
 EXERCISES_DATA.update(ROUND2_EXERCISES)
 
+from round3_exercises import ROUND3_EXERCISES
+EXERCISES_DATA.update(ROUND3_EXERCISES)
+
 
 def get_connection(ex_id: str) -> sqlite3.Connection:
     conn = sqlite3.connect(":memory:")

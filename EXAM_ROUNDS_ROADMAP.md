@@ -100,8 +100,35 @@ Este documento registra as diretrizes pedagógicas, padrões técnicos de qualid
 
 ---
 
-## 📋 Planejamento Salvo para a Próxima Rodada
+## ✅ Rodada 3 (`R3.1` a `R3.10`) — CONCLUÍDA E INTEGRADA AO LAB
 
-### Rodada 3 (`R3.1` a `R3.10`) — Simulados Integrados de Prova Final:
-- 2 provas completas estilo UFMG divididas em 5 etapas cada (Leitura de Requisitos -> Modelagem ER/EER -> Mapeamento Lógico + RIRs -> SQL DDL/Assertions -> Normalização até 3FN/BCNF).
+### Grupo 9 (`R3.1` – `R3.5`): Simulado A — Congresso Científico (5 Etapas: Requisitos -> EER -> RIRs -> DDL -> 3FN)
+- **Arquivo de Estudo:** `study_guides/G9_Simulado_A_Congresso_EER_para_3FN.md`
+  - *Base nos Slides:* `ibd-parte5.pdf` (Etapas 1–2, EER `{o, parcial}`, Ternários, RIRs `b/p/n`) & `ibd-parte6.pdf` (2FN/3FN).
+  - *Exemplo Análogo na Ficha:* **Mostra de Cinema (`PESSOA` -> `{CURADOR, CINEASTA}`, `MOSTRA -> EXIBICAO`, `VENDA_BRUTA`)**.
+- **As 5 Etapas do Simulado A:**
+  - **`R3.1` (`open_design` + Gabarito Visual SVG):** Leitura de requisitos do Congresso Científico -> desenho EER no caderno (`PESSOA {o, parcial}`, multivalorado `Emails`, fraca `SESSAO`, `M:N ESCREVE`, ternário `PARECER`).
+  - **`R3.2` (`structured` + SVG EER):** Decisões 8A vs 8C, chave parcial de `SESSAO` e não-redutibilidade do ternário `PARECER`.
+  - **`R3.3` (`structured`):** Mapeamento lógico completo e RIRs (`-p->` em `PESSOA_EMAILS`/`SESSAO`, `-b->` em `ARTIGO[CodTrilha]`).
+  - **`R3.4` (`sql_ddl`):** SQLite DDL completo de `TRILHA`, `SESSAO`, `ARTIGO` e `PARECER` (`CHECK (Nota >= 0 AND Nota <= 10)`) com 5 testes automatizados.
+  - **`R3.5` (`structured`):** Normalização da planilha legada `INSC_BRUTA` até 3FN (5 tabelas).
+
+### Grupo 10 (`R3.6` – `R3.10`): Simulado B — Plataforma de Leilões Online & Logística (5 Etapas)
+- **Arquivo de Estudo:** `study_guides/G10_Simulado_B_Auditoria_SQL_BCNF_e_Chaves.md`
+  - *Base nos Slides:* `ibd-parte5.pdf` (`CREATE ASSERTION`) & `ibd-parte6.pdf` (Detecção de DFs em SQL, NJP, 3FN vs BCNF, Definição Geral).
+  - *Exemplos Análogos na Ficha:* **Galeria de Arte** (`PROIBE_AUTO_AVALIACAO`) & esquema abstrato **`K(U, V, W, X, Y)`**.
+- **As 5 Etapas do Simulado B:**
+  - **`R3.6` (`structured` + SVG EER):** Auditoria de armadilhas EER em Leilões Online (`USUARIO {o, total}`, fraca `LANCE`).
+  - **`R3.7` (`sql_assertion`):** SQL-92 `CREATE ASSERTION` bloqueando auto-lance (`IdComprador = IdVendedor`) e lance em leilão fechado (`Status <> 'ABERTO'`).
+  - **`R3.8` (`sql_query`):** Auditoria SQL na instância `LANCE_AUDIT` provando violação de `CEPVendedor -> CPFVendedor`.
+  - **`R3.9` (`structured`):** Rigor formal em `R(M, N, P, Q, S)` (`F = {MN->P, NP->Q, Q->S, S->M}`): 4 chaves candidatas, 3FN vs BCNF, NJP e perda de preservação de DFs.
+  - **`R3.10` (`structured`):** Normalização pela Definição Geral em `ENTREGA_DRONE` (chaves `{IdEntrega}` e `{CodDrone, DataHora}`) até BCNF.
+
+---
+
+## 📋 Planejamento Salvo para a Próxima Rodada (Não Executar Agora)
+
+### Rodada 4 (`R4.1` a `R4.10`) — Tópicos Avançados & Casos de Borda de Prova:
+- **Módulo 7 (`R4.1`–`R4.5`):** Categorias (`UNION types`), hierarquia EER multi-nível completa (4 níveis), tradução completa SQL DDL Opção 8B (somente subclasses em especialização total `{d, total}`), cardinalidade ternária com lado `1` (`M:N:1`) e leitura cruzada de RIRs `-n->` vs `-b->`.
+- **Módulo 8 (`R4.6`–`R4.10`):** Algoritmo Tabular de Junção Sem Perda (Chase / Tableau Test para decomposições n-árias >= 3 relações), 4ª Forma Normal (4FN / Dependências Multivaloradas `MVD` - Elmasri), equivalência entre dois conjuntos de DFs `F ≡ G`, e 2 questões estilo múltipla escolha mista de revisão relâmpago.
 
